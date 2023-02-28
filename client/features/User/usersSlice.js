@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {};
 
-export const fetchUsersAsync = createAsyncThunk('allusers', async () => {
+export const fetchAllUsersAsync = createAsyncThunk('allusers', async () => {
     try {
         const {data} = await axios.get('/api/users');
         return data;
@@ -17,7 +17,7 @@ const usersSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchUsersAsync.fulfilled, (state, action) => {
+        builder.addCase(fetchAllUsersAsync.fulfilled, (state, action) => {
             return action.payload
         });
     },
