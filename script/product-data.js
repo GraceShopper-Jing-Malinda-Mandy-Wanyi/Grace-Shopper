@@ -1,786 +1,786 @@
 const productData = [
   {
-    Name: "Paucek, Bosco and Stark",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 87.44,
-    Description:
+    name: "Paucek, Bosco and Stark",
+    size: "750ML",
+    type: "Wine",
+    price: 87.44,
+    description:
       "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
   },
   {
-    Name: "Mills-Pacocha",
-    Size: "1L",
-    Type: "Wine",
-    Price: 129.59,
-    Description:
+    name: "Mills-Pacocha",
+    size: "1L",
+    type: "Wine",
+    price: 129.59,
+    description:
       "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",
   },
   {
-    Name: "Farrell Group",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 144.49,
-    Description:
+    name: "Farrell Group",
+    size: "1.75L",
+    type: "Beer",
+    price: 144.49,
+    description:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus.",
   },
   {
-    Name: "Nolan-Weissnat",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 114.88,
-    Description:
+    name: "Nolan-Weissnat",
+    size: "750ML",
+    type: "Beer",
+    price: 114.88,
+    description:
       "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.",
   },
   {
-    Name: "Auer Inc",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 18.82,
-    Description: "Morbi non quam nec dui luctus rutrum. Nulla tellus.",
+    name: "Auer Inc",
+    size: "750ML",
+    type: "Spirit",
+    price: 18.82,
+    description: "Morbi non quam nec dui luctus rutrum. Nulla tellus.",
   },
   {
-    Name: "Cartwright, Greenholt and Reinger",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 39.7,
-    Description:
+    name: "Cartwright, Greenholt and Reinger",
+    size: "750ML",
+    type: "Spirit",
+    price: 39.7,
+    description:
       "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.",
   },
   {
-    Name: "Zboncak Inc",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 7.83,
-    Description:
+    name: "Zboncak Inc",
+    size: "1.75L",
+    type: "Wine",
+    price: 7.83,
+    description:
       "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
   },
   {
-    Name: "Schowalter-Hamill",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 89.93,
-    Description:
+    name: "Schowalter-Hamill",
+    size: "750ML",
+    type: "Spirit",
+    price: 89.93,
+    description:
       "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.",
   },
   {
-    Name: "Steuber-Kunze",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 85.31,
-    Description:
+    name: "Steuber-Kunze",
+    size: "1.75L",
+    type: "Beer",
+    price: 85.31,
+    description:
       "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",
   },
   {
-    Name: "Luettgen Inc",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 43.19,
-    Description:
+    name: "Luettgen Inc",
+    size: "1.75L",
+    type: "Spirit",
+    price: 43.19,
+    description:
       "Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
   },
   {
-    Name: "Cruickshank-Zboncak",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 115.73,
-    Description:
+    name: "Cruickshank-Zboncak",
+    size: "1.75L",
+    type: "Spirit",
+    price: 115.73,
+    description:
       "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
   },
   {
-    Name: "Reichert Inc",
-    Size: "1L",
-    Type: "Wine",
-    Price: 30.62,
-    Description:
+    name: "Reichert Inc",
+    size: "1L",
+    type: "Wine",
+    price: 30.62,
+    description:
       "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
   },
   {
-    Name: "Lubowitz-Reynolds",
-    Size: "1L",
-    Type: "Wine",
-    Price: 132.87,
-    Description:
+    name: "Lubowitz-Reynolds",
+    size: "1L",
+    type: "Wine",
+    price: 132.87,
+    description:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
   },
   {
-    Name: "Monahan and Sons",
-    Size: "1L",
-    Type: "Beer",
-    Price: 90.74,
-    Description:
+    name: "Monahan and Sons",
+    size: "1L",
+    type: "Beer",
+    price: 90.74,
+    description:
       "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
   },
   {
-    Name: "Fritsch, Krajcik and Bogan",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 118.56,
-    Description: "Nunc rhoncus dui vel sem. Sed sagittis.",
+    name: "Fritsch, Krajcik and Bogan",
+    size: "1L",
+    type: "Spirit",
+    price: 118.56,
+    description: "Nunc rhoncus dui vel sem. Sed sagittis.",
   },
   {
-    Name: "Jacobson Inc",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 77.68,
-    Description:
+    name: "Jacobson Inc",
+    size: "1L",
+    type: "Spirit",
+    price: 77.68,
+    description:
       "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
   },
   {
-    Name: "Jones, Schmitt and Pfannerstill",
-    Size: "1L",
-    Type: "Beer",
-    Price: 82.08,
-    Description:
+    name: "Jones, Schmitt and Pfannerstill",
+    size: "1L",
+    type: "Beer",
+    price: 82.08,
+    description:
       "Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
   },
   {
-    Name: "Herzog and Sons",
-    Size: "1L",
-    Type: "Wine",
-    Price: 12.36,
-    Description:
+    name: "Herzog and Sons",
+    size: "1L",
+    type: "Wine",
+    price: 12.36,
+    description:
       "Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.",
   },
   {
-    Name: "Rogahn, Mills and Heller",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 92.89,
-    Description:
+    name: "Rogahn, Mills and Heller",
+    size: "750ML",
+    type: "Spirit",
+    price: 92.89,
+    description:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum.",
   },
   {
     ID: 20,
-    Name: "McClure-Leannon",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 62.59,
-    Description:
+    name: "McClure-Leannon",
+    size: "1.75L",
+    type: "Beer",
+    price: 62.59,
+    description:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
   },
   {
-    Name: "Bogisich-Dare",
-    Size: "1L",
-    Type: "Wine",
-    Price: 132.92,
-    Description: "Proin at turpis a pede posuere nonummy. Integer non velit.",
+    name: "Bogisich-Dare",
+    size: "1L",
+    type: "Wine",
+    price: 132.92,
+    description: "Proin at turpis a pede posuere nonummy. Integer non velit.",
   },
   {
-    Name: "Haag-Krajcik",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 87.3,
-    Description:
+    name: "Haag-Krajcik",
+    size: "750ML",
+    type: "Beer",
+    price: 87.3,
+    description:
       "Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.",
   },
   {
-    Name: "Torphy, Osinski and Flatley",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 42.01,
-    Description:
+    name: "Torphy, Osinski and Flatley",
+    size: "1.75L",
+    type: "Spirit",
+    price: 42.01,
+    description:
       "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.",
   },
   {
-    Name: "McCullough-Bernier",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 24.8,
-    Description:
+    name: "McCullough-Bernier",
+    size: "750ML",
+    type: "Wine",
+    price: 24.8,
+    description:
       "Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.",
   },
   {
-    Name: "Johns, Brakus and Dibbert",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 101.01,
-    Description:
+    name: "Johns, Brakus and Dibbert",
+    size: "1.75L",
+    type: "Wine",
+    price: 101.01,
+    description:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
   },
   {
-    Name: "Lind-Lynch",
-    Size: "1L",
-    Type: "Beer",
-    Price: 5.37,
-    Description:
+    name: "Lind-Lynch",
+    size: "1L",
+    type: "Beer",
+    price: 5.37,
+    description:
       "Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
   },
   {
-    Name: "Quitzon, Brown and Bailey",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 139.33,
-    Description:
+    name: "Quitzon, Brown and Bailey",
+    size: "1.75L",
+    type: "Wine",
+    price: 139.33,
+    description:
       "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.",
   },
   {
-    Name: "Howe Group",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 123.33,
-    Description:
+    name: "Howe Group",
+    size: "1.75L",
+    type: "Spirit",
+    price: 123.33,
+    description:
       "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.",
   },
   {
-    Name: "Ledner-Kiehn",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 16.46,
-    Description:
+    name: "Ledner-Kiehn",
+    size: "1.75L",
+    type: "Spirit",
+    price: 16.46,
+    description:
       "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
   },
   {
-    Name: "Wilderman and Sons",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 115.95,
-    Description: "In congue. Etiam justo. Etiam pretium iaculis justo.",
+    name: "Wilderman and Sons",
+    size: "750ML",
+    type: "Spirit",
+    price: 115.95,
+    description: "In congue. Etiam justo. Etiam pretium iaculis justo.",
   },
   {
-    Name: "Stehr, Altenwerth and Anderson",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 39.08,
-    Description:
+    name: "Stehr, Altenwerth and Anderson",
+    size: "750ML",
+    type: "Spirit",
+    price: 39.08,
+    description:
       "Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc.",
   },
   {
-    Name: "Harvey-Littel",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 51.01,
-    Description:
+    name: "Harvey-Littel",
+    size: "750ML",
+    type: "Beer",
+    price: 51.01,
+    description:
       "Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
   },
   {
-    Name: "Watsica-Block",
-    Size: "1L",
-    Type: "Wine",
-    Price: 123.89,
-    Description:
+    name: "Watsica-Block",
+    size: "1L",
+    type: "Wine",
+    price: 123.89,
+    description:
       "Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
   },
   {
-    Name: "Swift and Sons",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 112.94,
-    Description:
+    name: "Swift and Sons",
+    size: "750ML",
+    type: "Beer",
+    price: 112.94,
+    description:
       "Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
   },
   {
-    Name: "Anderson-Lind",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 69.85,
-    Description: "Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
+    name: "Anderson-Lind",
+    size: "750ML",
+    type: "Beer",
+    price: 69.85,
+    description: "Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
   },
   {
-    Name: "Wilderman Group",
-    Size: "1L",
-    Type: "Wine",
-    Price: 4.05,
-    Description:
+    name: "Wilderman Group",
+    size: "1L",
+    type: "Wine",
+    price: 4.05,
+    description:
       "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.",
   },
   {
-    Name: "Moore Group",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 65.54,
-    Description:
+    name: "Moore Group",
+    size: "750ML",
+    type: "Wine",
+    price: 65.54,
+    description:
       "Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.",
   },
   {
-    Name: "Borer-Bashirian",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 108.63,
-    Description:
+    name: "Borer-Bashirian",
+    size: "1.75L",
+    type: "Beer",
+    price: 108.63,
+    description:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.",
   },
   {
-    Name: "Anderson-Rolfson",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 131.13,
-    Description:
+    name: "Anderson-Rolfson",
+    size: "1.75L",
+    type: "Spirit",
+    price: 131.13,
+    description:
       "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
   },
   {
-    Name: "Cummerata, Mosciski and Reinger",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 39.76,
-    Description:
+    name: "Cummerata, Mosciski and Reinger",
+    size: "750ML",
+    type: "Beer",
+    price: 39.76,
+    description:
       "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
   },
   {
-    Name: "Schuster, Corwin and Beier",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 96.25,
-    Description: "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
+    name: "Schuster, Corwin and Beier",
+    size: "1.75L",
+    type: "Wine",
+    price: 96.25,
+    description: "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
   },
   {
-    Name: "Bins-Romaguera",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 27.74,
-    Description:
+    name: "Bins-Romaguera",
+    size: "1L",
+    type: "Spirit",
+    price: 27.74,
+    description:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
   },
   {
-    Name: "Kovacek-Gutkowski",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 64.05,
-    Description:
+    name: "Kovacek-Gutkowski",
+    size: "1.75L",
+    type: "Wine",
+    price: 64.05,
+    description:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
   },
   {
-    Name: "Huel-Kihn",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 134.03,
-    Description:
+    name: "Huel-Kihn",
+    size: "750ML",
+    type: "Spirit",
+    price: 134.03,
+    description:
       "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
   },
   {
-    Name: "Greenfelder-Johnston",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 140.5,
-    Description:
+    name: "Greenfelder-Johnston",
+    size: "750ML",
+    type: "Wine",
+    price: 140.5,
+    description:
       "Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.",
   },
   {
-    Name: "Mosciski LLC",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 117.78,
-    Description:
+    name: "Mosciski LLC",
+    size: "1.75L",
+    type: "Spirit",
+    price: 117.78,
+    description:
       "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
   },
   {
-    Name: "Volkman, Predovic and Rowe",
-    Size: "1L",
-    Type: "Wine",
-    Price: 71.36,
-    Description:
+    name: "Volkman, Predovic and Rowe",
+    size: "1L",
+    type: "Wine",
+    price: 71.36,
+    description:
       "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
   },
   {
-    Name: "Wehner-Fritsch",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 20.74,
-    Description:
+    name: "Wehner-Fritsch",
+    size: "1.75L",
+    type: "Wine",
+    price: 20.74,
+    description:
       "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.",
   },
   {
-    Name: "Vandervort and Sons",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 100.96,
-    Description:
+    name: "Vandervort and Sons",
+    size: "750ML",
+    type: "Spirit",
+    price: 100.96,
+    description:
       "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
   },
   {
-    Name: "Rice, Shanahan and Gusikowski",
-    Size: "1L",
-    Type: "Beer",
-    Price: 15.6,
-    Description:
+    name: "Rice, Shanahan and Gusikowski",
+    size: "1L",
+    type: "Beer",
+    price: 15.6,
+    description:
       "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.",
   },
   {
-    Name: "McGlynn-Nicolas",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 103.87,
-    Description:
+    name: "McGlynn-Nicolas",
+    size: "1.75L",
+    type: "Wine",
+    price: 103.87,
+    description:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
   },
   {
-    Name: "Walter-Altenwerth",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 132.04,
-    Description:
+    name: "Walter-Altenwerth",
+    size: "1.75L",
+    type: "Wine",
+    price: 132.04,
+    description:
       "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
   },
   {
-    Name: "Conn LLC",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 5.75,
-    Description: "Ut tellus. Nulla ut erat id mauris vulputate elementum.",
+    name: "Conn LLC",
+    size: "1L",
+    type: "Spirit",
+    price: 5.75,
+    description: "Ut tellus. Nulla ut erat id mauris vulputate elementum.",
   },
   {
-    Name: "Hettinger-Flatley",
-    Size: "1L",
-    Type: "Wine",
-    Price: 122.24,
-    Description: "Vivamus tortor. Duis mattis egestas metus.",
+    name: "Hettinger-Flatley",
+    size: "1L",
+    type: "Wine",
+    price: 122.24,
+    description: "Vivamus tortor. Duis mattis egestas metus.",
   },
   {
-    Name: "Berge, Barrows and Bartoletti",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 50.38,
-    Description:
+    name: "Berge, Barrows and Bartoletti",
+    size: "1.75L",
+    type: "Wine",
+    price: 50.38,
+    description:
       "Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
   },
   {
-    Name: "Kutch-Anderson",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 112.91,
-    Description:
+    name: "Kutch-Anderson",
+    size: "750ML",
+    type: "Beer",
+    price: 112.91,
+    description:
       "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.",
   },
   {
-    Name: "Quigley, Mayert and Kunde",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 28.16,
-    Description:
+    name: "Quigley, Mayert and Kunde",
+    size: "1.75L",
+    type: "Beer",
+    price: 28.16,
+    description:
       "Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.",
   },
   {
-    Name: "Turner, Gusikowski and Gerlach",
-    Size: "1L",
-    Type: "Wine",
-    Price: 86.8,
-    Description:
+    name: "Turner, Gusikowski and Gerlach",
+    size: "1L",
+    type: "Wine",
+    price: 86.8,
+    description:
       "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
   },
   {
-    Name: "Legros Inc",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 31.08,
-    Description:
+    name: "Legros Inc",
+    size: "1.75L",
+    type: "Spirit",
+    price: 31.08,
+    description:
       "Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla.",
   },
   {
-    Name: "Cremin, Jerde and Welch",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 129.6,
-    Description: "Morbi a ipsum. Integer a nibh. In quis justo.",
+    name: "Cremin, Jerde and Welch",
+    size: "1L",
+    type: "Spirit",
+    price: 129.6,
+    description: "Morbi a ipsum. Integer a nibh. In quis justo.",
   },
   {
-    Name: "Yost-Murray",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 48.0,
-    Description: "Praesent blandit. Nam nulla.",
+    name: "Yost-Murray",
+    size: "1.75L",
+    type: "Beer",
+    price: 48.0,
+    description: "Praesent blandit. Nam nulla.",
   },
   {
-    Name: "Bins-Breitenberg",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 70.07,
-    Description:
+    name: "Bins-Breitenberg",
+    size: "750ML",
+    type: "Wine",
+    price: 70.07,
+    description:
       "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
   },
   {
-    Name: "Spencer-Kuhn",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 92.73,
-    Description:
+    name: "Spencer-Kuhn",
+    size: "1.75L",
+    type: "Wine",
+    price: 92.73,
+    description:
       "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
   },
   {
-    Name: "McClure-Balistreri",
-    Size: "1L",
-    Type: "Beer",
-    Price: 18.15,
-    Description:
+    name: "McClure-Balistreri",
+    size: "1L",
+    type: "Beer",
+    price: 18.15,
+    description:
       "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
   },
   {
-    Name: "Treutel, Farrell and Herzog",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 106.54,
-    Description:
+    name: "Treutel, Farrell and Herzog",
+    size: "1L",
+    type: "Spirit",
+    price: 106.54,
+    description:
       "Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",
   },
   {
-    Name: "Kshlerin-Walsh",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 120.36,
-    Description:
+    name: "Kshlerin-Walsh",
+    size: "750ML",
+    type: "Spirit",
+    price: 120.36,
+    description:
       "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
   },
   {
     ID: 67,
-    Name: "Crona LLC",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 70.39,
-    Description: "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
+    name: "Crona LLC",
+    size: "1L",
+    type: "Spirit",
+    price: 70.39,
+    description: "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
   },
   {
-    Name: "Mohr, Corkery and Bernier",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 22.05,
-    Description:
+    name: "Mohr, Corkery and Bernier",
+    size: "1.75L",
+    type: "Beer",
+    price: 22.05,
+    description:
       "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.",
   },
   {
-    Name: "Lang-Miller",
-    Size: "1L",
-    Type: "Beer",
-    Price: 83.84,
-    Description:
+    name: "Lang-Miller",
+    size: "1L",
+    type: "Beer",
+    price: 83.84,
+    description:
       "Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
   },
   {
-    Name: "Koelpin-Crist",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 24.73,
-    Description:
+    name: "Koelpin-Crist",
+    size: "750ML",
+    type: "Spirit",
+    price: 24.73,
+    description:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.",
   },
   {
-    Name: "Koelpin-Parker",
-    Size: "1L",
-    Type: "Beer",
-    Price: 93.15,
-    Description:
+    name: "Koelpin-Parker",
+    size: "1L",
+    type: "Beer",
+    price: 93.15,
+    description:
       "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
   },
   {
-    Name: "Oberbrunner, Zboncak and Franecki",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 44.45,
-    Description:
+    name: "Oberbrunner, Zboncak and Franecki",
+    size: "1.75L",
+    type: "Spirit",
+    price: 44.45,
+    description:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.",
   },
   {
-    Name: "Romaguera-Upton",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 17.79,
-    Description:
+    name: "Romaguera-Upton",
+    size: "1L",
+    type: "Spirit",
+    price: 17.79,
+    description:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
   },
   {
-    Name: "Schaden LLC",
-    Size: "1L",
-    Type: "Wine",
-    Price: 105.58,
-    Description:
+    name: "Schaden LLC",
+    size: "1L",
+    type: "Wine",
+    price: 105.58,
+    description:
       "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
   },
   {
-    Name: "Beahan-Gleichner",
-    Size: "1L",
-    Type: "Beer",
-    Price: 18.79,
-    Description: "Ut at dolor quis odio consequat varius. Integer ac leo.",
+    name: "Beahan-Gleichner",
+    size: "1L",
+    type: "Beer",
+    price: 18.79,
+    description: "Ut at dolor quis odio consequat varius. Integer ac leo.",
   },
   {
-    Name: "Hane-Jenkins",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 103.91,
-    Description:
+    name: "Hane-Jenkins",
+    size: "750ML",
+    type: "Spirit",
+    price: 103.91,
+    description:
       "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",
   },
   {
-    Name: "Zemlak LLC",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 9.45,
-    Description:
+    name: "Zemlak LLC",
+    size: "750ML",
+    type: "Spirit",
+    price: 9.45,
+    description:
       "Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
   },
   {
-    Name: "Simonis Inc",
-    Size: "1.75L",
-    Type: "Wine",
-    Price: 123.57,
-    Description:
+    name: "Simonis Inc",
+    size: "1.75L",
+    type: "Wine",
+    price: 123.57,
+    description:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
   },
   {
-    Name: "Armstrong, Howell and Rippin",
-    Size: "1L",
-    Type: "Wine",
-    Price: 24.99,
-    Description:
+    name: "Armstrong, Howell and Rippin",
+    size: "1L",
+    type: "Wine",
+    price: 24.99,
+    description:
       "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
   },
   {
-    Name: "Bogisich, Russel and Brown",
-    Size: "1L",
-    Type: "Beer",
-    Price: 126.7,
-    Description: "Nulla nisl. Nunc nisl.",
+    name: "Bogisich, Russel and Brown",
+    size: "1L",
+    type: "Beer",
+    price: 126.7,
+    description: "Nulla nisl. Nunc nisl.",
   },
   {
-    Name: "Farrell and Sons",
-    Size: "750ML",
-    Type: "Spirit",
-    Price: 19.79,
-    Description:
+    name: "Farrell and Sons",
+    size: "750ML",
+    type: "Spirit",
+    price: 19.79,
+    description:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.",
   },
   {
-    Name: "Rippin, Connelly and Borer",
-    Size: "1L",
-    Type: "Beer",
-    Price: 88.49,
-    Description:
+    name: "Rippin, Connelly and Borer",
+    size: "1L",
+    type: "Beer",
+    price: 88.49,
+    description:
       "Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",
   },
   {
-    Name: "Gaylord-Tillman",
-    Size: "1L",
-    Type: "Beer",
-    Price: 136.43,
-    Description:
+    name: "Gaylord-Tillman",
+    size: "1L",
+    type: "Beer",
+    price: 136.43,
+    description:
       "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.",
   },
   {
-    Name: "Wehner LLC",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 132.65,
-    Description:
+    name: "Wehner LLC",
+    size: "1L",
+    type: "Spirit",
+    price: 132.65,
+    description:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
   },
   {
-    Name: "Green, Bernier and Stoltenberg",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 99.51,
-    Description:
+    name: "Green, Bernier and Stoltenberg",
+    size: "750ML",
+    type: "Beer",
+    price: 99.51,
+    description:
       "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
   },
   {
-    Name: "Rath LLC",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 50.97,
-    Description:
+    name: "Rath LLC",
+    size: "1.75L",
+    type: "Spirit",
+    price: 50.97,
+    description:
       "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
   },
   {
-    Name: "Gusikowski and Sons",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 11.14,
-    Description:
+    name: "Gusikowski and Sons",
+    size: "750ML",
+    type: "Wine",
+    price: 11.14,
+    description:
       "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
   },
   {
-    Name: "Armstrong-Kunze",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 136.19,
-    Description: "Suspendisse potenti. Nullam porttitor lacus at turpis.",
+    name: "Armstrong-Kunze",
+    size: "750ML",
+    type: "Wine",
+    price: 136.19,
+    description: "Suspendisse potenti. Nullam porttitor lacus at turpis.",
   },
   {
-    Name: "Cassin-Bosco",
-    Size: "1.75L",
-    Type: "Beer",
-    Price: 99.08,
-    Description: "Integer ac neque. Duis bibendum.",
+    name: "Cassin-Bosco",
+    size: "1.75L",
+    type: "Beer",
+    price: 99.08,
+    description: "Integer ac neque. Duis bibendum.",
   },
   {
-    Name: "Harber-Marks",
-    Size: "1L",
-    Type: "Beer",
-    Price: 117.72,
-    Description: "Aliquam erat volutpat. In congue.",
+    name: "Harber-Marks",
+    size: "1L",
+    type: "Beer",
+    price: 117.72,
+    description: "Aliquam erat volutpat. In congue.",
   },
   {
-    Name: "Bernhard and Sons",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 37.79,
-    Description: "Sed accumsan felis. Ut at dolor quis odio consequat varius.",
+    name: "Bernhard and Sons",
+    size: "1.75L",
+    type: "Spirit",
+    price: 37.79,
+    description: "Sed accumsan felis. Ut at dolor quis odio consequat varius.",
   },
   {
-    Name: "Buckridge, Simonis and Stiedemann",
-    Size: "1L",
-    Type: "Beer",
-    Price: 12.55,
-    Description:
+    name: "Buckridge, Simonis and Stiedemann",
+    size: "1L",
+    type: "Beer",
+    price: 12.55,
+    description:
       "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
   },
   {
-    Name: "Hoeger Group",
-    Size: "1L",
-    Type: "Wine",
-    Price: 125.19,
-    Description:
+    name: "Hoeger Group",
+    size: "1L",
+    type: "Wine",
+    price: 125.19,
+    description:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
   },
   {
-    Name: "McDermott-Grant",
-    Size: "1.75L",
-    Type: "Spirit",
-    Price: 60.43,
-    Description: "Maecenas pulvinar lobortis est. Phasellus sit amet erat.",
+    name: "McDermott-Grant",
+    size: "1.75L",
+    type: "Spirit",
+    price: 60.43,
+    description: "Maecenas pulvinar lobortis est. Phasellus sit amet erat.",
   },
   {
-    Name: "Koepp, Mohr and Prosacco",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 133.63,
-    Description:
+    name: "Koepp, Mohr and Prosacco",
+    size: "750ML",
+    type: "Wine",
+    price: 133.63,
+    description:
       "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
   },
   {
-    Name: "Witting and Sons",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 84.43,
-    Description:
+    name: "Witting and Sons",
+    size: "1L",
+    type: "Spirit",
+    price: 84.43,
+    description:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.",
   },
   {
-    Name: "Murazik, D'Amore and Carter",
-    Size: "750ML",
-    Type: "Beer",
-    Price: 2.3,
-    Description:
+    name: "Murazik, D'Amore and Carter",
+    size: "750ML",
+    type: "Beer",
+    price: 2.3,
+    description:
       "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.",
   },
   {
-    Name: "Schiller-Haley",
-    Size: "750ML",
-    Type: "Wine",
-    Price: 47.86,
-    Description:
+    name: "Schiller-Haley",
+    size: "750ML",
+    type: "Wine",
+    price: 47.86,
+    description:
       "Etiam pretium iaculis justo. In hac habitasse platea dictumst.",
   },
   {
-    Name: "Gerlach Group",
-    Size: "1L",
-    Type: "Beer",
-    Price: 3.54,
-    Description:
+    name: "Gerlach Group",
+    size: "1L",
+    type: "Beer",
+    price: 3.54,
+    description:
       "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.",
   },
   {
-    Name: "McDermott, Schimmel and Weissnat",
-    Size: "1L",
-    Type: "Spirit",
-    Price: 89.94,
-    Description:
+    name: "McDermott, Schimmel and Weissnat",
+    size: "1L",
+    type: "Spirit",
+    price: 89.94,
+    description:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
   },
 ];

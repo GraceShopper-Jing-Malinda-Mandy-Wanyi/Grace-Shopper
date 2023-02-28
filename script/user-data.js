@@ -2,7 +2,6 @@ const userData = [
   {
     first_name: "Pail",
     last_name: "Colegrove",
-    domain: "yolasite.com",
     email: "pail.colegrove@yolasite.com",
     username: "pail.colegrove@yolasite.com",
     password: "wvIeDLqf",
@@ -10,7 +9,6 @@ const userData = [
   {
     first_name: "Angelica",
     last_name: "Gawkroge",
-    domain: "mtv.com",
     email: "angelica.gawkroge@mtv.com",
     username: "angelica.gawkroge@mtv.com",
     password: "ZWfuqRnarS",
@@ -18,7 +16,6 @@ const userData = [
   {
     first_name: "Jasen",
     last_name: "Franceschino",
-    domain: "mapy.cz",
     email: "jasen.franceschino@mapy.cz",
     username: "jasen.franceschino@mapy.cz",
     password: "Y9tu4gGMJj",
@@ -26,7 +23,6 @@ const userData = [
   {
     first_name: "Lewes",
     last_name: "Balazot",
-    domain: "un.org",
     email: "lewes.balazot@un.org",
     username: "lewes.balazot@un.org",
     password: "nK6NKhzCUp",
@@ -34,7 +30,6 @@ const userData = [
   {
     first_name: "Claudianus",
     last_name: "Spalls",
-    domain: "baidu.com",
     email: "claudianus.spalls@baidu.com",
     username: "claudianus.spalls@baidu.com",
     password: "NWQMvf3",
@@ -42,7 +37,6 @@ const userData = [
   {
     first_name: "Yoko",
     last_name: "Ferne",
-    domain: "techcrunch.com",
     email: "yoko.ferne@techcrunch.com",
     username: "yoko.ferne@techcrunch.com",
     password: "dYhzi28TMM",
@@ -50,7 +44,6 @@ const userData = [
   {
     first_name: "Christoph",
     last_name: "Cargen",
-    domain: "noaa.gov",
     email: "christoph.cargen@noaa.gov",
     username: "christoph.cargen@noaa.gov",
     password: "oHhi2zGSr",
@@ -58,7 +51,6 @@ const userData = [
   {
     first_name: "Temple",
     last_name: "Le Page",
-    domain: "barnesandnoble.com",
     email: "temple.le page@barnesandnoble.com",
     username: "temple.le page@barnesandnoble.com",
     password: "aPfTGzli6",
@@ -66,7 +58,6 @@ const userData = [
   {
     first_name: "Timofei",
     last_name: "Surcombe",
-    domain: "360.cn",
     email: "timofei.surcombe@360.cn",
     username: "timofei.surcombe@360.cn",
     password: "OkdtKCJL",
@@ -74,7 +65,6 @@ const userData = [
   {
     first_name: "Jami",
     last_name: "Coulthard",
-    domain: "ucoz.com",
     email: "jami.coulthard@ucoz.com",
     username: "jami.coulthard@ucoz.com",
     password: "PcIQA0X",
@@ -82,7 +72,6 @@ const userData = [
   {
     first_name: "Kort",
     last_name: "Curnok",
-    domain: "cam.ac.uk",
     email: "kort.curnok@cam.ac.uk",
     username: "kort.curnok@cam.ac.uk",
     password: "V19itX",
@@ -90,7 +79,6 @@ const userData = [
   {
     first_name: "Allister",
     last_name: "Dundredge",
-    domain: "clickbank.net",
     email: "allister.dundredge@clickbank.net",
     username: "allister.dundredge@clickbank.net",
     password: "2UyngGS",
@@ -98,7 +86,6 @@ const userData = [
   {
     first_name: "Estelle",
     last_name: "Leipelt",
-    domain: "skyrock.com",
     email: "estelle.leipelt@skyrock.com",
     username: "estelle.leipelt@skyrock.com",
     password: "qwvBN40ZAosG",
@@ -106,7 +93,6 @@ const userData = [
   {
     first_name: "Clea",
     last_name: "Lynes",
-    domain: "wiley.com",
     email: "clea.lynes@wiley.com",
     username: "clea.lynes@wiley.com",
     password: "9BSdtDl",
@@ -114,7 +100,6 @@ const userData = [
   {
     first_name: "Nealy",
     last_name: "Pikett",
-    domain: "taobao.com",
     email: "nealy.pikett@taobao.com",
     username: "nealy.pikett@taobao.com",
     password: "vppNNTlj",
@@ -122,7 +107,6 @@ const userData = [
   {
     first_name: "Martin",
     last_name: "Scargle",
-    domain: "ifeng.com",
     email: "martin.scargle@ifeng.com",
     username: "martin.scargle@ifeng.com",
     password: "n3ZsC0thf",
@@ -130,7 +114,6 @@ const userData = [
   {
     first_name: "Persis",
     last_name: "Withrington",
-    domain: "patch.com",
     email: "persis.withrington@patch.com",
     username: "persis.withrington@patch.com",
     password: "hmI9O54O",
@@ -138,7 +121,7 @@ const userData = [
   {
     first_name: "Jordan",
     last_name: "Dmytryk",
-    domain: "nymag.com",
+
     email: "jordan.dmytryk@nymag.com",
     username: "jordan.dmytryk@nymag.com",
     password: "nVmugw37cBK4",
@@ -146,7 +129,6 @@ const userData = [
   {
     first_name: "Winfield",
     last_name: "Cholton",
-    domain: "nbcnews.com",
     email: "winfield.cholton@nbcnews.com",
     username: "winfield.cholton@nbcnews.com",
     password: "3hgYpxvFshc",
@@ -154,7 +136,6 @@ const userData = [
   {
     first_name: "Nikolia",
     last_name: "Koche",
-    domain: "pen.io",
     email: "nikolia.koche@pen.io",
     username: "nikolia.koche@pen.io",
     password: "SZR9xU",
@@ -162,7 +143,6 @@ const userData = [
   {
     first_name: "Florance",
     last_name: "MacAlinden",
-    domain: "desdev.cn",
     email: "florance.macalinden@desdev.cn",
     username: "florance.macalinden@desdev.cn",
     password: "yZqI44Oz53zl",
@@ -170,7 +150,6 @@ const userData = [
   {
     first_name: "Norma",
     last_name: "Hanse",
-    domain: "deliciousdays.com",
     email: "norma.hanse@deliciousdays.com",
     username: "norma.hanse@deliciousdays.com",
     password: "8qhljRj",
@@ -178,7 +157,6 @@ const userData = [
   {
     first_name: "Zeke",
     last_name: "Coller",
-    domain: "flickr.com",
     email: "zeke.coller@flickr.com",
     username: "zeke.coller@flickr.com",
     password: "g8nBqtIOZ7g",
@@ -186,7 +164,6 @@ const userData = [
   {
     first_name: "Judah",
     last_name: "Girardeau",
-    domain: "go.com",
     email: "judah.girardeau@go.com",
     username: "judah.girardeau@go.com",
     password: "IjwfsqmM9Q2a",
@@ -194,7 +171,6 @@ const userData = [
   {
     first_name: "Chet",
     last_name: "Briddle",
-    domain: "archive.org",
     email: "chet.briddle@archive.org",
     username: "chet.briddle@archive.org",
     password: "ZgKhYKSprtX",
