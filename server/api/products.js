@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { Product } = require("../db");
+const { models: {Product} } = require("../db");
+module.exports = router;
 
 // POST /api/products/
 router.post("/", async (req, res, next) => {
