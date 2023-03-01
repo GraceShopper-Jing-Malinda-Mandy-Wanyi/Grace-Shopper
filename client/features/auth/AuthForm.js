@@ -14,10 +14,22 @@ const AuthForm = ({ name, displayName }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const formName = evt.target.name;
-    const username = evt.target.username.value;
-    const password = evt.target.password.value;
-    dispatch(authenticate({ username, password, method: formName }));
+    if (displayName === "Sign Up") {
+      const formName = evt.target.name;
+      const username = evt.target.username.value;
+      const password = evt.target.password.value;
+      const email = evt.target.email.value;
+      const firstName = evt.target.firstName.value;
+      const lastName = evt.target.lastName.value;
+      dispatch(authenticate({ username, password, email, firstName, lastName, method: formName }));
+    }
+
+    if (displayName === "Login") {
+      const formName = evt.target.name;
+      const username = evt.target.username.value;
+      const password = evt.target.password.value;
+      dispatch(authenticate({ username, password, method: formName }));
+    }
   };
 
   if (displayName === "Sign Up") {
