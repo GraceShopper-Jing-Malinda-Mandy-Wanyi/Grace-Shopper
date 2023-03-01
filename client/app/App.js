@@ -5,6 +5,7 @@ import AppRoutes from './AppRoutes';
 import Products from '../features/products/Products';
 
 const App = () => {
+
   return (
     <div>
       <Navbar />
