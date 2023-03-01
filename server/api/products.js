@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { models: {Product} } = require("../db");
 module.exports = router;
+const { Op } = require("sequelize");
 
 // POST /api/products/
 router.post("/", async (req, res, next) => {
@@ -53,3 +54,20 @@ router.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/search/search", async (req, res, next) => {
+  try {
+    const query = req.query.query;
+    const products = await Product.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${query}%`
+        }
+      }
+    });
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
+});
+

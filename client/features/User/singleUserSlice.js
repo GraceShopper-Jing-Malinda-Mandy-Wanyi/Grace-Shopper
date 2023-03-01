@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {};
 
-export const fetchSingleUserSlice = createAsyncThunk(
+export const fetchSingleUserAsync = createAsyncThunk(
     'singleUser',
     async(id) => {
         try {
@@ -58,7 +58,7 @@ const singleUserSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchSingleUserSlice.fulfilled, (state, action) => {
+        builder.addCase(fetchSingleUserAsync.fulfilled, (state, action) => {
             return action.payload;
         });
         builder.addCase(deleteUserAsync.fulfilled, (state, action) => {

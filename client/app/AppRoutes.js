@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
 import { me } from './store';
+import SingleProduct from '../features/products/SingleProduct';
+import Products from '../features/products/Products';
 
 /**
  * COMPONENT
@@ -38,6 +40,8 @@ console.log(isLoggedIn)
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
+          <Route path="/products/:id" element={<SingleProduct/>} />
+          <Route path="/products/" element={<Products/>} />
         </Routes>
       )}
     </div>

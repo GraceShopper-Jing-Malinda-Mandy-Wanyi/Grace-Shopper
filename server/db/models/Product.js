@@ -14,6 +14,14 @@ const Product = db.define("product", {
     type: Sequelize.TEXT,
     defaultValue: "Product Description Here...",
   },
+  size: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  type: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   img: {
     type: Sequelize.TEXT,
     defaultValue:
