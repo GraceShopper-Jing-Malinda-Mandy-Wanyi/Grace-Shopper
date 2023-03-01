@@ -14,7 +14,7 @@ const SingleUser = () => {
       dispatch(fetchSingleUserAsync(userId));
     }, [dispatch]);
 
-    //Need to add in order history after email
+    //Need to add in order history after email JSX
     
     return (
     <div id="single-user" className="column">
@@ -26,6 +26,7 @@ const SingleUser = () => {
           </h3>
           <p>{username}</p>
           <p>{email}</p>
+          <p>Order History</p>
         </div>
       </div>
       <hr />
