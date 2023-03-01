@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {};
 
-export const fetchSingleUserSlice = createAsyncThunk(
+export const fetchSingleUserAsync = createAsyncThunk(
     'singleUser',
     async(id) => {
         try {
