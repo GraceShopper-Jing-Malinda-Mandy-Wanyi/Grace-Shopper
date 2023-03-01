@@ -176,3 +176,5 @@ const userData = [
     password: "ZgKhYKSprtX",
   },
 ];
+
+module.exports = userData
