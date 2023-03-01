@@ -5,7 +5,6 @@ const {
   models: { User },
 } = require("../server/db");
 const userData = require("./user-data");
-// console.log(userData);
 
 /**
  * seed - this function clears the database, updates tables to
@@ -23,7 +22,6 @@ async function seed() {
       username: user.username,
       password: user.password,
     });
-    // console.log(user);
   }
 
   // Creating Users
