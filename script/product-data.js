@@ -784,3 +784,5 @@ const productData = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
   },
 ];
+
+module.exports = productData

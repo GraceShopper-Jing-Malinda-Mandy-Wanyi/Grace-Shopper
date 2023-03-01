@@ -51,8 +51,8 @@ const userData = [
   {
     firstName: "Temple",
     lastName: "Le Page",
-    email: "temple.le page@barnesandnoble.com",
-    username: "temple.le page@barnesandnoble.com",
+    email: "temple.lepage@barnesandnoble.com",
+    username: "temple.lepage@barnesandnoble.com",
     password: "aPfTGzli6",
   },
   {
@@ -176,3 +176,5 @@ const userData = [
     password: "ZgKhYKSprtX",
   },
 ];
+
+module.exports = userData
