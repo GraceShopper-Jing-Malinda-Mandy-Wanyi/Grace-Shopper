@@ -26,8 +26,9 @@ const Products = () => {
               </Link>
               <figure>
                 <img src={product.img} alt={`Image of ${product.name} wine`} />
-                <figcaption>{product.price}</figcaption>
+                <figcaption>Price: ${product.price}</figcaption>
               </figure>
+              <button>Add to Cart</button>
             </li>
           ))
         ) : (
