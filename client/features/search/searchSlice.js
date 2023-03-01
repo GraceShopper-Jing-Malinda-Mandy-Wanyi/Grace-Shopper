@@ -15,6 +15,22 @@ export const searchProducts = createAsyncThunk(
   }
 );
 
+export const searchSlice = createSlice({
+  name: "searchProduct",
+  initialState: {
+    query: "",
+    results: null,
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    setSearchQuery: (state, action) => {
+      state.query = action.payload;
+    },
+  },
+
+});
+
 
 
 export default searchSlice.reducer;
