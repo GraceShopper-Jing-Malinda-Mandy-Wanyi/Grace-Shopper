@@ -24,7 +24,11 @@ const SingleProduct = () => {
               </figure>
               <h3>Type: {type}</h3>
               <h3>Size: {size}</h3>
-              <button>Add to Cart</button>
+              <form>
+                <label for="quantity"><strong>Quantity:</strong></label>
+                <input type="number" name="quantity" min="1" />
+                <button>Add to Cart</button>
+              </form>
             </li>
       </main>
   );
