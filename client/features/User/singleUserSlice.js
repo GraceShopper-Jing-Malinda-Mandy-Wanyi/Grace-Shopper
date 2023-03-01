@@ -58,7 +58,7 @@ const singleUserSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchSingleUserSlice.fulfilled, (state, action) => {
+        builder.addCase(fetchSingleUserAsync.fulfilled, (state, action) => {
             return action.payload;
         });
         builder.addCase(deleteUserAsync.fulfilled, (state, action) => {
