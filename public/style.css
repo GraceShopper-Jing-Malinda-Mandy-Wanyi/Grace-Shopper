@@ -10,6 +10,26 @@ label {
   display: block;
 }
 
+#nav-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#company-name {
+  display: flex;
+  justify-content: center;
+}
+
+#search-bar-login-signup {
+  display: flex;
+  justify-content: space-between;
+}
+
+#login-signup-cart {
+display: flex;
+align-items: center;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
