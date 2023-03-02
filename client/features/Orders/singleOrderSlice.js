@@ -17,7 +17,7 @@ export const fetchSingleOrderAsync= createAsyncThunk(
 
 const singleOrderSlice = createSlice({
   name: "singleOrder",
-  initialState,
+  initialState: [],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchSingleOrderAsync.fulfilled, (state, action) => {

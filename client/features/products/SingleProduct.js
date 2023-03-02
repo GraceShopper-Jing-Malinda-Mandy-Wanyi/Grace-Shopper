@@ -10,7 +10,6 @@ const SingleProduct = () => {
   const { name, img, price, type, size } = singleProduct;
 
   useEffect(() => {
-    console.log(productId);
     dispatch(fetchSingleProduct(productId));
   }, [dispatch, productId]);
 
