@@ -35,6 +35,10 @@ function SearchBar() {
             <div key={result.id}>
               <h3>{result.name}</h3>
               <p>{result.type}</p>
+              <figure>
+                <img src={result.img} />
+                <figcaption>Price: ${result.price}</figcaption>
+              </figure>
             </div>
           ))}
         </div>
@@ -44,4 +48,3 @@ function SearchBar() {
 }
 
 export default SearchBar;
-
