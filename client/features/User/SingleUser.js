@@ -26,7 +26,9 @@ const SingleUser = () => {
           </h3>
           <p>{username}</p>
           <p>{email}</p>
+          <Link to={`/orders/${order.id}`}>
           <p>Order History</p>
+          </Link>
         </div>
       </div>
       <hr />

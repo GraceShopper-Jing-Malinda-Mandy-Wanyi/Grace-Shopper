@@ -6,7 +6,7 @@ const initialState = {};
 export const fetchAllOrdersAsync = createAsyncThunk("allorders", async () => {
   try {
     //need to update line 10 with the correct route
-    const { data } = await axios.get("/api/users");
+    const { data } = await axios.get("/api/orders");
     return data;
   } catch (err) {
     console.log(err);

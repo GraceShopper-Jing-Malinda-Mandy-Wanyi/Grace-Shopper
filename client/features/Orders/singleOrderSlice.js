@@ -7,7 +7,7 @@ export const fetchSingleOrderAsync= createAsyncThunk(
   async (id) => {
     try {
       //need to update line 10 with the correct route
-      const { data } = await axios.get(`/api/users/${id}`);
+      const { data } = await axios.get(`/api/orders/${id}`);
       return data;
     } catch (err) {
       console.log(err);
