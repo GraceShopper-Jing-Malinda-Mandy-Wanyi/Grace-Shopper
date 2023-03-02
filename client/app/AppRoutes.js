@@ -32,7 +32,7 @@ const AppRoutes = () => {
   return (
     <div>
         <Routes>
-          <Route path="/landing" element={<Products />} />
+          <Route path="/landing" element={<Home />} />
 
           {/* <Route
             path="/login"
