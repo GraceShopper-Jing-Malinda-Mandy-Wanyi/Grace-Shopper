@@ -175,6 +175,22 @@ const userData = [
     username: "chet.briddle@archive.org",
     password: "ZgKhYKSprtX",
   },
+  {
+    username: "cody",
+    password: "123",
+    firstName: "cody",
+    lastName: "body",
+    email: "cody@email.com",
+    userType: "ADMIN",
+  },
+  {
+    username: "murphy",
+    password: "123",
+    firstName: "murphy",
+    lastName: "burphy",
+    email: "murphy@email.com",
+    userType: "ADMIN",
+  },
 ];
 
-module.exports = userData
+module.exports = userData;

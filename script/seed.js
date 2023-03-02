@@ -2,10 +2,12 @@
 
 const {
   db,
-  models: { User, Product },
+  models: { User, Product, Order, CartItem },
 } = require("../server/db");
 const userData = require("./user-data");
 const productData = require("./product-data");
+const orderData = require("./order-data");
+const cartItemData = require("./cartItem-data");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -22,6 +24,7 @@ async function seed() {
       email: user.email,
       username: user.username,
       password: user.password,
+      userType: user.userType,
     });
   }
 
@@ -35,14 +38,33 @@ async function seed() {
     });
   }
 
+  for (const order of orderData) {
+    await Order.create({
+      firstName: order.firstName,
+      lastName: order.lastName,
+      address: order.address,
+      userId: order.userId,
+    });
+  }
+
+  for (const cartItem of cartItemData) {
+    await CartItem.create({
+      qty: cartItem.qty,
+      productId: cartItem.productId,
+      orderId: cartItem.orderId,
+      userId: cartItem.userId,
+    });
+  }
+
   // Creating Users
   // const users = await Promise.all([
-  //   User.create({ username: 'cody', password: '123' }),
-  //   User.create({ username: 'murphy', password: '123' }),
+  //   User.create({ username: 'cody', password: '123', firstName: 'cody', lastName: 'body', email: 'cody@email.com', userType: 'ADMIN' }),
+  //   User.create({ username: 'murphy', password: '123', firstName: 'murphy', lastName: 'burphy', email: 'murphy@email.com', userType: 'ADMIN' }),
   // ])
 
   console.log(`seeded ${userData.length} users`);
   console.log(`seeded ${productData.length} products`);
+  console.log(`seeded ${orderData.length} orders`);
   console.log(`seeded successfully`);
   // return {
   //   users: {
