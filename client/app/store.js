@@ -14,6 +14,7 @@ const store = configureStore({
     allusers: allUsersSlice,
     singleUser: singleUserSlice,
     products: productsSlice,
+    singleProduct: singleProductSlice,
     allOrders: allOrdersSlice,
     singleOrder: singleOrderSlice
   },
