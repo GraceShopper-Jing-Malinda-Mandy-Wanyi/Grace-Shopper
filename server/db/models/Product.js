@@ -18,8 +18,8 @@ const Product = db.define("product", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  type: {
-    type: Sequelize.STRING,
+  productType: {
+    type: Sequelize.DataTypes.ENUM("Wine", "Beer", "Spirit"),
     allowNull: false
   },
   img: {
