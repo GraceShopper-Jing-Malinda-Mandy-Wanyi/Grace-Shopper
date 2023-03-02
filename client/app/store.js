@@ -7,6 +7,7 @@ import productsSlice from "../features/products/productsSlice";
 import singleProductSlice from "../features/products/singleProductSlice";
 import allOrdersSlice from "../features/Orders/allOrdersSlice";
 import singleOrderSlice from "../features/Orders/singleOrderSlice";
+import cartSlice from "../features/cart/cartSlice";
 import searchSlice from "../features/search/searchSlice";
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
     singleProduct: singleProductSlice,
     allOrders: allOrdersSlice,
     singleOrder: singleOrderSlice,
+    cartItems: cartSlice
     search: searchSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
