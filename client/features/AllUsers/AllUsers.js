@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectUsers, fetchAllUsersAsync } from "./User/usersSlice";
+import { selectUsers, fetchAllUsersAsync } from "./AllUsersSlice";
 
 const AllUsers = () => {
   const allUsers = useSelector(selectUsers);
