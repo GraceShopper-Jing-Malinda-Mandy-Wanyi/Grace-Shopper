@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation} from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
 import { me } from './store';
@@ -13,37 +13,38 @@ import Products from '../features/products/Products';
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const dispatch = useDispatch();
-console.log(isLoggedIn)
-  useEffect(() => {
-    dispatch(me());
-  }, []);
+  const url = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if(url.pathname === "/"){
+      navigate("/landing")
+    }
+  }, []) 
+ 
+  
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(me());
+  // }, []);
 
   return (
     <div>
-      {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
+          <Route path="/landing" element={<Products />} />
+          {/* <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
-          />
+          /> */}
           <Route
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
           <Route path="/products/:id" element={<SingleProduct/>} />
+
           <Route path="/products/" element={<Products/>} />
         </Routes>
-      )}
     </div>
   );
 };
