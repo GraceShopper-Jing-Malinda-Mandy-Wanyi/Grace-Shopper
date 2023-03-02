@@ -15,7 +15,7 @@ function SearchBar() {
   const handleInputChange = (e) => {
     const input = e.target.value;
     setSearchInput(input);
-    dispatch(setQuery(input));
+    // dispatch(setQuery(input));
   };
 
   return (
