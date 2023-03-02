@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 import { authenticate } from "../../app/store";
 import SearchBar from "../search/SearchBar";
-// import { SearchProducts } from "../search/SearchProducts";
+import Products from "../products/Products";
+
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -37,7 +38,7 @@ const Navbar = () => {
       <nav>
         <div id="nav-container">
           <div id="company-name">
-            <h1>Drinky Drinks</h1>
+            <Link to="/landing" ><h1>Drinky Drinks</h1></Link>
           </div>
 
           <div id="search-bar-login-signup">
@@ -90,7 +91,8 @@ const Navbar = () => {
 
           <div className="drops">
             <div className="dropdown">
-              <button className="dropbtn">All Products</button>
+      
+              <Link to={`/products`}><button className="dropbtn">All Products</button></Link>
             </div>
             <div className="dropdown">
               <button className="dropbtn">Wine</button>

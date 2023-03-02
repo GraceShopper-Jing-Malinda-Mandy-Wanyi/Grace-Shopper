@@ -34,6 +34,8 @@ export const deleteProduct = createAsyncThunk("delete product", async (id) => {
   }
 });
 
+
+
 export const productsSlice = createSlice({
   name: "products",
   initialState: [],
@@ -43,12 +45,14 @@ export const productsSlice = createSlice({
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         return action.payload;
       })
+     
       .addCase(addProduct.fulfilled, (state, action) => {
         state.push(action.payload);
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         return [];
       });
+      
   },
 });
 
