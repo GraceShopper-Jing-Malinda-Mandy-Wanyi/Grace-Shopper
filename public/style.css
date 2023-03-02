@@ -137,7 +137,7 @@ form div {
   background-color: #e9ac2d;
 }
 
-.drops {
+.navlinks-container {
 display: flex;
 justify-content: space-evenly;
 }
