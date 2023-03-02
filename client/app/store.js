@@ -19,7 +19,7 @@ const store = configureStore({
     singleProduct: singleProductSlice,
     allOrders: allOrdersSlice,
     singleOrder: singleOrderSlice,
-    cartItems: cartSlice
+    cartItems: cartSlice,
     search: searchSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
