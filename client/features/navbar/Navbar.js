@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 import { authenticate } from "../../app/store";
+import SearchBar from "../search/SearchBar";
 // import { SearchProducts } from "../search/SearchProducts";
 
 const Navbar = () => {
@@ -41,8 +42,7 @@ const Navbar = () => {
 
           <div id="search-bar-login-signup">
             <div className="search-bar">
-              <input type="text" placeholder="Search..."></input>
-              <button type="submit">Search</button>
+            <SearchBar/>
             </div>
 
             <div id="login-signup-cart">
