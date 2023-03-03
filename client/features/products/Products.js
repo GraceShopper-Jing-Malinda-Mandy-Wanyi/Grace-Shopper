@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { selectProducts, fetchAllProducts } from "./productsSlice";
 
 import { addCartItemAsync } from "../cart/cartSlice";
 
 const Products = () => {
-  const products = useSelector(selectProducts);
+  const products = useSelector(state => state.products);
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  // pulling query object from URL -> {type: "wine"}
+  const filteredType = Object.fromEntries([...searchParams])
+
 
   const [qty, setQty] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, [dispatch]);
+    dispatch(fetchAllProducts(filteredType));
+  }, []);
 
   const addToCart = (event) => {
     const cartItem = {

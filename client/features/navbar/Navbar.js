@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 import { authenticate } from "../../app/store";
 import SearchBar from "../search/SearchBar";
-import NavLinks from "./NavLinks";
+import NavButton from "./NavButton";
 // import { SearchProducts } from "../search/SearchProducts";
 
 const Navbar = () => {
@@ -17,9 +17,8 @@ const Navbar = () => {
   };
 
   const mouseEnter = (event) => {
-    event.target.nextElementSibling.classList.toggle("active")
-  }
-
+    event.target.nextElementSibling.classList.toggle("active");
+  };
 
   const mouseLeave = (event) => {
     event.target.classList.remove("active");
@@ -33,6 +32,9 @@ const Navbar = () => {
     dispatch(authenticate({ username, password, method: formName }));
   };
 
+  // types of button names
+  const buttons = ["allproducts", "wine", "beer", "spirit"]
+
   return (
     <div>
       <nav>
@@ -43,7 +45,7 @@ const Navbar = () => {
 
           <div id="search-bar-login-signup">
             <div className="search-bar">
-            <SearchBar/>
+              <SearchBar />
             </div>
 
             <div id="login-signup-cart">
@@ -76,7 +78,6 @@ const Navbar = () => {
                       <div>
                         <button type="submit">Log In</button>
                       </div>
-
                     </form>
                   </div>
                   <Link to="/signup">Sign Up</Link>
@@ -92,8 +93,11 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-
-          <NavLinks />
+          {/* mapping each button onto nav bar
+              passing props (type={button}) into NavButton commponent */}
+          <div className="navlinks-container">
+            {buttons.map((button, index) => (<NavButton key={index} type={button}/>))}
+          </div>
         </div>
       </nav>
       <hr />

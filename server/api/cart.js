@@ -26,7 +26,7 @@ router.post("/", async (req, res, next) => {
     if (!req.body.guestCart) {
       await CartItem.create(req.body);
     } else {
-      console.log("RQ BODY",req.body)
+      console.log("RQ BODY", req.body);
       req.body.guestCart.forEach(async (cartItem) => {
         await CartItem.create({
           userId: req.body.userId,
@@ -35,6 +35,17 @@ router.post("/", async (req, res, next) => {
         });
       });
     }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// DELETE /api/cart/:id
+router.delete("/:id", async (req, res, next) => {
+  try {
+    console.log(req.params.id)
+    await CartItem.destroy({ where: { id: req.params.id } });
+    res.send(req.params.id);
   } catch (err) {
     next(err);
   }
