@@ -85,3 +85,14 @@ router.get("/search/search", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get('/random/random', async (req, res) => {
+  try {
+    const products = await Product.findAll();
+    const randomProduct = products[Math.floor(Math.random() * products.length)];
+    res.json(randomProduct);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});

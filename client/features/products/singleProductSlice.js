@@ -14,19 +14,39 @@ export const fetchSingleProduct = createAsyncThunk(
   }
 );
 
+export const fetchRandomProduct = createAsyncThunk(
+  "fetch random product",
+  async () => {
+    try {
+      const { data } = await axios.get("/api/products/random/random");
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 export const singleProductSlice = createSlice({
   name: "singleProduct",
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchRandomProduct.fulfilled, (state, action) => {
+      return action.payload;
+    })
     builder.addCase(fetchSingleProduct.fulfilled, (state, action) => {
       return action.payload;
     });
+    
   },
 });
 
 export const selectSingleProduct = (state) => {
   return state.singleProduct;
 };
+export const selectRandomProduct = (state) => {
+  return state.singleProduct;
+};
 
 export default singleProductSlice.reducer;
+
