@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const NavButton = (props) => {
   const dispatch = useDispatch();
 
+  // using props info to name buttons
   let name;
   if (props.type === "allproducts") {
     name = "All Products";
@@ -13,6 +14,7 @@ const NavButton = (props) => {
     name = props.type[0].toUpperCase() + props.type.slice(1);
   }
 
+  // dispatches fetchAllProducts with type info into productsSlice
   const clickHandler = (event) => {
     dispatch(fetchAllProducts({type: event.target.value}));
   };

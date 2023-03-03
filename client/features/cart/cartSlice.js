@@ -7,7 +7,7 @@ export const addCartItemAsync = createAsyncThunk(
     try {
       if (!cartItem.userId) {
         const { data } = await axios.get(`/api/products/${cartItem.productId}`);
-        data.qty = cartItem.qty
+        data.qty = cartItem.qty;
         return data;
       } else {
         await axios.post(`/api/cart`, cartItem);
@@ -30,21 +30,41 @@ export const fetchAllCartItemsAsync = createAsyncThunk(
   }
 );
 
+export const deleteCartItemAsync = createAsyncThunk(
+  "deleteCartItem",
+  async (id) => {
+    try {
+      const { data } = await axios.delete(`/api/cart/${id}`);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cartItems",
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAllCartItemsAsync.fulfilled, (state, action) => {
-      return action.payload.map(cartItem => ({id: cartItem.id, qty: cartItem.qty, ...cartItem.product}));
+      console.log(action.payload);
+      return action.payload.map((cartItem) => {
+        cartItem.product.cartItemId = cartItem.id;
+        cartItem.product.qty = cartItem.qty;
+        return cartItem.product;
+      });
     });
-    builder.addCase(addCartItemAsync.fulfilled,
-      (state, action) => {
-        const guestCart = JSON.parse(window.localStorage.getItem("cart"));
-        guestCart.push(action.payload);
-        console.log("THUNK", guestCart)
-        window.localStorage.setItem("cart", JSON.stringify(guestCart));
-      })
+    builder.addCase(addCartItemAsync.fulfilled, (state, action) => {
+      const guestCart = JSON.parse(window.localStorage.getItem("cart"));
+      guestCart.push(action.payload);
+      console.log("THUNK", guestCart);
+      window.localStorage.setItem("cart", JSON.stringify(guestCart));
+    });
+    builder.addCase(deleteCartItemAsync.fulfilled, (state, action) => {
+      console.log(typeof action.payload);
+      return state.filter((cartItem) => cartItem.cartItemId !== action.payload);
+    });
   },
 });
 

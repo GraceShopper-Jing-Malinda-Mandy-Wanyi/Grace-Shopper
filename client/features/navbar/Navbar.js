@@ -32,6 +32,7 @@ const Navbar = () => {
     dispatch(authenticate({ username, password, method: formName }));
   };
 
+  // types of button names
   const buttons = ["allproducts", "wine", "beer", "spirit"]
 
   return (
@@ -92,6 +93,8 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+          {/* mapping each button onto nav bar
+              passing props (type={button}) into NavButton commponent */}
           <div className="navlinks-container">
             {buttons.map((button, index) => (<NavButton key={index} type={button}/>))}
           </div>

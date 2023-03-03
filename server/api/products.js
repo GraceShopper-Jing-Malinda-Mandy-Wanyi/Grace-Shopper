@@ -27,6 +27,7 @@ router.get("/:id", async (req, res, next) => {
 
 // GET /api/products/
 router.get("/", async (req, res, next) => {
+  // creating a query object depending on what the query string is
   try {
     const query = {};
 
