@@ -26,7 +26,7 @@ router.post("/", async (req, res, next) => {
     if (!req.body.guestCart) {
       await CartItem.create(req.body);
     } else {
-      console.log("RQ BODY", req.body)
+      console.log("RQ BODY",req.body)
       req.body.guestCart.forEach(async (cartItem) => {
         await CartItem.create({
           userId: req.body.userId,

@@ -21,8 +21,9 @@ export const me = createAsyncThunk("auth/me", async (arg, thunkAPI) => {
       });
 
       const guestCart = JSON.parse(window.localStorage.getItem("cart"));
-
-      if (res.data && guestCart.length > 0) {
+      console.log("INSIDE AUTH", guestCart)
+      if (res.data && guestCart.length > 0 && !guestCart.includes(null) && !guestCart.includes(undefined)) {
+        console.log(guestCart)
         thunkAPI.dispatch(addCartItemAsync({ userId: res.data.id, guestCart }));
         window.localStorage.removeItem("cart");
       }

@@ -15,7 +15,7 @@ const Cart = () => {
       dispatch(fetchAllCartItemsAsync(user.me.id));
     }
   }, [user]);
-  //   window.localStorage.removeItem("cart")
+    // window.localStorage.removeItem("cart")
   console.log(userCartItems);
 
   if (user.me.id) {
@@ -36,6 +36,7 @@ const Cart = () => {
       </div>
     );
   } else {
+    console.log(guestCart)
     return (
       <div>
         {guestCart.length === 0
