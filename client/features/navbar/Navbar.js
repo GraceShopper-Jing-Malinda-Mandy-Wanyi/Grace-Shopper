@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 import { authenticate } from "../../app/store";
 import SearchBar from "../search/SearchBar";
-import NavLinks from "./NavLinks";
+import NavButton from "./NavButton";
 // import { SearchProducts } from "../search/SearchProducts";
 
 const Navbar = () => {
@@ -17,9 +17,8 @@ const Navbar = () => {
   };
 
   const mouseEnter = (event) => {
-    event.target.nextElementSibling.classList.toggle("active")
-  }
-
+    event.target.nextElementSibling.classList.toggle("active");
+  };
 
   const mouseLeave = (event) => {
     event.target.classList.remove("active");
@@ -33,6 +32,8 @@ const Navbar = () => {
     dispatch(authenticate({ username, password, method: formName }));
   };
 
+  const buttons = ["allproducts", "wine", "beer", "spirit"]
+
   return (
     <div>
       <nav>
@@ -43,7 +44,7 @@ const Navbar = () => {
 
           <div id="search-bar-login-signup">
             <div className="search-bar">
-            <SearchBar/>
+              <SearchBar />
             </div>
 
             <div id="login-signup-cart">
@@ -76,7 +77,6 @@ const Navbar = () => {
                       <div>
                         <button type="submit">Log In</button>
                       </div>
-
                     </form>
                   </div>
                   <Link to="/signup">Sign Up</Link>
@@ -92,8 +92,9 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-
-          <NavLinks />
+          <div className="navlinks-container">
+            {buttons.map(button => (<NavButton type={button}/>))}
+          </div>
         </div>
       </nav>
       <hr />
