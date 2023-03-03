@@ -1,40 +1,50 @@
-import React from "react";
+import React, {useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import { selectProducts, fetchProductType } from "../products/productsSlice";
+import { Link } from "react-router-dom";
 
 const NavLinks = () => {
+  const [products, setProducts] = useState([]);
+  const allProducts = useSelector(selectProducts);
+
+  const dispatch = useDispatch();
+
+  // useEffect
+
+  const handleFilterProduct = (event) => {
+    console.log(event.target.value)
+    if (event.target.value === "wine") {
+      const filterByWine = allProducts.filter((product) => product.productType === "wine");
+      setProducts(filterByWine);
+      dispatch(fetchProductType(event.target.value));
+
+    } else if (event.target.value === "beer") {
+      // console.log(allProducts.filter((product) => product.productType === "beer"));
+
+    } else {
+      // console.log(allProducts.filter((product) => product.productType === "spirit"));
+
+    }
+  };
+
   return (
     <div className="navlinks-container">
       <li className="dropdown">
+        <Link to="/products">
         <button className="dropbtn">All Products</button>
+        </Link>
       </li>
       <li className="dropdown">
-        <button className="dropbtn">Wine</button>
-        {/* <div className="dropdown-content">
-          <a href="#">Cabernet</a>
-          <a href="#">Pinot Noir</a>
-          <a href="#">Pinot Grigio</a>
-          <a href="#">Moscato</a>
-          <a href="#">Malbec</a>
-        </div> */}
+        <Link to="/products/type/wine">
+          <button className="dropbtn" onClick={(event) => handleFilterProduct(event)} value="wine">Wine</button>
+        </Link>
+      </li>
+
+      <li className="dropdown">
+        <button className="dropbtn" onClick={() => handleFilterProduct()} value="beer">Beer</button>
       </li>
       <li className="dropdown">
-        <button className="dropbtn">Beer</button>
-        {/* <div className="dropdown-content">
-          <a href="#">IPA</a>
-          <a href="#">Lager</a>
-          <a href="#">Cider</a>
-          <a href="#">Stout</a>
-          <a href="#">Ale</a>
-        </div> */}
-      </li>
-      <li className="dropdown">
-        <button className="dropbtn">Spirit</button>
-        {/* <div className="dropdown-content">
-          <a href="#">Vodka</a>
-          <a href="#">Tequila</a>
-          <a href="#">Gin</a>
-          <a href="#">Whiskey</a>
-          <a href="#">Mixers</a>
-        </div> */}
+        <button className="dropbtn" onClick={() => handleFilterProduct()} value="spirit">Spirit</button>
       </li>
     </div>
   );

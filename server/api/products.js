@@ -33,6 +33,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/type/:productType", async(req,res,next) => {
+  try {
+    const productTypes = await Product.findAll({
+      where: {
+        productType: req.params.productType
+      },
+      attributes: ["id", "name", "productType", "price", "size", "description"]
+    })
+    res.json(productTypes);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // PUT /api/products/:productId
 router.put("/:id", async (req, res, next) => {
   try {
