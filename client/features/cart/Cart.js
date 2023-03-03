@@ -5,7 +5,9 @@ import { fetchAllCartItemsAsync } from "./cartSlice";
 
 const Cart = () => {
   const user = useSelector((state) => state.auth);
-  const cartItems = useSelector((state) => state.cartItems);
+  const cartItems = user.me.id
+    ? useSelector((state) => state.cartItems)
+    : JSON.parse(window.localStorage.getItem("cart"));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,11 +22,11 @@ const Cart = () => {
         ? ""
         : cartItems.map((cartItem) => (
             <div className="cartItem" key={cartItem.id}>
-              <img src={cartItem.product.img} />
-              <p>{cartItem.product.name}</p>
-              <p>{cartItem.product.size}</p>
-              <p>{cartItem.product.type}</p>
-              <p>{cartItem.product.price}</p>
+              <img src={cartItem.img} />
+              <p>{cartItem.name}</p>
+              <p>{cartItem.size}</p>
+              <p>{cartItem.type}</p>
+              <p>{cartItem.price}</p>
               <p>{cartItem.qty}</p>
             </div>
           ))}
