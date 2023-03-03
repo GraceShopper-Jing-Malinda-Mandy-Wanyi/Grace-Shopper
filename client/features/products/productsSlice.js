@@ -4,9 +4,9 @@ import axios from "axios";
 // GET /api/products
 export const fetchAllProducts = createAsyncThunk(
   "fetch all products",
-  async () => {
+  async (filteredType) => {
     try {
-      const { data } = await axios.get("/api/products");
+      const { data } = await axios.get(`/api/products?type=${filteredType.type}`);
       return data;
     } catch (err) {
       console.log(err);
@@ -41,6 +41,7 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        console.log(action.payload)
         return action.payload;
       })
       .addCase(addProduct.fulfilled, (state, action) => {

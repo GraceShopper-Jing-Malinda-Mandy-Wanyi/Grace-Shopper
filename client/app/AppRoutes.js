@@ -8,22 +8,22 @@ import SingleProduct from '../features/products/SingleProduct';
 import Products from '../features/products/Products';
 import SingleUser from '../features/User/SingleUser';
 import SingleOrder from '../features/Orders/SingleOrder'
+import Cart from "../features/cart/Cart";
 /**
  * COMPONENT
  */
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const url = useLocation()
-  const navigate = useNavigate()
+  const url = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(url.pathname === "/"){
-      navigate("/landing")
+  useEffect(() => {
+    if (url.pathname === "/") {
+      navigate("/landing");
     }
-  }, []) 
- 
-  
+  }, []);
+
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -33,7 +33,8 @@ const AppRoutes = () => {
   return (
     <div>
       <Routes>
-        <Route path="/landing" element={<Products />} />
+
+        <Route path="/landing" element={<Home />} />
 
         {/* <Route
             path="/login"
@@ -47,9 +48,13 @@ const AppRoutes = () => {
 
         <Route path="/products/" element={<Products />} />
 
+
         <Route path="/users/:userId/orders/:orderid" element={<SingleOrder />} />
 
         <Route path="/users/:userId" element={<SingleUser />} />
+
+        <Route path="/cart/" element={<Cart />} />
+
       </Routes>
     </div>
   );
