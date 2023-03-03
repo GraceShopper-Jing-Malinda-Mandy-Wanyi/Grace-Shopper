@@ -14,6 +14,19 @@ export const fetchAllProducts = createAsyncThunk(
   }
 );
 
+// GET /api/products/type/:productType
+export const fetchProductType = createAsyncThunk(
+  "fetch product type",
+  async (type) => {
+    try {
+      const { data } = await axios.get(`/api/products/type/${type}`);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 // POST /api/products
 export const addProduct = createAsyncThunk("add product", async () => {
   try {
@@ -41,6 +54,9 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(fetchProductType.fulfilled, (state, action) => {
         return action.payload;
       })
       .addCase(addProduct.fulfilled, (state, action) => {

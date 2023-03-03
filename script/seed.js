@@ -32,7 +32,7 @@ async function seed() {
     await Product.create({
       name: product.name,
       size: product.size,
-      type: product.type,
+      productType: product.productType,
       price: product.price,
       description: product.description,
     });
