@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { addCartItemAsync } from "../cart/cartSlice";
 
 /*
   CONSTANT VARIABLES
@@ -9,7 +10,7 @@ const TOKEN = "token";
 /*
   THUNKS
 */
-export const me = createAsyncThunk("auth/me", async () => {
+export const me = createAsyncThunk("auth/me", async (arg, thunkAPI) => {
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
@@ -18,6 +19,14 @@ export const me = createAsyncThunk("auth/me", async () => {
           authorization: token,
         },
       });
+
+      const guestCart = JSON.parse(window.localStorage.getItem("cart"));
+
+      if (res.data && guestCart.length > 0) {
+        thunkAPI.dispatch(addCartItemAsync({ userId: res.data.id, guestCart }));
+        window.localStorage.removeItem("cart");
+      }
+
       return res.data;
     } else {
       return {};

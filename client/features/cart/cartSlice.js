@@ -42,6 +42,7 @@ const cartSlice = createSlice({
       (state, action) => {
         const guestCart = JSON.parse(window.localStorage.getItem("cart"));
         guestCart.push(action.payload);
+        console.log("THUNK", guestCart)
         window.localStorage.setItem("cart", JSON.stringify(guestCart));
       })
   },

@@ -12,7 +12,7 @@ router.get("/:userId", async (req, res, next) => {
       where: {
         userId: req.params.userId,
       },
-      include: {model: Product}
+      include: { model: Product },
     });
     res.json(cart);
   } catch (err) {
@@ -23,7 +23,18 @@ router.get("/:userId", async (req, res, next) => {
 // POST /api/cart/
 router.post("/", async (req, res, next) => {
   try {
-    await CartItem.create(req.body);
+    if (!req.body.guestCart) {
+      await CartItem.create(req.body);
+    } else {
+      console.log("RQ BODY", req.body)
+      req.body.guestCart.forEach(async (cartItem) => {
+        await CartItem.create({
+          userId: req.body.userId,
+          qty: cartItem.qty,
+          productId: cartItem.id,
+        });
+      });
+    }
   } catch (err) {
     next(err);
   }
