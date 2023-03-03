@@ -5,7 +5,9 @@ import { fetchAllCartItemsAsync } from "./cartSlice";
 
 const Cart = () => {
   const user = useSelector((state) => state.auth);
-  const cartItems = useSelector((state) => state.cartItems);
+  const userCartItems = useSelector((state) => state.cartItems);
+  const guestCart = JSON.parse(window.localStorage.getItem("cart"));
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,23 +15,45 @@ const Cart = () => {
       dispatch(fetchAllCartItemsAsync(user.me.id));
     }
   }, [user]);
+    // window.localStorage.removeItem("cart")
+  console.log(userCartItems);
 
-  return (
-    <div>
-      {cartItems.length === 0
-        ? ""
-        : cartItems.map((cartItem) => (
-            <div className="cartItem" key={cartItem.id}>
-              <img src={cartItem.product.img} />
-              <p>{cartItem.product.name}</p>
-              <p>{cartItem.product.size}</p>
-              <p>{cartItem.product.type}</p>
-              <p>{cartItem.product.price}</p>
-              <p>{cartItem.qty}</p>
-            </div>
-          ))}
-    </div>
-  );
+  if (user.me.id) {
+    return (
+      <div>
+        {userCartItems.length === 0
+          ? ""
+          : userCartItems.map((cartItem) => (
+              <div className="cartItem" key={cartItem.id}>
+                <img src={cartItem.img} />
+                <p>{cartItem.name}</p>
+                <p>{cartItem.size}</p>
+                <p>{cartItem.type}</p>
+                <p>{cartItem.price}</p>
+                <p>{cartItem.qty}</p>
+              </div>
+            ))}
+      </div>
+    );
+  } else {
+    console.log(guestCart)
+    return (
+      <div>
+        {guestCart.length === 0
+          ? ""
+          : guestCart.map((cartItem) => (
+              <div className="cartItem" key={cartItem.id}>
+                <img src={cartItem.img} />
+                <p>{cartItem.name}</p>
+                <p>{cartItem.size}</p>
+                <p>{cartItem.type}</p>
+                <p>{cartItem.price}</p>
+                <p>{cartItem.qty}</p>
+              </div>
+            ))}
+      </div>
+    );
+  }
 };
 
 export default Cart;

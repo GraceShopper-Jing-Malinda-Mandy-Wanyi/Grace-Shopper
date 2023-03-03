@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleProduct, selectSingleProduct } from "./singleProductSlice";
+import { addCartItemAsync } from "../cart/cartSlice";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -9,9 +10,21 @@ const SingleProduct = () => {
   const singleProduct = useSelector(selectSingleProduct);
   const { name, img, price, type, size } = singleProduct;
 
+  const user = useSelector((state) => state.auth);
+  const [qty, setQty] = useState(1);
+
   useEffect(() => {
     dispatch(fetchSingleProduct(productId));
   }, [dispatch, productId]);
+
+  const addToCart = (event) => {
+    const cartItem = {
+      qty,
+      userId: user.me.id,
+      productId: event.target.value,
+    };
+    dispatch(addCartItemAsync(cartItem));
+  };
 
   return (
     <main>
@@ -27,14 +40,20 @@ const SingleProduct = () => {
           <label htmlFor="quantity">
             <strong>Qty:</strong>
           </label>
-          <select>
+          <select
+            onChange={(event) => {
+              setQty(event.target.value);
+            }}
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <button>Add to Cart</button>
+          <button onClick={addToCart} value={productId}>
+            Add to Cart
+          </button>
         </div>
       </li>
     </main>

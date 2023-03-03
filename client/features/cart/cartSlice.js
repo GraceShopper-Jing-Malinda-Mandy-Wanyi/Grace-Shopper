@@ -5,7 +5,13 @@ export const addCartItemAsync = createAsyncThunk(
   "addCartItem",
   async (cartItem) => {
     try {
-      await axios.post(`/api/cart`, cartItem);
+      if (!cartItem.userId) {
+        const { data } = await axios.get(`/api/products/${cartItem.productId}`);
+        data.qty = cartItem.qty
+        return data;
+      } else {
+        await axios.post(`/api/cart`, cartItem);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -30,8 +36,15 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAllCartItemsAsync.fulfilled, (state, action) => {
-      return action.payload;
+      return action.payload.map(cartItem => ({id: cartItem.id, qty: cartItem.qty, ...cartItem.product}));
     });
+    builder.addCase(addCartItemAsync.fulfilled,
+      (state, action) => {
+        const guestCart = JSON.parse(window.localStorage.getItem("cart"));
+        guestCart.push(action.payload);
+        console.log("THUNK", guestCart)
+        window.localStorage.setItem("cart", JSON.stringify(guestCart));
+      })
   },
 });
 
