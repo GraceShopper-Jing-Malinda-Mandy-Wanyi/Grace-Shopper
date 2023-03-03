@@ -1,19 +1,29 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAllProducts } from "../products/productsSlice";
 import { Link } from "react-router-dom";
 
 const NavButton = (props) => {
-  console.log(props)
+  const dispatch = useDispatch();
+
   let name;
   if (props.type === "allproducts") {
     name = "All Products";
   } else {
     name = props.type[0].toUpperCase() + props.type.slice(1);
   }
+
+  const clickHandler = (event) => {
+    dispatch(fetchAllProducts({type: event.target.value}));
+  };
+
   return (
     <>
       <li className="dropdown">
         <Link to={`/products?type=${props.type}`}>
-          <button className="dropbtn">{name}</button>
+          <button onClick={clickHandler} className="dropbtn" value={props.type}>
+            {name}
+          </button>
         </Link>
       </li>
     </>

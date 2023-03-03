@@ -93,7 +93,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navlinks-container">
-            {buttons.map(button => (<NavButton type={button}/>))}
+            {buttons.map((button, index) => (<NavButton key={index} type={button}/>))}
           </div>
         </div>
       </nav>

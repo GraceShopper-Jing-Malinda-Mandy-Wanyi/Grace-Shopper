@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { models: {Product} } = require("../db");
+const {
+  models: { Product },
+} = require("../db");
 module.exports = router;
 const { Op } = require("sequelize");
 
@@ -26,22 +28,20 @@ router.get("/:id", async (req, res, next) => {
 // GET /api/products/
 router.get("/", async (req, res, next) => {
   try {
-    const allProducts = await Product.findAll();
-    res.json(allProducts);
-  } catch (err) {
-    next(err);
-  }
-});
+    const query = {};
 
-router.get("/type/:productType", async(req,res,next) => {
-  try {
-    const productTypes = await Product.findAll({
-      where: {
-        productType: req.params.productType
-      },
-      attributes: ["id", "name", "productType", "price", "size", "description"]
-    })
-    res.json(productTypes);
+    if (req.query.type === "wine") {
+      query.where = { productType: "Wine" };
+    }
+    if (req.query.type === "beer") {
+      query.where = { productType: "Beer" };
+    }
+    if (req.query.type === "spirit") {
+      query.where = { productType: "Spirit" };
+    }
+    const allProducts = await Product.findAll(query);
+    console.log(allProducts)
+    res.json(allProducts);
   } catch (err) {
     next(err);
   }
@@ -75,13 +75,12 @@ router.get("/search/search", async (req, res, next) => {
     const products = await Product.findAll({
       where: {
         name: {
-          [Op.iLike]: `%${query}%`
-        }
-      }
+          [Op.iLike]: `%${query}%`,
+        },
+      },
     });
     res.json(products);
   } catch (err) {
     next(err);
   }
 });
-
