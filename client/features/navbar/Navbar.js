@@ -20,9 +20,10 @@ const Navbar = () => {
     event.target.nextElementSibling.classList.toggle("active")
   }
 
+
   const mouseLeave = (event) => {
-    event.target.classList.remove("active")
-  }
+    event.target.classList.remove("active");
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -31,7 +32,6 @@ const Navbar = () => {
     const password = evt.target.password.value;
     dispatch(authenticate({ username, password, method: formName }));
   };
-
 
   return (
     <div>
@@ -56,8 +56,10 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className="login-logout">
-                  <div id="login-dropdown" onMouseEnter={mouseEnter}>Login</div>
-                  <div id="login-dropdown-form" onMouseLeave={mouseLeave} >
+                  <div id="login-dropdown" onMouseEnter={mouseEnter}>
+                    Login
+                  </div>
+                  <div id="login-dropdown-form" onMouseLeave={mouseLeave}>
                     <form id="login-form" onSubmit={handleSubmit}>
                       <div>
                         <label htmlFor="username">
@@ -82,9 +84,11 @@ const Navbar = () => {
               )}
 
               <div className="cart-container">
-                <button className="cart-btn">
-                  <span className="cart-icon">&#128722;</span>
-                </button>
+                <Link to="/cart">
+                  <button className="cart-btn">
+                    <span className="cart-icon">&#128722;</span>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
