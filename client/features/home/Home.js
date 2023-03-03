@@ -15,7 +15,7 @@ const Home = (props) => {
   const username = useSelector((state) => state.auth.me.username);
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
-  const randomProduct = useSelector(selectRandomProduct)
+  const randomProduct = useSelector(selectRandomProduct);
 
   useEffect(() => {
     dispatch(fetchAllProducts());
@@ -35,12 +35,19 @@ const Home = (props) => {
       <section className="featured-products">
         <h2>Featured Products</h2>
         <ul>
-          <li key={randomProduct.id}>
-            <img src={randomProduct.img} alt={randomProduct.name} />
-            <h3>{randomProduct.name}</h3>
-            <p>${randomProduct.price}</p>
-            <button>Add to Cart</button>
-          </li>
+        {randomProduct && randomProduct.length > 0 ? (
+          randomProduct.map((product) => (
+            <li key={product.id}>
+                <img src={product.img} alt={product.name} />
+                <h3>{product.name}</h3>
+                <p>${product.price}</p>
+                <button>Add to Cart</button>
+              </li>
+          ))
+        ) : (
+          <h1>Oops, there was an error!</h1>
+        )}
+
         </ul>
       </section>
     </div>

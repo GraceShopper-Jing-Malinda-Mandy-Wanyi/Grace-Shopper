@@ -37,7 +37,7 @@ export const singleProductSlice = createSlice({
     builder.addCase(fetchSingleProduct.fulfilled, (state, action) => {
       return action.payload;
     });
-    
+
   },
 });
 
