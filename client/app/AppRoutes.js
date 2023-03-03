@@ -6,6 +6,8 @@ import Home from '../features/home/Home';
 import { me } from './store';
 import SingleProduct from '../features/products/SingleProduct';
 import Products from '../features/products/Products';
+import SingleUser from '../features/User/SingleUser';
+import SingleOrder from '../features/Orders/SingleOrder'
 /**
  * COMPONENT
  */
@@ -30,21 +32,25 @@ const AppRoutes = () => {
 
   return (
     <div>
-        <Routes>
-          <Route path="/landing" element={<Products />} />
+      <Routes>
+        <Route path="/landing" element={<Products />} />
 
-          {/* <Route
+        {/* <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
           /> */}
-          <Route
-            path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
-          />
-          <Route path="/products/:id" element={<SingleProduct/>} />
+        <Route
+          path="/signup"
+          element={<AuthForm name="signup" displayName="Sign Up" />}
+        />
+        <Route path="/products/:id" element={<SingleProduct />} />
 
-          <Route path="/products/" element={<Products/>} />
-        </Routes>
+        <Route path="/products/" element={<Products />} />
+
+        <Route path="/users/:userId/orders/:orderid" element={<SingleOrder />} />
+
+        <Route path="/users/:userId" element={<SingleUser />} />
+      </Routes>
     </div>
   );
 };

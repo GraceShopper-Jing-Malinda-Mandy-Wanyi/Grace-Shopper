@@ -5,9 +5,9 @@ const {
 module.exports = router;
 
 // GET /api/orders/:orderId
-router.get("/:id", async (req, res, next) => {
+router.get("/:userId/orders/:orderId", async (req, res, next) => {
   try {
-    const orders = await Order.findByPk(req.params.id);
+    const orders = await Order.findByPk(req.params.orderId);
     res.json(orders);
   } catch (err) {
     next(err);
@@ -15,9 +15,13 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // GET /api/orders/
-router.get("/", async (req, res, next) => {
+router.get("/:userId/orders", async (req, res, next) => {
   try {
-    const allOrders = await Order.findAll();
+    const allOrders = await Order.findAll({
+      where:{
+        userId: req.params.userId
+      }
+    });
     res.json(allOrders);
   } catch (err) {
     next(err);
