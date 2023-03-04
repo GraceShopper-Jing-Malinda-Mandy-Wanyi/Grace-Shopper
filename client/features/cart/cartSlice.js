@@ -42,13 +42,22 @@ export const deleteCartItemAsync = createAsyncThunk(
   }
 );
 
+export const updateQtyAsync = createAsyncThunk("updateQty", async ({cartItemId, qty}) => {
+  try {
+    const {data} = await axios.put(`/api/cart/${cartItemId}`, {qty})
+
+    return data
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 const cartSlice = createSlice({
   name: "cartItems",
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAllCartItemsAsync.fulfilled, (state, action) => {
-      console.log(action.payload);
       return action.payload.map((cartItem) => {
         cartItem.product.cartItemId = cartItem.id;
         cartItem.product.qty = cartItem.qty;
@@ -60,6 +69,17 @@ const cartSlice = createSlice({
       guestCart.push(action.payload);
       console.log("THUNK", guestCart);
       window.localStorage.setItem("cart", JSON.stringify(guestCart));
+    });
+    builder.addCase(updateQtyAsync.fulfilled, (state, action) => {
+      action.payload.product.cartItemId = action.payload.id
+      action.payload.product.qty = Number(action.payload.qty)
+      return state.map((cartItem) => {
+        if(cartItem.cartItemId === action.payload.id){
+          return action.payload.product
+        } else {
+          return cartItem
+        }
+      });
     });
     builder.addCase(deleteCartItemAsync.fulfilled, (state, action) => {
       console.log(typeof action.payload);

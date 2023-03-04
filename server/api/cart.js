@@ -40,6 +40,21 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+// PUT /api/cart/:id
+router.put("/:id", async (req, res, next) => {
+  try {
+    let cartItem = await CartItem.findOne({
+      where: {id: req.params.id},
+      include: {model: Product}
+    })
+    cartItem = await cartItem.update(req.body)
+    console.log(cartItem)
+    res.send(cartItem)
+  } catch (err) {
+    next(err);
+  }
+});
+
 // DELETE /api/cart/:id
 router.delete("/:id", async (req, res, next) => {
   try {
