@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllCartItemsAsync, deleteCartItemAsync, updateQtyAsync } from "./cartSlice";
+import {
+  fetchAllCartItemsAsync,
+  deleteCartItemAsync,
+  updateQtyAsync,
+} from "./cartSlice";
 
 const Cart = () => {
   const user = useSelector((state) => state.auth);
@@ -35,10 +39,23 @@ const Cart = () => {
   };
 
   const updateQty = (event, id) => {
-    console.log(id)
-    dispatch(updateQtyAsync({cartItemId: id, qty: event.target.value }))
-
-  }
+    if (user.me.id) {
+      dispatch(updateQtyAsync({ cartItemId: id, qty: event.target.value }));
+    } else {
+      let updatedGuestCart = JSON.parse(window.localStorage.getItem("cart"));
+      // map to swap out the product and replace w/ updated qty
+      updatedGuestCart = updatedGuestCart.map((product) => {
+        if (product.id !== event.productId) {
+          return product;
+        } else {
+          product.qty = event.qty;
+          return product;
+        }
+      });
+      window.localStorage.setItem("cart", JSON.stringify(updatedGuestCart));
+      setGuestCart(updatedGuestCart);
+    }
+  };
 
   console.log(userCartItems);
   if (user.me.id) {
@@ -55,13 +72,22 @@ const Cart = () => {
                 <p>Price: {cartItem.price}</p>
                 <div>
                   <label>Quantity:</label>
-                  <select name="qty" onChange={event => {updateQty(event, cartItem.cartItemId)}}>
+                  <select
+                    name="qty"
+                    onChange={(event) => {
+                      updateQty(event, cartItem.cartItemId);
+                    }}
+                  >
                     <option value={cartItem.qty}>{cartItem.qty}</option>
                     {new Array(100).fill(1).map((number, index) => {
-                      if(index + 1 === cartItem.qty){
-                        return ""
+                      if (index + 1 === cartItem.qty) {
+                        return "";
                       } else {
-                        return (<option value={index + 1}>{index + 1}</option>)
+                        return (
+                          <option value={index + 1} key={index + 1}>
+                            {index + 1}
+                          </option>
+                        );
                       }
                     })}
                   </select>
@@ -90,7 +116,31 @@ const Cart = () => {
                 <p>Size: {cartItem.size}</p>
                 <p>Type: {cartItem.productType}</p>
                 <p>Price: {cartItem.price}</p>
-                <p>Quantity: {cartItem.qty}</p>
+                <div>
+                  <label>Quantity:</label>
+                  <select
+                    name="qty"
+                    onChange={(event) => {
+                      updateQty({
+                        qty: event.target.value,
+                        productId: cartItem.id,
+                      });
+                    }}
+                  >
+                    <option value={cartItem.qty}>{cartItem.qty}</option>
+                    {new Array(100).fill(1).map((number, index) => {
+                      if (index + 1 === Number(cartItem.qty)) {
+                        return "";
+                      } else {
+                        return (
+                          <option value={index + 1} key={index + 1}>
+                            {index + 1}
+                          </option>
+                        );
+                      }
+                    })}
+                  </select>
+                </div>
                 <button
                   onClick={() => {
                     deleteCartItem(cartItem.id);
