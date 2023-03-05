@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   fetchAllCartItemsAsync,
   deleteCartItemAsync,
@@ -65,8 +66,10 @@ const Cart = () => {
           ? ""
           : userCartItems.map((cartItem) => (
               <div className="cartItem" key={cartItem.id}>
-                <img src={cartItem.img} />
-                <p>{cartItem.name}</p>
+                <Link to={`/products/${cartItem.id}`}>
+                  <img src={cartItem.img} />
+                  <p>{cartItem.name}</p>
+                </Link>
                 <p>Size: {cartItem.size}</p>
                 <p>Type: {cartItem.productType}</p>
                 <p>Price: {cartItem.price}</p>
@@ -111,8 +114,10 @@ const Cart = () => {
           ? ""
           : guestCart.map((cartItem) => (
               <div className="cartItem" key={cartItem.id}>
-                <img src={cartItem.img} />
-                <p>{cartItem.name}</p>
+                <Link to={`/products/${cartItem.id}`}>
+                  <img src={cartItem.img} />
+                  <p>{cartItem.name}</p>
+                </Link>
                 <p>Size: {cartItem.size}</p>
                 <p>Type: {cartItem.productType}</p>
                 <p>Price: {cartItem.price}</p>
