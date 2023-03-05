@@ -59,6 +59,36 @@ const cartItemData = [
     orderId: 10,
     userId: 24
   },
+  {
+    qty: 3,
+    productId: 33,
+    orderId: 10,
+    userId: 24
+  },
+  {
+    qty: 3,
+    productId: 21,
+    orderId: 10,
+    userId: 24
+  },
+  {
+    qty: 2,
+    productId: 78,
+    orderId: 10,
+    userId: 24
+  },
+  {
+    qty: 1,
+    productId: 20,
+    orderId: 10,
+    userId: 24
+  },
+  {
+    qty: 1,
+    productId: 15,
+    orderId: 10,
+    userId: 24
+  },
 ];
 
 module.exports = cartItemData;
