@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
-import { selectProducts, fetchAllProducts } from "./productsSlice";
+import { fetchAllProducts } from "./productsSlice";
 
 import { addCartItemAsync } from "../cart/cartSlice";
 

@@ -65,9 +65,24 @@ const cartSlice = createSlice({
       });
     });
     builder.addCase(addCartItemAsync.fulfilled, (state, action) => {
-      const guestCart = JSON.parse(window.localStorage.getItem("cart"));
-      guestCart.push(action.payload);
-      console.log("THUNK", guestCart);
+      let guestCart = JSON.parse(window.localStorage.getItem("cart"));
+
+      let updated = false
+      guestCart = guestCart.map((product) => {
+        if(product.id === action.payload.id){
+          updated = true
+          product.qty = Number(product.qty) + Number(action.payload.qty)
+          return product
+        } else {
+          return product
+        }
+      })
+
+      if(!updated){
+        guestCart.push(action.payload)
+      }
+
+      console.log("THUNK", guestCart, updated);
       window.localStorage.setItem("cart", JSON.stringify(guestCart));
     });
     builder.addCase(updateQtyAsync.fulfilled, (state, action) => {
