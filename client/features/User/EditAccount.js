@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleUser, updateUser, selectSingleUser } from "./singleUserSlice";
 
-const EditUser = () => {
+const EditAccount = () => {
   const dispatch = useDispatch();
   const userId = useParams().id;
   const user = useSelector(selectSingleUser);
@@ -85,4 +85,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default EditAccount;

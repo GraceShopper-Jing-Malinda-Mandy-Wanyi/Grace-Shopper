@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchSingleUser, selectSingleUser } from "./singleUserSlice";
+import { authenticate } from "../auth/authSlice";
 
-const Account = () => {
+const Account = ({name}) => {
   const dispatch = useDispatch();
   const userId = useParams().id;
-  console.log("USER ID", userId);
   const user = useSelector(selectSingleUser);
 
   useEffect(() => {
