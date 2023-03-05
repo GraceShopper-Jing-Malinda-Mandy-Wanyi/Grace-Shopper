@@ -165,8 +165,8 @@ const userData = [
     firstName: "Judah",
     lastName: "Girardeau",
     email: "judah.girardeau@go.com",
-    username: "judah.girardeau@go.com",
-    password: "IjwfsqmM9Q2a",
+    username: "judah",
+    password: "123",
   },
   {
     firstName: "Chet",
