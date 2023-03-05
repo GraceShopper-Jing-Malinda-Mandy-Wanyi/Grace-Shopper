@@ -10,6 +10,8 @@ import Products from '../features/products/Products';
 // import SingleOrder from '../features/Orders/SingleOrder'
 import Cart from "../features/cart/Cart";
 import Account from '../features/User/Account';
+import EditUser from '../features/User/EditUser';
+import Orders from '../features/orders/Orders';
 /**
  * COMPONENT
  */
@@ -39,7 +41,11 @@ const AppRoutes = () => {
 
         <Route path="/landing" element={<Home />} />
 
-        <Route path={`/account/${userId}`} element={<Account/>}/>
+        <Route>
+          <Route path="/account/:id" element={<Account/>}/>
+          <Route path="/account/:id/information" element={<EditUser/>}/>
+          <Route path="/account/:id/myorders" element={<Orders/>}/>
+        </Route>
 
         {/* <Route
             path="/login"
