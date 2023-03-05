@@ -34,7 +34,7 @@ const Products = () => {
       <main>
         {products && products.length ? (
           products.map((product) => (
-            <li key={product.id}>
+            <section key={product.id}>
               <Link to={`/products/${product.id}`}>
                 <h1>{product.name}</h1>
               </Link>
@@ -61,7 +61,7 @@ const Products = () => {
                   Add to Cart
                 </button>
               </div>
-            </li>
+            </section>
           ))
         ) : (
           <h1>
