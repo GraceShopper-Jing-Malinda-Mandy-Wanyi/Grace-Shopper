@@ -33,14 +33,16 @@ const Navbar = () => {
   };
 
   // types of button names
-  const buttons = ["allproducts", "wine", "beer", "spirit"]
+  const buttons = ["allproducts", "wine", "beer", "spirit"];
 
   return (
     <div>
       <nav>
         <div id="nav-container">
           <div id="company-name">
-            <h1>Drinky Drinks</h1>
+            <Link to={"/landing"}>
+              <h1>Drinky Drinks</h1>
+            </Link>
           </div>
 
           <div id="search-bar-login-signup">
@@ -96,7 +98,9 @@ const Navbar = () => {
           {/* mapping each button onto nav bar
               passing props (type={button}) into NavButton commponent */}
           <div className="navlinks-container">
-            {buttons.map((button, index) => (<NavButton key={index} type={button}/>))}
+            {buttons.map((button, index) => (
+              <NavButton key={index} type={button} />
+            ))}
           </div>
         </div>
       </nav>
