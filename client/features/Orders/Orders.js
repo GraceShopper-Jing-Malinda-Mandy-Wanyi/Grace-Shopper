@@ -31,6 +31,7 @@ const Orders = () => {
         <thead>
           <tr>
             <th>Order</th>
+            <th>Drink</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
@@ -39,11 +40,12 @@ const Orders = () => {
         <tbody>
           {cart && quantity ? (
             cart.map((product, index) => (
-              <tr key={product.id}>
+              <tr key={index + 1}>
                 <td>{product.name}</td>
+                <td>{product.productType}</td>
                 <td>${product.price}</td>
                 <td>{quantity[index].qty}</td>
-                <td>{Number.parseFloat(product.price * quantity[index].qty * (1 + 0.008)).toFixed(2)}</td>
+                <td>${Number.parseFloat(product.price * quantity[index].qty * (1 + 0.008)).toFixed(2)}</td>
               </tr>
             ))
           ) : (
