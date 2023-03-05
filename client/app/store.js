@@ -13,7 +13,7 @@ import searchSlice from "../features/search/searchSlice";
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    allusers: allUsersSlice,
+    allUsers: allUsersSlice,
     singleUser: singleUserSlice,
     products: productsSlice,
     singleProduct: singleProductSlice,

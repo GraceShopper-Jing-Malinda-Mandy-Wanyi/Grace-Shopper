@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
@@ -8,6 +8,7 @@ import NavButton from "./NavButton";
 // import { SearchProducts } from "../search/SearchProducts";
 
 const Navbar = () => {
+  const user = useSelector(state => state.auth)
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,6 +32,13 @@ const Navbar = () => {
     const password = evt.target.password.value;
     dispatch(authenticate({ username, password, method: formName }));
   };
+
+  useEffect(() => {
+    if(user.me.userType === "ADMIN"){
+      navigate("/admin/login")
+    }
+  }, [user])
+  
 
   // types of button names
   const buttons = ["allproducts", "wine", "beer", "spirit"];
