@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCartItemsAsync, deleteCartItemAsync } from "./cartSlice";
-
+import  Checkout  from './Checkout'
 const Cart = () => {
   const user = useSelector((state) => state.auth);
   const userCartItems = useSelector((state) => state.cartItems);
@@ -54,6 +54,7 @@ const Cart = () => {
                 >
                   Remove From Cart
                 </button>
+                <Checkout/>
               </div>
             ))}
       </div>
