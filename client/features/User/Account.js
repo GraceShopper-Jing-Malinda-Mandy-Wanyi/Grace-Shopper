@@ -23,9 +23,6 @@ const Account = ({name}) => {
           <li>
             <Link to={`/account/${userId}/myorders`}>Orders</Link>
           </li>
-          <li>
-            <Link to={`/account/${userId}/delete`}>Delete Account</Link>
-          </li>
         </ul>
         <div>
           <h1>Hi, {user.firstName} {user.lastName}</h1>
