@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User, Order, CartItem }} = require('../db')
+const { models: { User, Product, Order, CartItem }} = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:userId', async (req, res, next) => {
   try{
-    const user = await User.findByPk(req.params.userId);
+    const user = await User.findByPk(req.params.userId, {include: [Order, CartItem]});
     res.json(user)
   } catch(err){
     next(err)
@@ -28,8 +28,14 @@ router.get('/:userId', async (req, res, next) => {
 // GET /api/orders/:orderId
 router.get("/:userId/orders/:orderId", async (req, res, next) => {
   try {
-    const orders = await Order.findByPk(req.params.orderId, {include:[CartItem]});
-    res.json(orders);
+    const singleOrder = await CartItem.findAll({
+      where:{
+        orderId: req.params.orderId,
+        userId: req.params.userId,
+      },
+      include: [Product]
+    });
+    res.json(singleOrder);
   } catch (err) {
     next(err);
   }
@@ -41,7 +47,8 @@ router.get("/:userId/orders", async (req, res, next) => {
     const allOrders = await Order.findAll({
       where:{
         userId: req.params.userId
-      }
+      },
+      include: [CartItem]
     });
     res.json(allOrders);
   } catch (err) {
