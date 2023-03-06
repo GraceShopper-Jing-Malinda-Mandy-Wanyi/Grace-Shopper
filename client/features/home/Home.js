@@ -38,7 +38,7 @@ const Home = (props) => {
         {randomProduct && randomProduct.length > 0 ? (
           randomProduct.map((product) => (
             <li key={product.id}>
-                <img src={product.img} alt={product.name} />
+                <img className="landing-product-images" src={product.img} alt={product.name} />
                 <h3>{product.name}</h3>
                 <p>${product.price}</p>
                 <button>Add to Cart</button>
