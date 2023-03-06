@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllCartItemsAsync, deleteCartItemAsync } from "./cartSlice";
+import { Link } from "react-router-dom";
+import {
+  fetchAllCartItemsAsync,
+  deleteCartItemAsync,
+  updateQtyAsync,
+} from "./cartSlice";
 
 const Cart = () => {
   const user = useSelector((state) => state.auth);
   const userCartItems = useSelector((state) => state.cartItems);
-  // const guestCart = JSON.parse(window.localStorage.getItem("cart"));
 
   const dispatch = useDispatch();
 
@@ -18,6 +22,7 @@ const Cart = () => {
       dispatch(fetchAllCartItemsAsync(user.me.id));
     }
   }, [user]);
+
   // window.localStorage.removeItem("cart")
   console.log(userCartItems);
 
@@ -33,6 +38,26 @@ const Cart = () => {
       setGuestCart(updatedGuestCart);
     }
   };
+
+  const updateQty = (event, id) => {
+    if (user.me.id) {
+      dispatch(updateQtyAsync({ cartItemId: id, qty: event.target.value }));
+    } else {
+      let updatedGuestCart = JSON.parse(window.localStorage.getItem("cart"));
+      // map to swap out the product and replace w/ updated qty
+      updatedGuestCart = updatedGuestCart.map((product) => {
+        if (product.id !== event.productId) {
+          return product;
+        } else {
+          product.qty = event.qty;
+          return product;
+        }
+      });
+      window.localStorage.setItem("cart", JSON.stringify(updatedGuestCart));
+      setGuestCart(updatedGuestCart);
+    }
+  };
+
   console.log(userCartItems);
   if (user.me.id) {
     return (
@@ -41,12 +66,35 @@ const Cart = () => {
           ? ""
           : userCartItems.map((cartItem) => (
               <div className="cartItem" key={cartItem.id}>
-                <img src={cartItem.img} />
-                <p>{cartItem.name}</p>
+                <Link to={`/products/${cartItem.id}`}>
+                  <img src={cartItem.img} />
+                  <p>{cartItem.name}</p>
+                </Link>
                 <p>Size: {cartItem.size}</p>
                 <p>Type: {cartItem.productType}</p>
                 <p>Price: {cartItem.price}</p>
-                <p>Quantity: {cartItem.qty}</p>
+                <div>
+                  <label>Quantity:</label>
+                  <select
+                    name="qty"
+                    onChange={(event) => {
+                      updateQty(event, cartItem.cartItemId);
+                    }}
+                  >
+                    <option value={cartItem.qty}>{cartItem.qty}</option>
+                    {new Array(100).fill(1).map((number, index) => {
+                      if (index + 1 === cartItem.qty) {
+                        return "";
+                      } else {
+                        return (
+                          <option value={index + 1} key={index + 1}>
+                            {index + 1}
+                          </option>
+                        );
+                      }
+                    })}
+                  </select>
+                </div>
                 <button
                   onClick={() => {
                     deleteCartItem(cartItem.cartItemId);
@@ -54,6 +102,7 @@ const Cart = () => {
                 >
                   Remove From Cart
                 </button>
+                <Checkout/>
               </div>
             ))}
       </div>
@@ -66,12 +115,38 @@ const Cart = () => {
           ? ""
           : guestCart.map((cartItem) => (
               <div className="cartItem" key={cartItem.id}>
-                <img src={cartItem.img} />
-                <p>{cartItem.name}</p>
+                <Link to={`/products/${cartItem.id}`}>
+                  <img src={cartItem.img} />
+                  <p>{cartItem.name}</p>
+                </Link>
                 <p>Size: {cartItem.size}</p>
                 <p>Type: {cartItem.productType}</p>
                 <p>Price: {cartItem.price}</p>
-                <p>Quantity: {cartItem.qty}</p>
+                <div>
+                  <label>Quantity:</label>
+                  <select
+                    name="qty"
+                    onChange={(event) => {
+                      updateQty({
+                        qty: event.target.value,
+                        productId: cartItem.id,
+                      });
+                    }}
+                  >
+                    <option value={cartItem.qty}>{cartItem.qty}</option>
+                    {new Array(100).fill(1).map((number, index) => {
+                      if (index + 1 === Number(cartItem.qty)) {
+                        return "";
+                      } else {
+                        return (
+                          <option value={index + 1} key={index + 1}>
+                            {index + 1}
+                          </option>
+                        );
+                      }
+                    })}
+                  </select>
+                </div>
                 <button
                   onClick={() => {
                     deleteCartItem(cartItem.id);
