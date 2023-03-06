@@ -27,7 +27,7 @@ const SingleProduct = () => {
 
   return (
     <main>
-      <li>
+      <section>
         <h1>{name}</h1>
         <figure>
           <img className="single-product-image" src={img} alt={`Image of ${name} wine`} />
@@ -55,7 +55,7 @@ const SingleProduct = () => {
             Add to Cart
           </button>
         </div>
-      </li>
+      </section>
     </main>
   );
 };
