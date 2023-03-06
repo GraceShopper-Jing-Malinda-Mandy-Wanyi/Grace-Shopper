@@ -14,6 +14,19 @@ export const fetchSingleUserAsync = createAsyncThunk(
         }
     }
 );
+
+export const fetchSingleUserOrders = createAsyncThunk(
+  "userOrders",
+  async (id) => {
+    try {
+      const { data } = await axios.get(`/api/users/${id}/orders`);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 export const deleteUserAsync = createAsyncThunk(
     "deleteUser",
     async (id) => {
@@ -68,6 +81,9 @@ const singleUserSlice = createSlice({
             return action.payload;
           });
           builder.addCase(unregisterUserAsync.fulfilled, (state, action) => {
+            return action.payload;
+          });
+          builder.addCase(fetchSingleUserOrders.fulfilled, (state, action) => {
             return action.payload;
           });
     },
