@@ -1,20 +1,26 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectSingleOrder, fetchSingleOrderAsync } from "./singleUserSlice";
+import { fetchSingleOrderAsync, selectSingleOrder } from "./singleOrderSlice";
+import { useParams } from "react-router-dom";
+
 const SingleOrder = () => {
   const dispatch = useDispatch();
-  const { userId } = useParams();
+  const { userId, orderId } = useParams();
   const singleOrder = useSelector(selectSingleOrder);
-  const { name, quantity } = singleOrder;
+  // const { name, qty } = singleOrder;
+  console.log(singleOrder);
+  console.log(userId);
+  console.log(orderId);
+  
   useEffect(() => {
-    dispatch(fetchSingleOrderAsync(userId));
+    dispatch(fetchSingleOrderAsync(userId, orderId));
   }, [dispatch]);
   return (
     <div id="single-order" className="column">
       <div id="single-order-detail" className="row">
         <div className="column mr1">
-          <p>{name}</p>
-          <p>{quantity}</p>
+          {/* <p>{name}</p> */}
+          {/* <p>{qty}</p> */}
         </div>
       </div>
       <hr />
