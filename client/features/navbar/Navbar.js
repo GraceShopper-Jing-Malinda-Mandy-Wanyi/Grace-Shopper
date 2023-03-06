@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
@@ -8,6 +8,7 @@ import NavButton from "./NavButton";
 // import { SearchProducts } from "../search/SearchProducts";
 
 const Navbar = () => {
+  const user = useSelector(state => state.auth)
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,15 +33,24 @@ const Navbar = () => {
     dispatch(authenticate({ username, password, method: formName }));
   };
 
+  useEffect(() => {
+    if(user.me.userType === "ADMIN"){
+      navigate("/admin/login")
+    }
+  }, [user])
+  
+
   // types of button names
-  const buttons = ["allproducts", "wine", "beer", "spirit"]
+  const buttons = ["allproducts", "wine", "beer", "spirit"];
 
   return (
     <div>
       <nav>
         <div id="nav-container">
           <div id="company-name">
-            <h1>Drinky Drinks</h1>
+            <Link to={"/landing"}>
+              <h1>Drinky Drinks</h1>
+            </Link>
           </div>
 
           <div id="search-bar-login-signup">
@@ -96,7 +106,9 @@ const Navbar = () => {
           {/* mapping each button onto nav bar
               passing props (type={button}) into NavButton commponent */}
           <div className="navlinks-container">
-            {buttons.map((button, index) => (<NavButton key={index} type={button}/>))}
+            {buttons.map((button, index) => (
+              <NavButton key={index} type={button} />
+            ))}
           </div>
         </div>
       </nav>

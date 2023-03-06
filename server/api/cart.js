@@ -24,17 +24,47 @@ router.get("/:userId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     if (!req.body.guestCart) {
-      await CartItem.create(req.body);
+      const cartItem = await CartItem.findOne({
+        where: {userId: req.body.userId, productId: req.body.productId}
+      })
+      if(cartItem){
+        cartItem.update({qty: Number(cartItem.qty) + Number(req.body.qty)})
+      } else {
+        await CartItem.create(req.body);
+      }
     } else {
       console.log("RQ BODY", req.body);
-      req.body.guestCart.forEach(async (cartItem) => {
-        await CartItem.create({
-          userId: req.body.userId,
-          qty: cartItem.qty,
-          productId: cartItem.id,
-        });
-      });
+      const myCart = await CartItem.findAll({where: {userId: req.body.userId}})
+      const guestCart = req.body.guestCart
+
+      guestCart.forEach(async (guestCartItem) => {
+        // try to match product id in user cart to product id in guest cart
+        const match = myCart.find((myCartItem) => myCartItem.productId === guestCartItem.id )
+        // if match exists, update the quantities
+        // else, create a new cartItem in user cart
+        if(match){
+          await match.update({qty: Number(guestCartItem.qty) + Number(match.qty)})
+        } else {
+          await CartItem.create({qty: guestCartItem.qty, userId: req.body.userId, productId: guestCartItem.id})
+        }
+      })
+
     }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PUT /api/cart/:id
+router.put("/:id", async (req, res, next) => {
+  try {
+    let cartItem = await CartItem.findOne({
+      where: {id: req.params.id},
+      include: {model: Product}
+    })
+    cartItem = await cartItem.update(req.body)
+    console.log(cartItem)
+    res.send(cartItem)
   } catch (err) {
     next(err);
   }

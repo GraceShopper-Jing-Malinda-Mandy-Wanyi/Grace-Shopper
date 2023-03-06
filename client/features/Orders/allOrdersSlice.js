@@ -26,7 +26,8 @@ const allOrdersSlice = createSlice({
 });
 
 export const selectAllOrders = (state) => {
-  return state.users;
+  return state.allOrders;
+
 };
 
 export default allOrdersSlice.reducer;

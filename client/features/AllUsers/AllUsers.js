@@ -1,24 +1,65 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectUsers, fetchAllUsersAsync } from "./AllUsersSlice";
+import {
+  selectUsers,
+  fetchAllUsersAsync,
+  updateSingleUserAsync,
+} from "./allUsersSlice";
 
 const AllUsers = () => {
   const allUsers = useSelector(selectUsers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllUsersAsync());
+  }, []);
+
+  const changeUserType = (id, userType) => {
+    console.log(id, userType);
+    dispatch(updateSingleUserAsync({ id, userType }));
+  };
 
   return (
     <div id="allUsers">
-      {allUsers && allUsers.length
-        ? allUsers.map((user) => (
-            <Link to={`/users/${user.id}`} key={`All Users: ${user.id}`}>
-              <div className="user-row">
-                <img src={user.imageUrl} />
-                <p>{user.firstName}</p>
-                <p>{user.lastName}</p>
-              </div>
-            </Link>
-          ))
-        : null}
+      <table>
+        <thead>
+          <tr>
+            <th>User Id</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>User Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allUsers.map((user) => (
+            <>
+              <tr>
+                <td>{user.id}</td>
+                <td>{user.username}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>
+                  <select
+                    onChange={(event) => {
+                      changeUserType(user.id, event.target.value);
+                    }}
+                  value={user.userType}>
+                    <option>{user.userType}</option>
+                    <option>
+                      {user.userType === "USER" ? "ADMIN" : "USER"}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <button>Delete</button>
+                </td>
+              </tr>
+            </>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

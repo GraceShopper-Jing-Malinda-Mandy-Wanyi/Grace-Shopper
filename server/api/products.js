@@ -41,7 +41,6 @@ router.get("/", async (req, res, next) => {
       query.where = { productType: "Spirit" };
     }
     const allProducts = await Product.findAll(query);
-    console.log(allProducts)
     res.json(allProducts);
   } catch (err) {
     next(err);
