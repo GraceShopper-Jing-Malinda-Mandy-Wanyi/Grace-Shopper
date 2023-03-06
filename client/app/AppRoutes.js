@@ -10,8 +10,8 @@ import Products from '../features/products/Products';
 // import SingleOrder from '../features/Orders/SingleOrder'
 import Cart from "../features/cart/Cart";
 import Account from '../features/User/Account';
-import EditUser from '../features/User/EditUser';
-import Orders from '../features/orders/Orders';
+import EditAccount from '../features/User/EditAccount';
+import Orders from '../features/User/orders/Orders';
 /**
  * COMPONENT
  */
@@ -37,15 +37,21 @@ const AppRoutes = () => {
 
   return (
     <div>
-      <Routes>
+      {isLoggedIn ? (
+        <Routes>
+          <Route>
+          <Route path="/landing" element={<Home />} />
+          <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/products/" element={<Products />} />
+          <Route path="/account/:id" element={<Account name="login" />}/>
+          <Route path="/account/:id/information" element={<EditAccount name="login"/>}/>
+          <Route path="/account/:id/myorders" element={<Orders userId={userId} name="login"/>}/>
+          <Route path="/cart/" element={<Cart />} />
+        </Route>
+        </Routes>
+      ) : <Routes>
 
         <Route path="/landing" element={<Home />} />
-
-        <Route>
-          <Route path="/account/:id" element={<Account/>}/>
-          <Route path="/account/:id/information" element={<EditUser/>}/>
-          <Route path="/account/:id/myorders" element={<Orders/>}/>
-        </Route>
 
         {/* <Route
             path="/login"
@@ -66,7 +72,8 @@ const AppRoutes = () => {
 
         <Route path="/cart/" element={<Cart />} />
 
-      </Routes>
+      </Routes>}
+
     </div>
   );
 };
