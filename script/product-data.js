@@ -612,7 +612,7 @@ const productData = [
   {
     name: "SKYY Vodka",
     size: "1L",
-    productType: "Vodka",
+    productType: "Spirit",
     price: 90.92,
     description:
       "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",
