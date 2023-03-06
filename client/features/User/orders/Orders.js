@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { fetchSingleUser, selectSingleUser } from "../User/singleUserSlice";
-import { fetchAllCartItemsAsync, cartItems } from "../cart/cartSlice";
+import { fetchSingleUser, selectSingleUser } from "../singleUserSlice";
+import { fetchAllCartItemsAsync, cartItems } from "../../cart/cartSlice";
 
-const Orders = () => {
+const Orders = ({id}) => {
+  console.log("ID", id)
   const dispatch = useDispatch();
   const userId = useParams().id;
   const user = useSelector(selectSingleUser);
