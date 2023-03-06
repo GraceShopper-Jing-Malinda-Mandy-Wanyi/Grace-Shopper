@@ -7,8 +7,7 @@ import { addCartItemAsync } from "../cart/cartSlice";
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const productId = useParams().id;
-  const singleProduct = useSelector(selectSingleProduct);
-  const { name, img, price, type, size } = singleProduct;
+  const { name, img, price, productType, size, description } = useSelector(selectSingleProduct);
 
   const user = useSelector((state) => state.auth);
   const [qty, setQty] = useState(1);
@@ -31,11 +30,12 @@ const SingleProduct = () => {
       <li>
         <h1>{name}</h1>
         <figure>
-          <img src={img} alt={`Image of ${name} wine`} />
+          <img className="single-product-image" src={img} alt={`Image of ${name} wine`} />
           <figcaption>Price: ${price}</figcaption>
         </figure>
-        <h3>Type: {type}</h3>
+        <h3>Type: {productType}</h3>
         <h3>Size: {size}</h3>
+        <h3>Description: {description}</h3>
         <div>
           <label htmlFor="quantity">
             <strong>Qty:</strong>

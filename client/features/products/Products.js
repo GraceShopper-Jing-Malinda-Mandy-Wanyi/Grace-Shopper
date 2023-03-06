@@ -39,7 +39,7 @@ const Products = () => {
                 <h1>{product.name}</h1>
               </Link>
               <figure>
-                <img src={product.img} alt={`Image of ${product.name} wine`} />
+                <img className="all-products-images" src={product.img} alt={`Image of ${product.name} wine`} />
                 <figcaption>Price: ${product.price}</figcaption>
               </figure>
               <div>

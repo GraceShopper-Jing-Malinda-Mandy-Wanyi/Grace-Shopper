@@ -35,6 +35,7 @@ async function seed() {
       productType: product.productType,
       price: product.price,
       description: product.description,
+      img: product.img,
     });
   }
 
