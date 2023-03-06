@@ -9,10 +9,6 @@ const Checkout = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add code to handle the submission of the checkout form here
-    console.log("Name: ", name);
-    console.log("Email: ", email);
-    console.log("Address: ", address);
     setIsSubmitted(true);
   };
 
