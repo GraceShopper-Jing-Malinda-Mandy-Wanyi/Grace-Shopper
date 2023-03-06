@@ -60,7 +60,7 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:userId', async (req, res, next) => {
   try {
-      const user = await User.findByPk(req.params.studentId);
+      const user = await User.findByPk(req.params.userId);
       await user.destroy();
       res.json(user);
   } catch (err) {

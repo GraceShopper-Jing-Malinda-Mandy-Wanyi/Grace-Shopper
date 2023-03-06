@@ -102,7 +102,6 @@ const Cart = () => {
                 >
                   Remove From Cart
                 </button>
-                <Checkout/>
               </div>
             ))}
       </div>
