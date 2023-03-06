@@ -6,7 +6,11 @@ export const fetchAllProducts = createAsyncThunk(
   "fetch all products",
   async (filteredType) => {
     try {
-      const { data } = await axios.get(`/api/products?type=${filteredType.type}`);
+      let path = "";
+      if (filteredType) {
+        path = `?type=${filteredType.type}`;
+      }
+      const { data } = await axios.get(`/api/products${path}`);
       return data;
     } catch (err) {
       console.log(err);
@@ -41,14 +45,14 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
-        console.log(action.payload)
+        console.log(action.payload);
         return action.payload;
       })
       .addCase(addProduct.fulfilled, (state, action) => {
         state.push(action.payload);
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-        return [];
+        return state.filter((product) => product.id !== action.payload.id)
       });
   },
 });

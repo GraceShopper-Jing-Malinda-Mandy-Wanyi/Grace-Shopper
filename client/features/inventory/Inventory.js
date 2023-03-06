@@ -1,59 +1,51 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  selectUsers,
-  fetchAllUsersAsync,
-  updateSingleUserAsync,
-} from "../AllUsers/allUsersSlice";
+import { fetchAllProducts, deleteProduct } from "../products/productsSlice";
 
 const Inventory = () => {
-  const allUsers = useSelector(selectUsers);
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllUsersAsync());
+    dispatch(fetchAllProducts());
   }, []);
 
-  const changeUserType = (id, userType) => {
-    console.log(id, userType);
-    dispatch(updateSingleUserAsync({ id, userType }));
+  const handleDelete = (id) => {
+    dispatch(deleteProduct(id));
   };
 
   return (
-    <div id="allUsers">
+    <div id="allProducts">
       <table>
         <thead>
           <tr>
-            <th>User Id</th>
-            <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>User Type</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Price</th>
           </tr>
         </thead>
         <tbody>
-          {allUsers.map((user) => (
+          {products.map((product) => (
             <>
               <tr>
-                <td>{user.id}</td>
-                <td>{user.username}</td>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>{product.productType}</td>
+                <td>{product.description}</td>
+                <td>{product.price}</td>
                 <td>
-                  <select
-                    onChange={(event) => {
-                      changeUserType(user.id, event.target.value);
-                    }}
-                  value={user.userType}>
-                    <option>{user.userType}</option>
-                    <option>
-                      {user.userType === "USER" ? "ADMIN" : "USER"}
-                    </option>
-                  </select>
+                  <button>Edit</button>
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button
+                    onClick={() => {
+                      handleDelete(product.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </>
