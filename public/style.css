@@ -198,3 +198,7 @@ justify-content: space-evenly;
   height: 300px;
 }
 
+.landing-product-images {
+  width: 200px;
+  height: 200px;
+}
