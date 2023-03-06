@@ -8,13 +8,17 @@ import NavButton from "./NavButton";
 // import { SearchProducts } from "../search/SearchProducts";
 
 const Navbar = () => {
-  const user = useSelector(state => state.auth)
+  const user = useSelector((state) => state.auth);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
     dispatch(logout());
-    navigate("/login");
+
+    if (window.localStorage.getItem("userPath")) {
+      window.localStorage.removeItem("userPath");
+    }
+    navigate("/landing");
   };
 
   const mouseEnter = (event) => {
@@ -34,11 +38,13 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if(user.me.userType === "ADMIN"){
-      navigate("/admin/login")
+    if (
+      user.me.userType === "ADMIN" &&
+      !window.localStorage.getItem("userPath")
+    ) {
+      navigate("/admin/login");
     }
-  }, [user])
-  
+  }, [user]);
 
   // types of button names
   const buttons = ["allproducts", "wine", "beer", "spirit"];
