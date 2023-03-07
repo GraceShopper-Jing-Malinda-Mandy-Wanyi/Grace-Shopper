@@ -15,13 +15,13 @@ const SingleOrder = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <main className="container flex-column-start">
       <h1>First Name</h1>
       <h1>Last Name</h1>
       <h1>Shipping Address</h1>
       <h1>Cart Goes Here</h1>
-    </div>
-    
+    </main>
+
   );
 };
 

@@ -2,13 +2,13 @@ import React from "react";
 
 function SearchResult({ results, qty, addToCart }) {
   return (
-    <div>
+    <main className="container">
       {results.map((result) => (
-        <div key={result.id}>
+        <section key={result.id}>
           <h3>{result.name}</h3>
           <p>{result.type}</p>
-          <figure>
-            <img src={result.img} />
+          <figure className="card">
+            <img src={result.img} alt={`Image of ${result.name}`} />
             <figcaption>Price: ${result.price}</figcaption>
           </figure>
           <div>
@@ -30,9 +30,9 @@ function SearchResult({ results, qty, addToCart }) {
               Add to Cart
             </button>
           </div>
-        </div>
+        </section>
       ))}
-    </div>
+    </main>
   );
 }
 
