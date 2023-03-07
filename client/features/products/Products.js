@@ -38,11 +38,7 @@ const Products = () => {
                 <h1>{product.name}</h1>
               </Link>
               <figure className="card">
-                <img
-                  className="all-products-images"
-                  src={product.img}
-                  alt={`Image of ${product.name} wine`}
-                />
+                <img src={product.img} alt={`Image of ${product.name}`} />
               </figure>
 
               <div>
