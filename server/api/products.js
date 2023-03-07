@@ -5,11 +5,42 @@ const {
 module.exports = router;
 const { Op } = require("sequelize");
 
-// POST /api/products/
-router.post("/", async (req, res, next) => {
+// GET /api/products/
+router.get("/", async (req, res, next) => {
+  // creating a query object depending on what the query string is
   try {
-    const addProduct = await Product.create(req.body);
-    res.json(addProduct);
+    const query = {};
+
+    if (req.query.search) {
+        query.where = {
+          [Op.or]: [
+            {
+              name: {
+                [Op.iLike]: `%${req.query.search}%`,
+              },
+            },
+            {
+              description: {
+                [Op.iLike]: `%${req.query.search}%`,
+              },
+            },
+          ]
+        }
+    }
+    console.log(query);
+
+    if (req.query.type === "wine") {
+      query.where = { productType: "Wine" };
+    }
+    if (req.query.type === "beer") {
+      query.where = { productType: "Beer" };
+    }
+    if (req.query.type === "spirit") {
+      query.where = { productType: "Spirit" };
+    }
+    const allProducts = await Product.findAll(query);
+    res.json(allProducts);
+    console.log(allProducts)
   } catch (err) {
     next(err);
   }
@@ -26,23 +57,11 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// GET /api/products/
-router.get("/", async (req, res, next) => {
-  // creating a query object depending on what the query string is
+// POST /api/products/
+router.post("/", async (req, res, next) => {
   try {
-    const query = {};
-
-    if (req.query.type === "wine") {
-      query.where = { productType: "Wine" };
-    }
-    if (req.query.type === "beer") {
-      query.where = { productType: "Beer" };
-    }
-    if (req.query.type === "spirit") {
-      query.where = { productType: "Spirit" };
-    }
-    const allProducts = await Product.findAll(query);
-    res.json(allProducts);
+    const addProduct = await Product.create(req.body);
+    res.json(addProduct);
   } catch (err) {
     next(err);
   }
@@ -86,7 +105,7 @@ router.get("/search/search", async (req, res, next) => {
   }
 });
 
-router.get('/random/random', async (req, res) => {
+router.get("/random/random", async (req, res) => {
   try {
     const products = await Product.findAll();
     const randomProducts = [];
@@ -98,6 +117,6 @@ router.get('/random/random', async (req, res) => {
     res.json(randomProducts);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });

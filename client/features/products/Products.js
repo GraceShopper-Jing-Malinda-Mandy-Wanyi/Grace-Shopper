@@ -16,7 +16,9 @@ const Products = () => {
   const [qty, setQty] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchAllProducts(filteredType));
+    if (filteredType.type) {
+      dispatch(fetchAllProducts(filteredType));
+    }
   }, []);
 
   const addToCart = (event) => {
