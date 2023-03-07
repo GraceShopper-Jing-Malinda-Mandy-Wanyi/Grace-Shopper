@@ -69,7 +69,7 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <div className="login-logout">
                   <Link to="/landing">Home</Link>
-                  <Link to={`/account/${userId}`}>Account</Link>
+                  <Link to={`/account`}>Account</Link>
                   <button type="button" onClick={logoutAndRedirectHome}>
                     Logout
                   </button>

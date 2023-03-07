@@ -18,10 +18,10 @@ const Account = ({name}) => {
       <section>
         <ul>
           <li>
-            <Link to={`/account/${userId}/information`}>Information</Link>
+            <Link to={`/account/information`}>Information</Link>
           </li>
           <li>
-            <Link to={`/account/${userId}/myorders`}>Orders</Link>
+            <Link to={`/account/myorders`}>Orders</Link>
           </li>
         </ul>
         <div>

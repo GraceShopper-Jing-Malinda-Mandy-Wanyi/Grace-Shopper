@@ -53,15 +53,10 @@ const AppRoutes = () => {
 
         <Route path="/products/" element={<Products />} />
 
-        <Route path="/account/:id" element={<Account />}/>
-          <Route path="/account/:id/information" element={<EditAccount />}/>
-          <Route path="/account/:id/myorders" element={<Orders />}/>
-          <Route path="/account/:id/myorders/:orderId" element={<SingleOrder />}/>
-
-        {/* <Route path="/users/:userId/orders/:orderid" element={<SingleOrder />} />
-
-        <Route path="/users/:userId" element={<SingleUser />} /> */}
-
+        <Route path="/account" element={<Account />}/>
+        <Route path="/account/information" element={<EditAccount />}/>
+        <Route path="/account/myorders" element={<Orders />}/>
+        {/* <Route path="/account/:id/myorders/:orderId" element={<SingleOrder />}/> */}
         <Route path="/cart/" element={<Cart />} />
 
       </Routes>

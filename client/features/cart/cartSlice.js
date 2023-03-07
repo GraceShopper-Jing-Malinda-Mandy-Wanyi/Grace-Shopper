@@ -78,7 +78,7 @@ const cartSlice = createSlice({
         }
       })
 
-      if(!updated){
+      if(!updated && action.payload){
         guestCart.push(action.payload)
       }
 

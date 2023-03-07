@@ -75,6 +75,17 @@ export const authenticate = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk("edit user", async({id, username, password, firstName, lastName, email}) => {
+  try {
+    const {data} = await axios.put(`/api/users/${id}`,{
+      username, password, firstName, lastName, email
+    });
+    return data;
+  } catch(err) {
+    console.log(err);
+  }
+});
+
 /*
   SLICE
 */
@@ -101,6 +112,9 @@ export const authSlice = createSlice({
     builder.addCase(authenticate.rejected, (state, action) => {
       state.error = action.payload;
     });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.me = action.payload;
+    })
   },
 });
 

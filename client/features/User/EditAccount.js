@@ -1,37 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { fetchSingleUser, updateUser, selectSingleUser } from "./singleUserSlice";
+import { updateUser } from "../auth/authSlice";
 
 const EditAccount = () => {
   const dispatch = useDispatch();
-  const userId = useParams().id;
-  const user = useSelector(selectSingleUser);
+  const { me } = useSelector((state) => state.auth);
 
-  const [userName, setUserName] = useState("")
-  const [userPassword, setUserPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    dispatch(fetchSingleUser(userId));
-  }, [dispatch]);
-
-  useEffect(() => {
-    setUserName(user.username);
-    setUserPassword(user.password);
-    setFirstName(user.userName);
-    setFirstName(user.firstName);
-    setLastName(user.lastName);
-    setEmail(user.email);
-  }, [user]);
-
-  const handleEditUser = async(e) => {
+  const handleEditUser = (e) => {
     e.preventDefault();
-    await dispatch(updateUser({
-      id: user.id, username: userName, password: userPassword, firstName, lastName, email}));
-    await dispatch(fetchSingleUser(userId));
+    if (
+      e.target.username.value &&
+      e.target.password.value &&
+      e.target.firstName.value &&
+      e.target.lastName.value &&
+      e.target.email.value
+    ) {
+      dispatch(
+        updateUser({
+          id: me.id,
+          username: e.target.username.value,
+          firstName: e.target.firstName.value,
+          lastName: e.target.lastName.value,
+          email: e.target.email.value,
+        })
+      );
+    } else {
+      alert("PLEASE FILL IN ALL BLANKS, THANK YOU :)");
+    }
   };
 
   return (
@@ -39,19 +34,19 @@ const EditAccount = () => {
       <section>
         <span>
           <p>Username:</p>
-          <h1>{user.username}</h1>
+          <h1>{me.username}</h1>
         </span>
         <span>
           <p>First Name:</p>
-          <h1>{user.firstName}</h1>
+          <h1>{me.firstName}</h1>
         </span>
         <span>
           <p>Last Name:</p>
-          <h1>{user.lastName}</h1>
+          <h1>{me.lastName}</h1>
         </span>
         <span>
           <p>E-mail:</p>
-          <h1>{user.email}</h1>
+          <h1>{me.email}</h1>
         </span>
       </section>
       <hr />
@@ -61,23 +56,23 @@ const EditAccount = () => {
           <label htmlFor="user name">
             <small>Username:</small>
           </label>
-          <input type="text" name="user name" onChange={(e) => setUserName(e.target.value)}/>
+          <input type="text" name="username" />
           <label htmlFor="password">
             <small>Password:</small>
           </label>
-          <input type="password" name="password" onChange={(e) => setUserPassword(e.target.value)}/>
+          <input type="password" name="password" />
           <label htmlFor="first name">
             <small>First Name:</small>
           </label>
-          <input type="text" name="first name" onChange={(e) => setFirstName(e.target.value)}/>
-          <label htmlFor="last name" name="last name">
+          <input type="text" name="firstName" />
+          <label htmlFor="last name">
             <small>Last Name:</small>
           </label>
-          <input type="text" onChange={(e) => setLastName(e.target.value)}/>
-          <label htmlFor="email" name="email">
+          <input type="text" name="lastName" />
+          <label htmlFor="email">
             <small>E-mail:</small>
           </label>
-          <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
+          <input type="email" name="email" />
           <button type="submit">Save</button>
         </form>
       </section>
