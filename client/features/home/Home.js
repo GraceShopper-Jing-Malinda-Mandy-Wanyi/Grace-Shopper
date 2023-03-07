@@ -60,7 +60,9 @@ const Home = (props) => {
                     alt={product.name}
                   />
                 </figure>
+                <Link to={`/products/${product.id}`}>
                   <h3>{product.name}</h3>
+                </Link>
                   <p>${product.price}</p>
                   <button className="btn primary-btn" value={product.id} onClick={addToCart}>
                     Add to Cart

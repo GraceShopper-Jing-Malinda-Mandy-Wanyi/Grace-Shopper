@@ -34,7 +34,9 @@ const Products = () => {
         {products && products.length ? (
           products.map((product) => (
             <section className="card-container" key={product.id}>
-              <h1>{product.name}</h1>
+              <Link to={`/products/${product.id}`}>
+                <h1>{product.name}</h1>
+              </Link>
               <figure className="card">
                 <img
                   className="all-products-images"
