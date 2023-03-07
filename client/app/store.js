@@ -3,6 +3,7 @@ import logger from "redux-logger";
 import authReducer from "../features/auth/authSlice";
 import allUsersSlice from "../features/AllUsers/allUsersSlice";
 import singleUserSlice from "../features/User/singleUserSlice";
+import userOrdersSlice from "../features/User/orders/userOrdersSlice";
 import productsSlice from "../features/products/productsSlice";
 import singleProductSlice from "../features/products/singleProductSlice";
 import allOrdersSlice from "../features/Orders/allOrdersSlice";
@@ -15,6 +16,7 @@ const store = configureStore({
     auth: authReducer,
     allUsers: allUsersSlice,
     singleUser: singleUserSlice,
+    userOrders: userOrdersSlice,
     products: productsSlice,
     singleProduct: singleProductSlice,
     allOrders: allOrdersSlice,

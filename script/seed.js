@@ -35,6 +35,7 @@ async function seed() {
       productType: product.productType,
       price: product.price,
       description: product.description,
+      img: product.img,
     });
   }
 
@@ -65,6 +66,7 @@ async function seed() {
   console.log(`seeded ${userData.length} users`);
   console.log(`seeded ${productData.length} products`);
   console.log(`seeded ${orderData.length} orders`);
+  console.log(`seeded ${cartItemData.length} cart items`);
   console.log(`seeded successfully`);
   // return {
   //   users: {

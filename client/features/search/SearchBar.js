@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchProducts, setQuery } from "./searchSlice";
+import { addCartItemAsync } from "../cart/cartSlice";
 
 function SearchBar() {
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
   const searchResults = useSelector((state) => state.search.results);
+  const [qty, setQty] = useState(1);
+  const user = useSelector((state) => state.auth);
 
 
 
@@ -22,6 +25,14 @@ function SearchBar() {
     const input = e.target.value;
     setSearchInput(input);
     // dispatch(setQuery(input));
+  };
+  const addToCart = (event) => {
+    const cartItem = {
+      qty,
+      userId: user.me.id,
+      productId: event.target.value,
+    };
+    dispatch(addCartItemAsync(cartItem));
   };
 
   return (
@@ -45,6 +56,25 @@ function SearchBar() {
                 <img src={result.img} />
                 <figcaption>Price: ${result.price}</figcaption>
               </figure>
+              <div>
+                <label htmlFor="quantity">
+                  <strong>Qty:</strong>
+                </label>
+                <select
+                  onChange={(event) => {
+                    setQty(event.target.value);
+                  }}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <button onClick={addToCart} value={result.id}>
+                  Add to Cart
+                </button>
+              </div>
             </div>
           ))}
         </div>

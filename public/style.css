@@ -188,4 +188,17 @@ justify-content: space-evenly;
   outline: none;
 }
 
+.all-products-images {
+  width: 200px;
+  height: 200px;
+}
 
+.single-product-image {
+  width: 300px;
+  height: 300px;
+}
+
+.landing-product-images {
+  width: 200px;
+  height: 200px;
+}
