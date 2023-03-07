@@ -79,10 +79,12 @@ const Cart = () => {
                   </Link>
                   <p>Size: {cartItem.size}</p>
                   <p>Type: {cartItem.productType}</p>
-                  <p><strong>Price: {cartItem.price}</strong></p>
+                  <p>
+                    <strong>Price: {cartItem.price}</strong>
+                  </p>
                   <section>
-                    <label>Quantity:</label>
                     <div className="flex-row">
+                    <label>Quantity:</label>
                       <select
                         name="qty"
                         onChange={(event) => {
@@ -102,22 +104,26 @@ const Cart = () => {
                           }
                         })}
                       </select>
-                      <button
-                        className="btn delete-btn-outlined"
-                        onClick={() => {
-                          deleteCartItem(cartItem.cartItemId);
-                        }}
-                      >
-                        Remove From Cart
-                      </button>
                     </div>
                   </section>
+                  <button
+                    className="btn delete-btn-outlined"
+                    onClick={() => {
+                      deleteCartItem(cartItem.cartItemId);
+                    }}
+                  >
+                    Remove From Cart
+                  </button>
                 </div>
               </>
             ))}
-        <Link to="/checkout">
-          <button className="btn secondary-btn">Proceed to Checkout</button>
-        </Link>
+        <div className="flex-row">
+          <Link to="/checkout">
+            <button className="btn secondary-btn">
+              Proceed to Checkout
+            </button>
+          </Link>
+        </div>
       </main>
     );
   } else {
