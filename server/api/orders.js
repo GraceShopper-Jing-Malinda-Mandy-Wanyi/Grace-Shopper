@@ -28,7 +28,7 @@ router.get("/:userId/orders", async (req, res, next) => {
   }
 });
 
-// GET /api/admin/allorders
+// GET /api/orders/admin/allorders
 router.get("/admin/allorders", async (req, res, next) => {
   try {
     const allOrders = await Order.findAll();

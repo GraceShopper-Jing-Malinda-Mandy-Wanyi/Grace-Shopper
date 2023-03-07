@@ -19,7 +19,7 @@ export const fetchAllOrdersAdminAsync = createAsyncThunk(
   async () => {
     try {
       console.log("Hello")
-      const { data } = await axios.get("/api/admin/allorders");
+      const { data } = await axios.get("/api/orders/admin/allorders");
       return data;
     } catch (err) {
       console.log(err);
