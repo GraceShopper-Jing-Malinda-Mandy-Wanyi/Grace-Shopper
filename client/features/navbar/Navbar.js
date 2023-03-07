@@ -10,6 +10,7 @@ import NavButton from "./NavButton";
 const Navbar = () => {
   const user = useSelector((state) => state.auth);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const userId = useSelector((state) => state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -67,7 +68,8 @@ const Navbar = () => {
             <div id="login-signup-cart">
               {isLoggedIn ? (
                 <div className="login-logout">
-                  <Link to="/home">Home</Link>
+                  <Link to="/landing">Home</Link>
+                  <Link to={`/account/${userId}`}>Account</Link>
                   <button type="button" onClick={logoutAndRedirectHome}>
                     Logout
                   </button>

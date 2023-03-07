@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User, Order, CartItem }} = require('../db')
+const { models: { User, Order, CartItem, Product }} = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -26,23 +26,32 @@ router.get('/:userId', async (req, res, next) => {
   }
 });
 
-// GET /api/orders/:orderId
+// GET /:userId/orders/:orderId
+// get products that were bought by that user w/ that order id
 router.get("/:userId/orders/:orderId", async (req, res, next) => {
   try {
-    const orders = await Order.findByPk(req.params.orderId, {include:[CartItem]});
-    res.json(orders);
+    const singleOrder = await CartItem.findAll({
+      where:{
+        orderId: req.params.orderId,
+        userId: req.params.userId,
+      },
+      include: [Product]
+    });
+    res.json(singleOrder);
   } catch (err) {
     next(err);
   }
 });
 
-// GET /api/orders/
+// GET /api/users/:userId/orders/
+// get all orders with that user Id
 router.get("/:userId/orders", async (req, res, next) => {
   try {
     const allOrders = await Order.findAll({
       where:{
         userId: req.params.userId
-      }
+      },
+      include: [CartItem]
     });
     res.json(allOrders);
   } catch (err) {

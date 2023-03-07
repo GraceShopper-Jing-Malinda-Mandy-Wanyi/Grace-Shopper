@@ -6,9 +6,13 @@ import Home from '../features/home/Home';
 import { me } from './store';
 import SingleProduct from '../features/products/SingleProduct';
 import Products from '../features/products/Products';
-import SingleUser from '../features/User/SingleUser';
-import SingleOrder from '../features/Orders/SingleOrder'
+// import SingleUser from '../features/User/SingleUser';
+// import SingleOrder from '../features/Orders/SingleOrder'
 import Cart from "../features/cart/Cart";
+import Account from '../features/User/Account';
+import EditAccount from '../features/User/EditAccount';
+import Orders from '../features/User/orders/Orders';
+import SingleOrder from '../features/User/orders/SingleOrder';
 /**
  * COMPONENT
  */
@@ -17,6 +21,8 @@ const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const url = useLocation();
   const navigate = useNavigate();
+
+  const userId = useSelector((state) => state.auth.me.id);
 
   useEffect(() => {
     if (url.pathname === "/") {
@@ -33,7 +39,6 @@ const AppRoutes = () => {
   return (
     <div>
       <Routes>
-
         <Route path="/landing" element={<Home />} />
 
         {/* <Route
@@ -48,10 +53,14 @@ const AppRoutes = () => {
 
         <Route path="/products/" element={<Products />} />
 
+        <Route path="/account/:id" element={<Account />}/>
+          <Route path="/account/:id/information" element={<EditAccount />}/>
+          <Route path="/account/:id/myorders" element={<Orders />}/>
+          <Route path="/account/:id/myorders/:orderId" element={<SingleOrder />}/>
 
-        <Route path="/users/:userId/orders/:orderid" element={<SingleOrder />} />
+        {/* <Route path="/users/:userId/orders/:orderid" element={<SingleOrder />} />
 
-        <Route path="/users/:userId" element={<SingleUser />} />
+        <Route path="/users/:userId" element={<SingleUser />} /> */}
 
         <Route path="/cart/" element={<Cart />} />
 
