@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAllProducts,
   deleteProduct,
   addProduct,
+  editProduct,
 } from "../products/productsSlice";
 
 const Inventory = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
+
+  const [editMode, setEditMode] = useState(false);
+  const [formValue, setFormValue] = useState({});
 
   useEffect(() => {
     dispatch(fetchAllProducts());
@@ -31,6 +35,26 @@ const Inventory = () => {
     dispatch(addProduct(query));
   };
 
+  const onClickHandler = (queryObj) => {
+    if (queryObj.method === "Edit") {
+      setFormValue(queryObj);
+      setEditMode(true);
+    } else {
+      queryObj = formValue;
+      delete queryObj.method;
+      dispatch(editProduct(queryObj));
+      setEditMode(false);
+    }
+  };
+
+  const changeHandler = (event) => {
+    setFormValue({ ...formValue, [event.target.name]: event.target.value });
+  };
+
+  //redux values are read only, so if we want to alter its values for the
+  //purpose sorting, we have to copy it into a new array
+  const actualProducts = [...products];
+
   return (
     <div id="inventoryContainer">
       <div id="allProducts">
@@ -46,30 +70,97 @@ const Inventory = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <>
-                <tr>
-                  <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>{product.productType}</td>
-                  <td>{product.size}</td>
-                  <td>{product.description}</td>
-                  <td>{product.price}</td>
-                  <td>
-                    <button>Edit</button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => {
-                        handleDelete(product.id);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </>
-            ))}
+            {actualProducts.length < 0
+              ? ""
+              : actualProducts
+                  .sort((a, b) => a.id - b.id)
+                  .map((product) => (
+                    <tr key={product.id}>
+                      <td>{product.id}</td>
+                      <td>
+                        {editMode && formValue.id === product.id ? (
+                          <input
+                            onChange={changeHandler}
+                            name="name"
+                            value={formValue.name}
+                          />
+                        ) : (
+                          product.name
+                        )}
+                      </td>
+                      <td>
+                        {editMode && formValue.id === product.id ? (
+                          <input
+                            onChange={changeHandler}
+                            name="productType"
+                            value={formValue.productType}
+                          />
+                        ) : (
+                          product.productType
+                        )}
+                      </td>
+                      <td>
+                        {editMode && formValue.id === product.id ? (
+                          <input
+                            onChange={changeHandler}
+                            name="size"
+                            value={formValue.size}
+                          />
+                        ) : (
+                          product.size
+                        )}
+                      </td>
+                      <td>
+                        {editMode && formValue.id === product.id ? (
+                          <input
+                            onChange={changeHandler}
+                            name="description"
+                            value={formValue.description}
+                          />
+                        ) : (
+                          product.description
+                        )}
+                      </td>
+                      <td>
+                        {editMode && formValue.id === product.id ? (
+                          <input
+                            onChange={changeHandler}
+                            name="price"
+                            value={formValue.price}
+                          />
+                        ) : (
+                          product.price
+                        )}
+                      </td>
+                      <td>
+                        <button
+                          onClick={(event) => {
+                            onClickHandler({
+                              method: event.target.value,
+                              id: product.id,
+                              name: product.name,
+                              productType: product.productType,
+                              size: product.size,
+                              description: product.description,
+                              price: product.price,
+                            });
+                          }}
+                          value={!editMode ? "Edit" : "Save Changes"}
+                        >
+                          {!editMode ? "Edit" : "Save Changes"}
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => {
+                            handleDelete(product.id);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
           </tbody>
         </table>
       </div>

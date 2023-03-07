@@ -28,6 +28,16 @@ export const addProduct = createAsyncThunk("add product", async (newProduct) => 
   }
 });
 
+// PUT /api/products
+export const editProduct = createAsyncThunk("edit product", async (editProduct) => {
+  try {
+    const { data } = await axios.put(`/api/products/${editProduct.id}`, editProduct);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // DELETE /api/products
 export const deleteProduct = createAsyncThunk("delete product", async (id) => {
   try {
@@ -51,9 +61,21 @@ export const productsSlice = createSlice({
       .addCase(addProduct.fulfilled, (state, action) => {
         state.push(action.payload);
       })
+      .addCase(editProduct.fulfilled, (state, action) => {
+        return state.map(product => {
+          if(product.id === action.payload.id){
+            return action.payload
+          } else {
+            return product
+          }
+        }); 
+        newState = newState.sort((a,b) => {a.id > b.id ? 1 :
+                                                b.id > a.id ? -1 : 0})
+      })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         return state.filter((product) => product.id !== action.payload.id)
       });
+      
   },
 });
 
