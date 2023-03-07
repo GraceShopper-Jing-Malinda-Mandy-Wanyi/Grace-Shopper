@@ -51,77 +51,74 @@ const Navbar = () => {
   const buttons = ["allproducts", "wine", "beer", "spirit"];
 
   return (
-    <div>
-      <nav>
-        <div id="nav-container">
-          <div id="company-name">
-            <Link to={"/landing"}>
-              <h1>Drinky Drinks</h1>
-            </Link>
-          </div>
-
-          <div id="search-bar-login-signup">
-            <div className="search-bar">
-              <SearchBar />
+    <>
+      <header>
+        <nav>
+          <div id="nav-container">
+            <div id="logo" className="wrapper">
+              <Link to={"/landing"}>
+                <img src="../wine-logo.png" alt="logo"></img>
+                <h1>Drinky Drinks</h1>
+              </Link>
             </div>
 
-            <div id="login-signup-cart">
+            <section className="search-login-cart">
+              <div className="search-bar wrapper">
+                <SearchBar />
+              </div>
+              <div id="login-signup-cart">
               {isLoggedIn ? (
                 <div className="login-logout">
                   <Link to="/landing">Home</Link>
                   <Link to={`/account`}>Account</Link>
-                  <button type="button" onClick={logoutAndRedirectHome}>
+                  <button className="btn secondary-btn" type="button" onClick={logoutAndRedirectHome}>
                     Logout
                   </button>
                 </div>
               ) : (
-                <div className="login-logout">
-                  <div id="login-dropdown" onMouseEnter={mouseEnter}>
-                    Login
+                  <div className="login-logout">
+                    <div id="login-dropdown" onMouseEnter={mouseEnter}>
+                      Login
+                    </div>
+                    <div id="login-dropdown-form" onMouseLeave={mouseLeave}>
+                      <form className="gap-1" id="login-form" onSubmit={handleSubmit}>
+                          <label htmlFor="username">
+                            <small>Username</small>
+                          </label>
+                          <input name="username" type="text" />
+                          <label htmlFor="password">
+                            <small>Password</small>
+                          </label>
+                          <input name="password" type="password" />
+                          <button className="btn primary-btn" type="submit">Log In</button>
+                      </form>
+                    </div>
+                    <Link to="/signup">Sign Up</Link>
                   </div>
-                  <div id="login-dropdown-form" onMouseLeave={mouseLeave}>
-                    <form id="login-form" onSubmit={handleSubmit}>
-                      <div>
-                        <label htmlFor="username">
-                          <small>Username</small>
-                        </label>
-                        <input name="username" type="text" />
-                      </div>
-                      <div>
-                        <label htmlFor="password">
-                          <small>Password</small>
-                        </label>
-                        <input name="password" type="password" />
-                      </div>
-                      <div>
-                        <button type="submit">Log In</button>
-                      </div>
-                    </form>
-                  </div>
-                  <Link to="/signup">Sign Up</Link>
-                </div>
-              )}
+                )}
 
-              <div className="cart-container">
-                <Link to="/cart">
-                  <button className="cart-btn">
-                    <span className="cart-icon">&#128722;</span>
-                  </button>
-                </Link>
+                <div className="cart-container">
+                  <Link to="/cart">
+                    <button className="btn primary-btn">
+                      <span className="cart-icon">&#128722;</span>
+                    </button>
+                  </Link>
+                </div>
               </div>
+            </section>
+
+            {/* mapping each button onto nav bar
+              passing props (type={button}) into NavButton commponent */}
+            <div className="navlinks-container">
+              {buttons.map((button, index) => (
+                <NavButton key={index} type={button} />
+              ))}
             </div>
           </div>
-          {/* mapping each button onto nav bar
-              passing props (type={button}) into NavButton commponent */}
-          <div className="navlinks-container">
-            {buttons.map((button, index) => (
-              <NavButton key={index} type={button} />
-            ))}
-          </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
       <hr />
-    </div>
+    </>
   );
 };
 

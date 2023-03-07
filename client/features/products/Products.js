@@ -6,13 +6,12 @@ import { fetchAllProducts } from "./productsSlice";
 import { addCartItemAsync } from "../cart/cartSlice";
 
 const Products = () => {
-  const products = useSelector(state => state.products);
+  const products = useSelector((state) => state.products);
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   // pulling query object from URL -> {type: "wine"}
-  const filteredType = Object.fromEntries([...searchParams])
-
+  const filteredType = Object.fromEntries([...searchParams]);
 
   const [qty, setQty] = useState(1);
 
@@ -31,18 +30,21 @@ const Products = () => {
 
   return (
     <>
-      <main>
+      <main className="container">
         {products && products.length ? (
           products.map((product) => (
-            <section key={product.id}>
-              <Link to={`/products/${product.id}`}>
-                <h1>{product.name}</h1>
-              </Link>
-              <figure>
-                <img className="all-products-images" src={product.img} alt={`Image of ${product.name} wine`} />
-                <figcaption>Price: ${product.price}</figcaption>
+            <section className="card-container" key={product.id}>
+              <h1>{product.name}</h1>
+              <figure className="card">
+                <img
+                  className="all-products-images"
+                  src={product.img}
+                  alt={`Image of ${product.name} wine`}
+                />
               </figure>
+
               <div>
+                <h3>Price: ${product.price}</h3>
                 <label htmlFor="quantity">
                   <strong>Qty:</strong>
                 </label>
@@ -57,9 +59,20 @@ const Products = () => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <button onClick={addToCart} value={product.id}>
-                  Add to Cart
-                </button>
+                <div>
+                  <button
+                    className="btn primary-btn"
+                    onClick={addToCart}
+                    value={product.id}
+                  >
+                    Add to Cart
+                  </button>
+                  <Link to={`/products/${product.id}`}>
+                    <button className="btn btn-outlined-primary">
+                      View Details
+                    </button>
+                  </Link>
+                </div>
               </div>
             </section>
           ))

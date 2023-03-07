@@ -5,7 +5,6 @@ import { updateUser } from "../auth/authSlice";
 const EditAccount = () => {
   const dispatch = useDispatch();
   const { me } = useSelector((state) => state.auth);
-
   const handleEditUser = (e) => {
     e.preventDefault();
     if (
@@ -31,28 +30,30 @@ const EditAccount = () => {
 
   return (
     <>
-      <section>
-        <span>
-          <p>Username:</p>
-          <h1>{me.username}</h1>
-        </span>
-        <span>
-          <p>First Name:</p>
-          <h1>{me.firstName}</h1>
-        </span>
-        <span>
-          <p>Last Name:</p>
-          <h1>{me.lastName}</h1>
-        </span>
-        <span>
-          <p>E-mail:</p>
-          <h1>{me.email}</h1>
-        </span>
-      </section>
-      <hr />
-      <section>
+       <div className="wrapper">
+        <section className="container">
+          <span>
+            <p>Username:</p>
+            <h1>{me.username}</h1>
+          </span>
+          <span>
+            <p>First Name:</p>
+            <h1>{me.firstName}</h1>
+          </span>
+          <span>
+            <p>Last Name:</p>
+            <h1>{me.lastName}</h1>
+          </span>
+          <span>
+            <p>E-mail:</p>
+            <h1>{me.email}</h1>
+          </span>
+        </section>
+        <hr />
+        
+       <section className="container">
         <h1>Edit Information</h1>
-        <form onSubmit={handleEditUser}>
+        <form className="flex-column gap-1" onSubmit={handleEditUser}>
           <label htmlFor="user name">
             <small>Username:</small>
           </label>
@@ -73,7 +74,7 @@ const EditAccount = () => {
             <small>E-mail:</small>
           </label>
           <input type="email" name="email" />
-          <button type="submit">Save</button>
+          <button className="btn primary-btn" type="submit">Save</button>
         </form>
       </section>
     </>

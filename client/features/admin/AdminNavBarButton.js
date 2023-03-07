@@ -19,7 +19,7 @@ const AdminNavBarButton = (props) => {
     <>
       <li className="dropdown">
         <Link to={`/admin/${pathname}`}>
-          <button className="dropbtn" value={props.type}>
+          <button className="btn secondary-btn" value={props.type}>
             {props.type}
           </button>
         </Link>

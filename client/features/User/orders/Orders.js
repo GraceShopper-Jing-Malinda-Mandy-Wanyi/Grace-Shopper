@@ -35,8 +35,8 @@ const Orders = () => {
   }
 
   return (
-    <>
-      <table>
+    <main className="container">
+      <table className="container">
         <thead>
           <tr>
             <th>First Name</th>
@@ -64,7 +64,7 @@ const Orders = () => {
           )}
         </tbody>
       </table>
-    </>
+    </main>
   );
 };
 
