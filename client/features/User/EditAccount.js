@@ -50,7 +50,7 @@ const EditAccount = () => {
           </span>
         </section>
         <hr />
-        
+
        <section className="container">
         <h1>Edit Information</h1>
         <form className="flex-column gap-1" onSubmit={handleEditUser}>
@@ -77,6 +77,7 @@ const EditAccount = () => {
           <button className="btn primary-btn" type="submit">Save</button>
         </form>
       </section>
+      </div>
     </>
   );
 };
