@@ -38,29 +38,33 @@ const Home = (props) => {
     username = me.username.slice(0,1).toUpperCase() + me.username.slice(1);
   }
   return (
-    <div>
-      <div>
-        <h3>Welcome, {username}!</h3>
-
-        <div>
+    <main id="welcome" className="container">
+      <section className="container">
+        <div className="flex-column gap-1">
+          <h1>Welcome, {username}</h1>
           <p>Find the perfect drink for any occasion</p>
-          <Link to="/products?type=allproducts"> <button>Shop Now</button></Link>
+          <Link to="/products?type=allproducts"><button className="btn primary-btn">Shop Now</button></Link>
         </div>
+      </section>
 
-        <section className="featured-products">
-          <h2>Featured Products</h2>
-          <ul>
+      <section>
+        <h1>Featured Products</h1>
+        <ul className="featured-container">
             {randomProduct && randomProduct.length > 0 ? (
               randomProduct.map((product) => (
-                <li key={product.id}>
+                <li className="feeatured-item card card-container" key={product.id}>
+                <figure>
                   <img
                     className="landing-product-images"
                     src={product.img}
                     alt={product.name}
                   />
+                </figure>
+                <Link to={`/products/${product.id}`}>
                   <h3>{product.name}</h3>
+                </Link>
                   <p>${product.price}</p>
-                  <button value={product.id} onClick={addToCart}>
+                  <button className="btn primary-btn" value={product.id} onClick={addToCart}>
                     Add to Cart
                   </button>
                 </li>
@@ -69,9 +73,8 @@ const Home = (props) => {
               <h1>Oops, there was an error!</h1>
             )}
           </ul>
-        </section>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

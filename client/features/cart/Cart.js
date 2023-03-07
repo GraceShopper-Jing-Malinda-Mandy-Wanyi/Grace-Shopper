@@ -62,53 +62,63 @@ const Cart = () => {
   // console.log(userCartItems);
   if (user.me.id) {
     return (
-      <div>
+      <main className="container">
         {userCartItems.length === 0
           ? ""
           : userCartItems.map((cartItem) => (
-              <div className="cartItem" key={cartItem.id}>
-                <Link to={`/products/${cartItem.id}`}>
-                  <img src={cartItem.img} />
-                  <p>{cartItem.name}</p>
-                </Link>
-                <p>Size: {cartItem.size}</p>
-                <p>Type: {cartItem.productType}</p>
-                <p>Price: {cartItem.price}</p>
-                <div>
-                  <label>Quantity:</label>
-                  <select
-                    name="qty"
-                    onChange={(event) => {
-                      updateQty(event, cartItem.cartItemId);
-                    }}
-                  >
-                    <option value={cartItem.qty}>{cartItem.qty}</option>
-                    {new Array(100).fill(1).map((number, index) => {
-                      if (index + 1 === cartItem.qty) {
-                        return "";
-                      } else {
-                        return (
-                          <option value={index + 1} key={index + 1}>
-                            {index + 1}
-                          </option>
-                        );
-                      }
-                    })}
-                  </select>
-                </div>
-                <button
-                  onClick={() => {
-                    deleteCartItem(cartItem.cartItemId);
-                  }}
+              <>
+                <div
+                  className="cartItem card-container flex-column-start gap-1"
+                  key={cartItem.id}
                 >
-                  Remove From Cart
-                </button>
-              </div>
+                  <Link to={`/products/${cartItem.id}`}>
+                    <figure className="card">
+                      <img src={cartItem.img} />
+                    </figure>
+                    <h3>{cartItem.name}</h3>
+                  </Link>
+                  <p>Size: {cartItem.size}</p>
+                  <p>Type: {cartItem.productType}</p>
+                  <p><strong>Price: {cartItem.price}</strong></p>
+                  <section>
+                    <label>Quantity:</label>
+                    <div className="flex-row">
+                      <select
+                        name="qty"
+                        onChange={(event) => {
+                          updateQty(event, cartItem.cartItemId);
+                        }}
+                      >
+                        <option value={cartItem.qty}>{cartItem.qty}</option>
+                        {new Array(100).fill(1).map((number, index) => {
+                          if (index + 1 === cartItem.qty) {
+                            return "";
+                          } else {
+                            return (
+                              <option value={index + 1} key={index + 1}>
+                                {index + 1}
+                              </option>
+                            );
+                          }
+                        })}
+                      </select>
+                      <button
+                        className="btn delete-btn-outlined"
+                        onClick={() => {
+                          deleteCartItem(cartItem.cartItemId);
+                        }}
+                      >
+                        Remove From Cart
+                      </button>
+                    </div>
+                  </section>
+                </div>
+              </>
             ))}
         <Link to="/checkout">
-          <button>Proceed to Checkout</button>
+          <button className="btn secondary-btn">Proceed to Checkout</button>
         </Link>
-      </div>
+      </main>
     );
   } else {
     console.log(guestCart);

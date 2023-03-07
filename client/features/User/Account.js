@@ -9,7 +9,7 @@ const Account = ({name}) => {
 
   return (
     <>
-      <section>
+      <section className="container">
         <ul>
           <li>
             <Link to={`/account/information`}>Information</Link>
@@ -18,7 +18,7 @@ const Account = ({name}) => {
             <Link to={`/account/myorders`}>Orders</Link>
           </li>
         </ul>
-        <div>
+         <div className="container">
           <h1>Hi, {me.firstName} {me.lastName}</h1>
           <h1>
             From your account dashboard you can view your recent orders, manage

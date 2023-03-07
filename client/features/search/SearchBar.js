@@ -14,9 +14,9 @@ function SearchBar() {
 
   return (
     <div>
-      <form onSubmit={handleSearch}>
+      <form className="flex-row gap-1" onSubmit={handleSearch}>
         <input type="text" placeholder="Search products" name="search" />
-        <button type="submit">Search</button>
+        <button className="btn primary-btn" type="submit">Search</button>
       </form>
     </div>
   );

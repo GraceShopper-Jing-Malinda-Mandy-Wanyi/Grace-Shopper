@@ -23,7 +23,7 @@ const NavButton = (props) => {
     <>
       <li className="dropdown">
         <Link to={`/products?type=${props.type}`}>
-          <button onClick={clickHandler} className="dropbtn" value={props.type}>
+          <button className="btn secondary-btn" onClick={clickHandler} value={props.type}>
             {name}
           </button>
         </Link>

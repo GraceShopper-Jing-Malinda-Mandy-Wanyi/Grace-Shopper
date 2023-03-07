@@ -11,7 +11,7 @@ const AllOrdersAdmin = () => {
   }, []);
 
   return (
-    <div id="allOrdersAdminContainer">
+    <main className="container">
       <div id="allOrdersAdmin">
         <table>
           <thead>
@@ -38,7 +38,7 @@ const AllOrdersAdmin = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </main>
   );
 };
 

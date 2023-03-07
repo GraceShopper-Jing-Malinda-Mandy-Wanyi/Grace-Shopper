@@ -40,44 +40,32 @@ const AuthForm = ({ name, displayName }) => {
 
   if (displayName === "Sign Up") {
     return (
-      <div>
-        <form onSubmit={handleSubmit} name={name}>
-          <div>
+      <main id="signup" className="container flex-column">
+        <form className="flex-column gap-1" onSubmit={handleSubmit} name={name}>
             <label htmlFor="firstName">
               <small>First Name</small>
             </label>
             <input name="firstName" type="text" />
-          </div>
-          <div>
             <label htmlFor="lastName">
               <small>Last Name</small>
             </label>
             <input name="lastName" type="text" />
-          </div>
-          <div>
             <label htmlFor="email">
               <small>Email</small>
             </label>
             <input name="email" type="text" />
-          </div>
-          <div>
             <label htmlFor="username">
               <small>Username</small>
             </label>
             <input name="username" type="text" />
-          </div>
-          <div>
             <label htmlFor="password">
               <small>Password</small>
             </label>
             <input name="password" type="password" />
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
-          </div>
+            <button className="btn primary-btn" type="submit">{displayName}</button>
           {error && <div> {error} </div>}
         </form>
-      </div>
+      </main>
     );
   }
 };

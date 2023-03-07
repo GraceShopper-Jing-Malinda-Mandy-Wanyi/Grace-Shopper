@@ -13,8 +13,6 @@ const Products = () => {
   // pulling query object from URL -> {type: "wine"}
   const filteredType = Object.fromEntries([...searchParams]);
 
-  console.log(filteredType);
-
   const [qty, setQty] = useState(1);
 
   useEffect(() => {
@@ -34,22 +32,23 @@ const Products = () => {
 
   return (
     <>
-      <main>
+      <main className="container">
         {products && products.length ? (
           products.map((product) => (
-            <section key={product.id}>
+            <section className="card-container" key={product.id}>
               <Link to={`/products/${product.id}`}>
                 <h1>{product.name}</h1>
               </Link>
-              <figure>
+              <figure className="card">
                 <img
                   className="all-products-images"
                   src={product.img}
                   alt={`Image of ${product.name} wine`}
                 />
-                <figcaption>Price: ${product.price}</figcaption>
               </figure>
+
               <div>
+                <h3>Price: ${product.price}</h3>
                 <label htmlFor="quantity">
                   <strong>Qty:</strong>
                 </label>
@@ -64,9 +63,20 @@ const Products = () => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <button onClick={addToCart} value={product.id}>
-                  Add to Cart
-                </button>
+                <div>
+                  <button
+                    className="btn primary-btn"
+                    onClick={addToCart}
+                    value={product.id}
+                  >
+                    Add to Cart
+                  </button>
+                  <Link to={`/products/${product.id}`}>
+                    <button className="btn btn-outlined-primary">
+                      View Details
+                    </button>
+                  </Link>
+                </div>
               </div>
             </section>
           ))
