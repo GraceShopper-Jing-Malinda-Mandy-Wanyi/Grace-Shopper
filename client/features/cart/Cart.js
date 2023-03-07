@@ -84,7 +84,7 @@ const Cart = () => {
                   </p>
                   <section>
                     <div className="flex-row">
-                    <label>Quantity:</label>
+                      <label>Quantity:</label>
                       <select
                         name="qty"
                         onChange={(event) => {
@@ -119,9 +119,7 @@ const Cart = () => {
             ))}
         <div className="flex-row">
           <Link to="/checkout">
-            <button className="btn secondary-btn">
-              Proceed to Checkout
-            </button>
+            <button className="btn secondary-btn">Proceed to Checkout</button>
           </Link>
         </div>
       </main>
@@ -129,19 +127,22 @@ const Cart = () => {
   } else {
     console.log(guestCart);
     return (
-      <div>
+      <main className="container">
         {guestCart.length === 0
           ? ""
           : guestCart.map((cartItem) => (
-              <div className="cartItem" key={cartItem.id}>
+              <section className="card-container cartItem" key={cartItem.id}>
                 <Link to={`/products/${cartItem.id}`}>
-                  <img src={cartItem.img} />
                   <p>{cartItem.name}</p>
                 </Link>
-                <p>Size: {cartItem.size}</p>
-                <p>Type: {cartItem.productType}</p>
-                <p>Price: {cartItem.price}</p>
+                <figure className="card">
+                  <img src={cartItem.img} />
+                </figure>
+
                 <div>
+                  <p>Size: {cartItem.size}</p>
+                  <p>Type: {cartItem.productType}</p>
+                  <p>Price: {cartItem.price}</p>
                   <label>Quantity:</label>
                   <select
                     name="qty"
@@ -167,18 +168,21 @@ const Cart = () => {
                   </select>
                 </div>
                 <button
+                  className="btn delete-btn-outlined"
                   onClick={() => {
                     deleteCartItem(cartItem.id);
                   }}
                 >
                   Remove From Cart
                 </button>
-              </div>
+              </section>
             ))}
         <Link to="/checkout">
-          <button>Proceed to Checkout</button>
+          <button className="btn secondary-btn" type="submit">
+            Proceed to Checkout
+          </button>
         </Link>
-      </div>
+      </main>
     );
   }
 };

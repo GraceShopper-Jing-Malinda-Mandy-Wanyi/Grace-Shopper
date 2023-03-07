@@ -21,8 +21,8 @@ const AdminNavBar = () => {
         <div id="nav-container">
           <div id="logo">
             <Link to={"/landing"}>
-              <img src="../wine-logo.png" alt="logo"></img>
-              <h1>Drinky Drinks</h1>
+              <img src="../images/logo.jpg" alt="logo"></img>
+              <h1>Happy Hour</h1>
             </Link>
           </div>
 
@@ -43,8 +43,6 @@ const AdminNavBar = () => {
               </div>
             </div>
           </div>
-
-
 
           {/* mapping each button onto nav bar
                 passing props (type={button}) into NavButton commponent */}

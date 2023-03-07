@@ -179,7 +179,7 @@ td {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .gap-1 {
@@ -227,6 +227,10 @@ td {
   max-width: 1400px;
   margin: 5vh auto;
   padding: 1rem;
+}
+
+.inventory-table {
+  width: 100%;
 }
 
 /*

@@ -56,7 +56,7 @@ const Inventory = () => {
   const actualProducts = [...products];
 
   return (
-    <main className="container inventory flex-row">
+    <main className="inventory container flex-column gap-1">
       <section>
         <form className="flex-column gap-1" onSubmit={addNewProduct}>
           <label>Name</label>
@@ -69,11 +69,13 @@ const Inventory = () => {
           <textarea name="description"></textarea>
           <label>Price</label>
           <input name="price"></input>
-          <button className="btn tertiary-btn" type="submit">Add Product</button>
+          <button className="btn tertiary-btn" type="submit">
+            Add Product
+          </button>
         </form>
       </section>
       <section>
-        <table>
+        <table className="inventory-table">
           <thead>
             <tr>
               <th>Id</th>
@@ -148,7 +150,8 @@ const Inventory = () => {
                         )}
                       </td>
                       <td>
-                        <button className="btn primary-btn"
+                        <button
+                          className="btn primary-btn"
                           onClick={(event) => {
                             onClickHandler({
                               method: event.target.value,
@@ -166,7 +169,8 @@ const Inventory = () => {
                         </button>
                       </td>
                       <td>
-                        <button className="btn delete-btn"
+                        <button
+                          className="btn delete-btn"
                           onClick={() => {
                             handleDelete(product.id);
                           }}
