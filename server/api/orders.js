@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {
   models: { Order },
 } = require("../db");
+const {adminVerification} = require("./verification")
 module.exports = router;
 
 // GET /api/orders/:userId
@@ -29,7 +30,7 @@ router.get("/:userId/orders/:orderId", async (req, res, next) => {
 });
 
 // GET /api/orders/admin/allorders
-router.get("/admin/allorders", async (req, res, next) => {
+router.get("/admin/allorders", adminVerification, async (req, res, next) => {
   try {
     const allOrders = await Order.findAll();
     res.send(allOrders);

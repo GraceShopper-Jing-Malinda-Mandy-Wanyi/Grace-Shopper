@@ -22,7 +22,7 @@ const Account = ({name}) => {
           <h1>Hi, {me.firstName} {me.lastName}</h1>
           <h1>
             From your account dashboard you can view your recent orders, manage
-            your shipping and billing adresses, and edit your password and
+            your shipping and billing address, and edit your password and
             account details.
           </h1>
           <h1>Thank you for choosing to shop with us!</h1>

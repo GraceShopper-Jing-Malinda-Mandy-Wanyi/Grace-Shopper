@@ -5,7 +5,9 @@ const initialState = [];
 
 export const fetchAllUsersAsync = createAsyncThunk("allusers", async () => {
   try {
-    const { data } = await axios.get("/api/users");
+    const { data } = await axios.get("/api/users", {
+      headers: { authorization: window.localStorage.getItem("token") },
+    });
     return data;
   } catch (err) {
     console.log(err);
@@ -16,7 +18,15 @@ export const updateSingleUserAsync = createAsyncThunk(
   "update user",
   async ({ id, userType }) => {
     try {
-      const { data } = await axios.put(`/api/users/${id}`, { userType });
+      const { data } = await axios.put(
+        `/api/users/${id}`,
+        {
+          userType,
+        },
+        {
+          headers: { authorization: window.localStorage.getItem("token") },
+        }
+      );
       return data;
     } catch (err) {
       console.log(err);
@@ -26,7 +36,9 @@ export const updateSingleUserAsync = createAsyncThunk(
 
 export const deleteUserAsync = createAsyncThunk("delete user", async (id) => {
   try {
-    const { data } = await axios.delete(`/api/users/${id}`);
+    const { data } = await axios.delete(`/api/users/${id}`, {
+      headers: { authorization: window.localStorage.getItem("token") },
+    });
     return data;
   } catch (err) {
     console.log(err);

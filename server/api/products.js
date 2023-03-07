@@ -4,6 +4,7 @@ const {
 } = require("../db");
 module.exports = router;
 const { Op } = require("sequelize");
+const {adminVerification} = require("./verification")
 
 // GET /api/products/
 router.get("/", async (req, res, next) => {
@@ -58,7 +59,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // POST /api/products/
-router.post("/", async (req, res, next) => {
+router.post("/", adminVerification, async (req, res, next) => {
   try {
     const addProduct = await Product.create(req.body);
     res.json(addProduct);
@@ -68,7 +69,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // PUT /api/products/:productId
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", adminVerification, async (req, res, next) => {
   try {
     let editProduct = await Product.findByPk(req.params.id);
     editProduct = await editProduct.update(req.body);
@@ -79,7 +80,7 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // DELETE /api/products/:productId
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", adminVerification, async (req, res, next) => {
   try {
     const deleteProduct = await Product.findByPk(req.params.id);
     await deleteProduct.destroy();

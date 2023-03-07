@@ -15,7 +15,7 @@ export const fetchAllProducts = createAsyncThunk(
         }
       }
       const { data } = await axios.get(`/api/products${path}`);
-      console.log(data)
+      console.log(data);
       return data;
     } catch (err) {
       console.log(err);
@@ -28,7 +28,9 @@ export const addProduct = createAsyncThunk(
   "add product",
   async (newProduct) => {
     try {
-      const { data } = await axios.post("/api/products", newProduct);
+      const { data } = await axios.post("/api/products", newProduct, {
+        headers: { authorization: window.localStorage.getItem("token") },
+      });
       return data;
     } catch (err) {
       console.log(err);
@@ -43,7 +45,10 @@ export const editProduct = createAsyncThunk(
     try {
       const { data } = await axios.put(
         `/api/products/${editProduct.id}`,
-        editProduct
+        editProduct,
+        {
+          headers: { authorization: window.localStorage.getItem("token") },
+        }
       );
       return data;
     } catch (err) {
@@ -55,7 +60,9 @@ export const editProduct = createAsyncThunk(
 // DELETE /api/products
 export const deleteProduct = createAsyncThunk("delete product", async (id) => {
   try {
-    const { data } = await axios.delete(`/api/products/${id}`);
+    const { data } = await axios.delete(`/api/products/${id}`, {
+      headers: { authorization: window.localStorage.getItem("token") },
+    });
     return data;
   } catch (err) {
     console.log(err);
