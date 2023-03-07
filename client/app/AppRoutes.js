@@ -13,6 +13,7 @@ import Account from '../features/User/Account';
 import EditAccount from '../features/User/EditAccount';
 import Orders from '../features/User/orders/Orders';
 import SingleOrder from '../features/User/orders/SingleOrder';
+import Checkout from '../features/cart/Checkout';
 /**
  * COMPONENT
  */
@@ -56,7 +57,8 @@ const AppRoutes = () => {
         <Route path="/account" element={<Account />}/>
         <Route path="/account/information" element={<EditAccount />}/>
         <Route path="/account/myorders" element={<Orders />}/>
-        {/* <Route path="/account/:id/myorders/:orderId" element={<SingleOrder />}/> */}
+        <Route path="/account/singleorder" element={<SingleOrder />}/>
+        <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/cart/" element={<Cart />} />
 
       </Routes>

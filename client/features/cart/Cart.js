@@ -17,11 +17,12 @@ const Cart = () => {
     JSON.parse(window.localStorage.getItem("cart"))
   );
 
-  useEffect(() => {
-    if (Object.keys(user.me).length !== 0) {
-      dispatch(fetchAllCartItemsAsync(user.me.id));
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   console.log("HIT")
+  //   if (Object.keys(user.me).length !== 0 && userCartItems.length > 0) {
+  //     dispatch(fetchAllCartItemsAsync(user.me.id));
+  //   }
+  // }, [user]);
 
   // window.localStorage.removeItem("cart")
   console.log(userCartItems);
@@ -58,7 +59,7 @@ const Cart = () => {
     }
   };
 
-  console.log(userCartItems);
+  // console.log(userCartItems);
   if (user.me.id) {
     return (
       <div>
@@ -104,6 +105,9 @@ const Cart = () => {
                 </button>
               </div>
             ))}
+        <Link to="/checkout">
+          <button>Proceed to Checkout</button>
+        </Link>
       </div>
     );
   } else {
@@ -155,6 +159,9 @@ const Cart = () => {
                 </button>
               </div>
             ))}
+        <Link to="/checkout">
+          <button>Proceed to Checkout</button>
+        </Link>
       </div>
     );
   }

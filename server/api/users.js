@@ -2,27 +2,20 @@ const router = require('express').Router()
 const { models: { User, Order, CartItem, Product }} = require('../db')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+// GET /api/users/:userId/orders/
+// get all orders with that user Id
+router.get("/:userId/orders", async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      order: [["id", "ASC"]],
-      attributes: ['id', 'username', 'firstName', 'lastName', 'userType']
-    })
-    res.json(users)
+    console.log(req.params)
+    const allOrders = await Order.findAll({
+      where:{
+        userId: req.params.userId
+      },
+      include: {model: CartItem}
+    });
+    res.json(allOrders);
   } catch (err) {
-    next(err)
-  }
-});
-
-router.get('/:userId', async (req, res, next) => {
-  try{
-    const user = await User.findByPk(req.params.userId);
-    res.json(user)
-  } catch(err){
-    next(err)
+    next(err);
   }
 });
 
@@ -43,19 +36,27 @@ router.get("/:userId/orders/:orderId", async (req, res, next) => {
   }
 });
 
-// GET /api/users/:userId/orders/
-// get all orders with that user Id
-router.get("/:userId/orders", async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
+  try{
+    const user = await User.findByPk(req.params.userId);
+    res.json(user)
+  } catch(err){
+    next(err)
+  }
+});
+
+router.get('/', async (req, res, next) => {
   try {
-    const allOrders = await Order.findAll({
-      where:{
-        userId: req.params.userId
-      },
-      include: [CartItem]
-    });
-    res.json(allOrders);
+    const users = await User.findAll({
+      // explicitly select only the id and username fields - even though
+      // users' passwords are encrypted, it won't help if we just
+      // send everything to anyone who asks!
+      order: [["id", "ASC"]],
+      attributes: ['id', 'username', 'firstName', 'lastName', 'userType']
+    })
+    res.json(users)
   } catch (err) {
-    next(err);
+    next(err)
   }
 });
 

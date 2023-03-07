@@ -3,11 +3,9 @@ import axios from "axios";
 
 const initialState = [];
 
-export const fetchAllOrdersAsync = createAsyncThunk("allorders", async () => {
+export const fetchAllOrdersAsync = createAsyncThunk("allorders", async (userId) => {
   try {
-    //need to update line 10 with the correct route
-    // const { data } = await axios.get("/api/orders");
-    const { data } = await axios.get("/api/:userId/orders");
+    const { data } = await axios.get(`/api/users/${userId}/orders`);
     return data;
   } catch (err) {
     console.log(err);

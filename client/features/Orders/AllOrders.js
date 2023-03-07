@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { selectAllOrders, fetchAllOrdersAsync } from "./allOrdersSlice";
 
 const AllOrders = () => {
+  const user = useSelector(state => state.auth)
   const allOrders = useSelector(selectAllOrders);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchAllOrdersAsync());
-  }, [dispatch]);
+  }, []);
 
  return (
     <div id="allOrders">

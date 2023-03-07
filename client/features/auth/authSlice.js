@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addCartItemAsync } from "../cart/cartSlice";
+import { addCartItemAsync, fetchAllCartItemsAsync } from "../cart/cartSlice";
 
 /*
   CONSTANT VARIABLES
@@ -20,12 +20,16 @@ export const me = createAsyncThunk("auth/me", async (arg, thunkAPI) => {
         },
       });
 
+      console.log(res, "INSIDE OF AUTH SLICE HERE")
+
       const guestCart = JSON.parse(window.localStorage.getItem("cart"));
       console.log("INSIDE AUTH", guestCart)
       if (res.data && guestCart.length > 0 && !guestCart.includes(null) && !guestCart.includes(undefined)) {
         console.log(guestCart)
         thunkAPI.dispatch(addCartItemAsync({ userId: res.data.id, guestCart }));
         window.localStorage.removeItem("cart");
+      } else {
+        thunkAPI.dispatch(fetchAllCartItemsAsync(res.data.id))
       }
 
       return res.data;
