@@ -5,7 +5,7 @@ import { fetchUserOrders, selectUserOrders } from "./userOrdersSlice";
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const userId = useParams().id;
+  const {me} = useSelector((state) => state.auth)
   const userOrders = useSelector(selectUserOrders);
   // console.log(userOrders);
   // console.log(userId)
@@ -25,8 +25,14 @@ const Orders = () => {
   // }
 
   useEffect(() => {
-    dispatch(fetchUserOrders(userId));
-  }, [dispatch]);
+    if(me.id){
+      dispatch(fetchUserOrders(me.id));
+    }
+  }, [me]);
+
+  const clickHandler = () => {
+    
+  }
 
   return (
     <>
@@ -47,7 +53,7 @@ const Orders = () => {
                     <td>{order.firstName}</td>
                     <td>{order.lastName}</td>
                     <td>{order.address}</td>
-                    <td><Link to={`/account/${order.userId}/myorders/${order.id}`}>View Order</Link></td>
+                    <td><Link to={`/account/singleorder`} onClick={clickHandler}>View Order</Link></td>
                 </tr>
               );
             })

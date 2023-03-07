@@ -6,7 +6,11 @@ export const fetchAllProducts = createAsyncThunk(
   "fetch all products",
   async (filteredType) => {
     try {
-      const { data } = await axios.get(`/api/products?type=${filteredType.type}`);
+      let path = "";
+      if (filteredType) {
+        path = `?type=${filteredType.type}`;
+      }
+      const { data } = await axios.get(`/api/products${path}`);
       return data;
     } catch (err) {
       console.log(err);
@@ -15,9 +19,19 @@ export const fetchAllProducts = createAsyncThunk(
 );
 
 // POST /api/products
-export const addProduct = createAsyncThunk("add product", async () => {
+export const addProduct = createAsyncThunk("add product", async (newProduct) => {
   try {
-    const { data } = await axios.post("/api/products");
+    const { data } = await axios.post("/api/products", newProduct );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// PUT /api/products
+export const editProduct = createAsyncThunk("edit product", async (editProduct) => {
+  try {
+    const { data } = await axios.put(`/api/products/${editProduct.id}`, editProduct);
     return data;
   } catch (err) {
     console.log(err);
@@ -41,15 +55,27 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
-        console.log(action.payload)
+        console.log(action.payload);
         return action.payload;
       })
       .addCase(addProduct.fulfilled, (state, action) => {
         state.push(action.payload);
       })
+      .addCase(editProduct.fulfilled, (state, action) => {
+        return state.map(product => {
+          if(product.id === action.payload.id){
+            return action.payload
+          } else {
+            return product
+          }
+        }); 
+        newState = newState.sort((a,b) => {a.id > b.id ? 1 :
+                                                b.id > a.id ? -1 : 0})
+      })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-        return [];
+        return state.filter((product) => product.id !== action.payload.id)
       });
+      
   },
 });
 

@@ -4,6 +4,20 @@ const {
 } = require("../db");
 module.exports = router;
 
+// GET /api/orders/:userId
+router.get("/:userId", async (req, res, next) => {
+  try {
+    const allOrders = await Order.findAll({
+      where: {
+        userId: req.params.userId,
+      },
+    });
+    res.json(allOrders);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/orders/:orderId
 router.get("/:userId/orders/:orderId", async (req, res, next) => {
   try {
@@ -14,15 +28,13 @@ router.get("/:userId/orders/:orderId", async (req, res, next) => {
   }
 });
 
-// GET /api/orders/
-router.get("/:userId/orders", async (req, res, next) => {
+// GET /api/orders/admin/allorders
+router.get("/admin/allorders", async (req, res, next) => {
   try {
-    const allOrders = await Order.findAll({
-      where:{
-        userId: req.params.userId
-      }
-    });
-    res.json(allOrders);
+    const allOrders = await Order.findAll();
+    res.send(allOrders);
+
+    console.log(allOrders)
   } catch (err) {
     next(err);
   }

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addCartItemAsync } from "../cart/cartSlice";
+import { addCartItemAsync, fetchAllCartItemsAsync } from "../cart/cartSlice";
 
 /*
   CONSTANT VARIABLES
@@ -20,12 +20,16 @@ export const me = createAsyncThunk("auth/me", async (arg, thunkAPI) => {
         },
       });
 
+      console.log(res, "INSIDE OF AUTH SLICE HERE")
+
       const guestCart = JSON.parse(window.localStorage.getItem("cart"));
       console.log("INSIDE AUTH", guestCart)
       if (res.data && guestCart.length > 0 && !guestCart.includes(null) && !guestCart.includes(undefined)) {
         console.log(guestCart)
         thunkAPI.dispatch(addCartItemAsync({ userId: res.data.id, guestCart }));
         window.localStorage.removeItem("cart");
+      } else {
+        thunkAPI.dispatch(fetchAllCartItemsAsync(res.data.id))
       }
 
       return res.data;
@@ -75,6 +79,17 @@ export const authenticate = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk("edit user", async({id, username, password, firstName, lastName, email}) => {
+  try {
+    const {data} = await axios.put(`/api/users/${id}`,{
+      username, password, firstName, lastName, email
+    });
+    return data;
+  } catch(err) {
+    console.log(err);
+  }
+});
+
 /*
   SLICE
 */
@@ -101,6 +116,9 @@ export const authSlice = createSlice({
     builder.addCase(authenticate.rejected, (state, action) => {
       state.error = action.payload;
     });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.me = action.payload;
+    })
   },
 });
 
