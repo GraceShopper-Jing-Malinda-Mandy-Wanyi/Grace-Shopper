@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { models: { User, Order, CartItem, Product }} = require('../db')
+const {adminVerification} = require("./verification")
 module.exports = router
 
 // GET /api/users/:userId/orders/
@@ -45,7 +46,7 @@ router.get('/:userId', async (req, res, next) => {
   }
 });
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminVerification, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and username fields - even though
@@ -68,7 +69,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.delete('/:userId', async (req, res, next) => {
+router.delete('/:userId', adminVerification, async (req, res, next) => {
   try {
       const user = await User.findByPk(req.params.userId);
       await user.destroy();
