@@ -7,12 +7,13 @@ import {
   import { fetchRandomProduct, selectRandomProduct} from "../products/singleProductSlice";
   import { useDispatch } from "react-redux";
   import { useEffect } from "react";
+  import { addCartItemAsync } from "../cart/cartSlice";
 
 /**
  * COMPONENT
  */
 const Home = (props) => {
-  const username = useSelector((state) => state.auth.me.username);
+  const me = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
   const randomProduct = useSelector(selectRandomProduct);
@@ -22,10 +23,19 @@ const Home = (props) => {
     dispatch(fetchRandomProduct());
 
   }, [dispatch]);
+
+  const addToCart = (event) => {
+    const cartItem = {
+      qty: 1,
+      userId: me.id,
+      productId: event.target.value,
+    };
+    dispatch(addCartItemAsync(cartItem));
+  };
   return (
     <div>
           <div>
-      <h3>Welcome, {username}</h3>
+      <h3>Welcome, {me.username}</h3>
 
       <div>
         <p>Find the perfect drink for any occasion</p>
@@ -41,7 +51,7 @@ const Home = (props) => {
                 <img className="landing-product-images" src={product.img} alt={product.name} />
                 <h3>{product.name}</h3>
                 <p>${product.price}</p>
-                <button>Add to Cart</button>
+                <button value={product.id} onClick={addToCart}>Add to Cart</button>
               </li>
           ))
         ) : (
