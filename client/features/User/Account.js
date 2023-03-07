@@ -5,27 +5,21 @@ import { fetchSingleUser, selectSingleUser } from "./singleUserSlice";
 import { authenticate } from "../auth/authSlice";
 
 const Account = ({name}) => {
-  const dispatch = useDispatch();
-  const userId = useParams().id;
-  const user = useSelector(selectSingleUser);
-
-  useEffect(() => {
-    dispatch(fetchSingleUser(userId));
-  }, [dispatch, userId]);
+  const {me} = useSelector(state => state.auth);
 
   return (
     <>
       <section className="container">
         <ul>
           <li>
-            <Link to={`/account/${userId}/information`}>Information</Link>
+            <Link to={`/account/information`}>Information</Link>
           </li>
           <li>
-            <Link to={`/account/${userId}/myorders`}>Orders</Link>
+            <Link to={`/account/myorders`}>Orders</Link>
           </li>
         </ul>
-        <div className="container">
-          <h1>Hi, {user.firstName} {user.lastName}</h1>
+         <div className="container">
+          <h1>Hi, {me.firstName} {me.lastName}</h1>
           <h1>
             From your account dashboard you can view your recent orders, manage
             your shipping and billing adresses, and edit your password and

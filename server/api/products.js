@@ -51,8 +51,8 @@ router.get("/", async (req, res, next) => {
 // PUT /api/products/:productId
 router.put("/:id", async (req, res, next) => {
   try {
-    const editProduct = await Product.findByPk(req.params.id);
-    await editProduct.update(req.body);
+    let editProduct = await Product.findByPk(req.params.id);
+    editProduct = await editProduct.update(req.body);
     res.json(editProduct);
   } catch (err) {
     next(err);

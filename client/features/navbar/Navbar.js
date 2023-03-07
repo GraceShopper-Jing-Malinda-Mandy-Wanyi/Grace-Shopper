@@ -67,15 +67,15 @@ const Navbar = () => {
                 <SearchBar />
               </div>
               <div id="login-signup-cart">
-                {isLoggedIn ? (
-                  <div className="login-logout">
-                    <Link to="/landing">Home</Link>
-                    <Link to={`/account/${userId}`}>Account</Link>
-                    <button className="btn secondary-btn" type="button" onClick={logoutAndRedirectHome}>
-                      Logout
-                    </button>
-                  </div>
-                ) : (
+              {isLoggedIn ? (
+                <div className="login-logout">
+                  <Link to="/landing">Home</Link>
+                  <Link to={`/account`}>Account</Link>
+                  <button className="btn secondary-btn" type="button" onClick={logoutAndRedirectHome}>
+                    Logout
+                  </button>
+                </div>
+              ) : (
                   <div className="login-logout">
                     <div id="login-dropdown" onMouseEnter={mouseEnter}>
                       Login

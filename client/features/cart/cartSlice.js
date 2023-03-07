@@ -3,14 +3,30 @@ import axios from "axios";
 
 export const addCartItemAsync = createAsyncThunk(
   "addCartItem",
-  async (cartItem) => {
+  async (cartItem, thunkAPI) => {
+    console.log("path0000000", cartItem)
     try {
       if (!cartItem.userId) {
+        console.log("path11111111")
         const { data } = await axios.get(`/api/products/${cartItem.productId}`);
         data.qty = cartItem.qty;
+        data.type = "guest"
+        console.log("only guest info should be here")
         return data;
       } else {
-        await axios.post(`/api/cart`, cartItem);
+        console.log("path22222")
+        const { data } = await axios.post(`/api/cart`, cartItem);
+  
+        console.log("ABOVE RIGHT PATH")
+        if(cartItem.guestCart){
+          console.log("only guest to user", cartItem.userId)
+          thunkAPI.dispatch(fetchAllCartItemsAsync(cartItem.userId))
+        }
+      
+        if(data){
+          console.log("only user info should be here")
+          return data
+        } 
       }
     } catch (err) {
       console.log(err);
@@ -65,6 +81,13 @@ const cartSlice = createSlice({
       });
     });
     builder.addCase(addCartItemAsync.fulfilled, (state, action) => {
+      console.log(action.payload, "THIS IS ACTION PAYLOAD")
+
+      if(!action.payload){
+        return state
+      }
+      if(action.payload.type){
+      delete action.payload.type
       let guestCart = JSON.parse(window.localStorage.getItem("cart"));
 
       let updated = false
@@ -78,12 +101,33 @@ const cartSlice = createSlice({
         }
       })
 
-      if(!updated){
+      if(!updated && action.payload){
         guestCart.push(action.payload)
       }
 
       console.log("THUNK", guestCart, updated);
       window.localStorage.setItem("cart", JSON.stringify(guestCart));
+    } else {
+      const newProduct = action.payload.product
+      newProduct.cartItemId = action.payload.id
+      newProduct.qty = action.payload.qty
+      let updated = false
+      const newState = state.map((product) => {
+        if(product.cartItemId === action.payload.id){
+          updated = true
+          return newProduct
+        } else {
+          return product
+        }
+      })
+
+      if(updated){
+        return newState
+      } else {
+        state.push(newProduct)
+      }
+      
+    }
     });
     builder.addCase(updateQtyAsync.fulfilled, (state, action) => {
       action.payload.product.cartItemId = action.payload.id

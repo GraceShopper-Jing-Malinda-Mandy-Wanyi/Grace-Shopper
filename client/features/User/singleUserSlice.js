@@ -16,16 +16,7 @@ export const fetchSingleUser = createAsyncThunk(
     }
 );
 
-export const updateUser = createAsyncThunk("edit user", async({id, username, password, firstName, lastName, email}) => {
-  try {
-    const {data} = await axios.put(`/api/users/${id}`,{
-      username, password, firstName, lastName, email
-    });
-    return data;
-  } catch(err) {
-    console.log(err);
-  }
-});
+
 
 // export const singleUserOrders = createAsyncThunk(
 //   "userOrders",
@@ -89,9 +80,7 @@ export const singleUserSlice = createSlice({
         builder.addCase(fetchSingleUser.fulfilled, (state, action) => {
             return action.payload;
         })
-        .addCase(updateUser.fulfilled, (state, action) => {
-          return action.payload;
-        })
+
         // .addCase(singleUserOrders.fulfilled, (state, action) => {
         //   return action.payload;
         // });

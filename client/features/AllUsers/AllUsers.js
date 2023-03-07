@@ -5,6 +5,7 @@ import {
   selectUsers,
   fetchAllUsersAsync,
   updateSingleUserAsync,
+  deleteUserAsync,
 } from "./allUsersSlice";
 
 const AllUsers = () => {
@@ -18,6 +19,10 @@ const AllUsers = () => {
   const changeUserType = (id, userType) => {
     console.log(id, userType);
     dispatch(updateSingleUserAsync({ id, userType }));
+  };
+
+  const deleteUser = (id) => {
+    dispatch(deleteUserAsync(id));
   };
 
   return (
@@ -46,7 +51,8 @@ const AllUsers = () => {
                     onChange={(event) => {
                       changeUserType(user.id, event.target.value);
                     }}
-                  value={user.userType}>
+                    value={user.userType}
+                  >
                     <option>{user.userType}</option>
                     <option>
                       {user.userType === "USER" ? "ADMIN" : "USER"}
@@ -54,7 +60,13 @@ const AllUsers = () => {
                   </select>
                 </td>
                 <td>
-                  <button className="btn delete-btn">Delete</button>
+                  <button className="btn delete-btn"
+                    onClick={() => {
+                      deleteUser(user.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </>

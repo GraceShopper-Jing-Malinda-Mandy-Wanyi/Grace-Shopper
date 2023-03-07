@@ -10,6 +10,12 @@ function SearchBar() {
   const [qty, setQty] = useState(1);
   const user = useSelector((state) => state.auth);
 
+
+
+
+  // first is she needs to not fucking render her products in the navbar
+  // second she only needs ONE event listener for onSubmit -> inside of the event listner, she needs to put ONE NAVIGATE to a link /products?search={searchValue}
+  //inside of products component, she needs to get req query, then dispatch req query (this is going to happen in the use effect)
   const handleSearch = (e) => {
     e.preventDefault();
     dispatch(searchProducts(searchInput));
