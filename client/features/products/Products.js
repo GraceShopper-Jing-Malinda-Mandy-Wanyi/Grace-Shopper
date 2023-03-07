@@ -6,18 +6,21 @@ import { fetchAllProducts } from "./productsSlice";
 import { addCartItemAsync } from "../cart/cartSlice";
 
 const Products = () => {
-  const products = useSelector(state => state.products);
+  const products = useSelector((state) => state.products);
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   // pulling query object from URL -> {type: "wine"}
-  const filteredType = Object.fromEntries([...searchParams])
+  const filteredType = Object.fromEntries([...searchParams]);
 
+  console.log(filteredType);
 
   const [qty, setQty] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchAllProducts(filteredType));
+    if (filteredType.type) {
+      dispatch(fetchAllProducts(filteredType));
+    }
   }, []);
 
   const addToCart = (event) => {
@@ -39,7 +42,11 @@ const Products = () => {
                 <h1>{product.name}</h1>
               </Link>
               <figure>
-                <img className="all-products-images" src={product.img} alt={`Image of ${product.name} wine`} />
+                <img
+                  className="all-products-images"
+                  src={product.img}
+                  alt={`Image of ${product.name} wine`}
+                />
                 <figcaption>Price: ${product.price}</figcaption>
               </figure>
               <div>

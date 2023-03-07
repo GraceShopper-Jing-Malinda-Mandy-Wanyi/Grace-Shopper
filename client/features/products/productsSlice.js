@@ -8,9 +8,14 @@ export const fetchAllProducts = createAsyncThunk(
     try {
       let path = "";
       if (filteredType) {
-        path = `?type=${filteredType.type}`;
+        if (filteredType.type) {
+          path = `?type=${filteredType.type}`;
+        } else {
+          path = `?search=${filteredType.search}`;
+        }
       }
       const { data } = await axios.get(`/api/products${path}`);
+      console.log(data)
       return data;
     } catch (err) {
       console.log(err);
@@ -19,24 +24,33 @@ export const fetchAllProducts = createAsyncThunk(
 );
 
 // POST /api/products
-export const addProduct = createAsyncThunk("add product", async (newProduct) => {
-  try {
-    const { data } = await axios.post("/api/products", newProduct );
-    return data;
-  } catch (err) {
-    console.log(err);
+export const addProduct = createAsyncThunk(
+  "add product",
+  async (newProduct) => {
+    try {
+      const { data } = await axios.post("/api/products", newProduct);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
 // PUT /api/products
-export const editProduct = createAsyncThunk("edit product", async (editProduct) => {
-  try {
-    const { data } = await axios.put(`/api/products/${editProduct.id}`, editProduct);
-    return data;
-  } catch (err) {
-    console.log(err);
+export const editProduct = createAsyncThunk(
+  "edit product",
+  async (editProduct) => {
+    try {
+      const { data } = await axios.put(
+        `/api/products/${editProduct.id}`,
+        editProduct
+      );
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
 // DELETE /api/products
 export const deleteProduct = createAsyncThunk("delete product", async (id) => {
@@ -62,20 +76,17 @@ export const productsSlice = createSlice({
         state.push(action.payload);
       })
       .addCase(editProduct.fulfilled, (state, action) => {
-        return state.map(product => {
-          if(product.id === action.payload.id){
-            return action.payload
+        return state.map((product) => {
+          if (product.id === action.payload.id) {
+            return action.payload;
           } else {
-            return product
+            return product;
           }
-        }); 
-        newState = newState.sort((a,b) => {a.id > b.id ? 1 :
-                                                b.id > a.id ? -1 : 0})
+        });
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-        return state.filter((product) => product.id !== action.payload.id)
+        return state.filter((product) => product.id !== action.payload.id);
       });
-      
   },
 });
 
