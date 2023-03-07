@@ -14,15 +14,27 @@ router.get("/:userId/orders/:orderId", async (req, res, next) => {
   }
 });
 
-// GET /api/orders/
+// GET /api/:userId/orders/
 router.get("/:userId/orders", async (req, res, next) => {
   try {
     const allOrders = await Order.findAll({
-      where:{
-        userId: req.params.userId
-      }
+      where: {
+        userId: req.params.userId,
+      },
     });
     res.json(allOrders);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/admin/allorders
+router.get("/admin/allorders", async (req, res, next) => {
+  try {
+    const allOrders = await Order.findAll();
+    res.send(allOrders);
+
+    console.log(allOrders)
   } catch (err) {
     next(err);
   }

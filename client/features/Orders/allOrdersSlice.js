@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {};
+const initialState = [];
 
 export const fetchAllOrdersAsync = createAsyncThunk("allorders", async () => {
   try {
@@ -14,6 +14,19 @@ export const fetchAllOrdersAsync = createAsyncThunk("allorders", async () => {
   }
 });
 
+export const fetchAllOrdersAdminAsync = createAsyncThunk(
+  "all orders as admin",
+  async () => {
+    try {
+      console.log("Hello")
+      const { data } = await axios.get("/api/admin/allorders");
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 const allOrdersSlice = createSlice({
   name: "allOrders",
   initialState,
@@ -22,12 +35,14 @@ const allOrdersSlice = createSlice({
     builder.addCase(fetchAllOrdersAsync.fulfilled, (state, action) => {
       return action.payload;
     });
+    builder.addCase(fetchAllOrdersAdminAsync.fulfilled, (state, action) => {
+      return action.payload;
+    });
   },
 });
 
 export const selectAllOrders = (state) => {
   return state.allOrders;
-
 };
 
 export default allOrdersSlice.reducer;
