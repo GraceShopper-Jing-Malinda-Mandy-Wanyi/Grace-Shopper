@@ -29,7 +29,7 @@ const App = () => {
   console.log(useLocation())
 
   //guest{}
-  //user 
+  //user
 //   {
 //     "id": 28,
 //     "username": "alex",
@@ -47,11 +47,11 @@ const App = () => {
     pathname.includes("admin") && user.me.userType === "ADMIN" ?
     <div>
       <AdminRoutes/>
-    </div> : 
-    <div>
+    </div> :
+    <>
       <Navbar />
       <AppRoutes />
-    </div>
+    </>
   );
 };
 

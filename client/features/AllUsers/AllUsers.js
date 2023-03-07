@@ -21,6 +21,7 @@ const AllUsers = () => {
   };
 
   return (
+    <main className="container">
     <div id="allUsers">
       <table>
         <thead>
@@ -53,7 +54,7 @@ const AllUsers = () => {
                   </select>
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button className="btn delete-btn">Delete</button>
                 </td>
               </tr>
             </>
@@ -61,6 +62,7 @@ const AllUsers = () => {
         </tbody>
       </table>
     </div>
+    </main>
   );
 };
 

@@ -30,15 +30,15 @@ function SearchBar() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSearch}>
+    <>
+      <form className="flex-row gap-1" onSubmit={handleSearch}>
         <input
           type="text"
           placeholder="Search products"
           value={searchInput}
           onChange={handleInputChange}
         />
-        <button type="submit">Search</button>
+        <button className="btn primary-btn" type="submit">Search</button>
       </form>
       {searchResults && searchResults.length > 0 ? (
         <div>
@@ -65,7 +65,7 @@ function SearchBar() {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <button onClick={addToCart} value={result.id}>
+                <button className="btn primary-btn" onClick={addToCart} value={result.id}>
                   Add to Cart
                 </button>
               </div>
@@ -73,7 +73,7 @@ function SearchBar() {
           ))}
         </div>
       ) : null}
-    </div>
+    </>
   );
 }
 

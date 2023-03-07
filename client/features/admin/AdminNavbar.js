@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../auth/authSlice";
 import AdminNavBarButton from "./AdminNavBarButton";
+import SearchBar from "../search/SearchBar";
 
 const AdminNavBar = () => {
   const navigate = useNavigate();
@@ -15,31 +16,36 @@ const AdminNavBar = () => {
   const buttons = ["All Users", "Inventory", "All Orders"];
 
   return (
-    <div>
+    <header>
       <nav>
         <div id="nav-container">
-          <div id="company-name">
+          <div id="logo">
             <Link to={"/landing"}>
+              <img src="../wine-logo.png" alt="logo"></img>
               <h1>Drinky Drinks</h1>
             </Link>
           </div>
 
           <div id="login-signup-cart">
-            <div className="login-logout">
+            <div className="wrapper">
               <Link to="/home">Home</Link>
-              <button type="button" onClick={logoutAndRedirectHome}>
+              <button
+                className="btn secondary-btn"
+                type="button"
+                onClick={logoutAndRedirectHome}
+              >
                 Logout
               </button>
             </div>
-          </div>
-          {/* 
-            <div id="search-bar-login-signup">
+            <div className="wrapper">
               <div className="search-bar">
                 <SearchBar />
               </div>
-  
-              
-            </div> */}
+            </div>
+          </div>
+
+
+
           {/* mapping each button onto nav bar
                 passing props (type={button}) into NavButton commponent */}
           <div className="navlinks-container">
@@ -50,7 +56,7 @@ const AdminNavBar = () => {
         </div>
       </nav>
       <hr />
-    </div>
+    </header>
   );
 };
 
