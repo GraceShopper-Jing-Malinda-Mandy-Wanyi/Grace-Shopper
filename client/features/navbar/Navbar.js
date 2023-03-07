@@ -57,8 +57,8 @@ const Navbar = () => {
           <div id="nav-container">
             <div id="logo" className="wrapper">
               <Link to={"/landing"}>
-                <img src="../wine-logo.png" alt="logo"></img>
-                <h1>Drinky Drinks</h1>
+                <img src="../images/logo.jpg" alt="logo"></img>
+                <h1>Happy Hour</h1>
               </Link>
             </div>
 

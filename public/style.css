@@ -21,7 +21,7 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 header {
@@ -54,17 +54,26 @@ label {
 
 select {
   border: none;
-  border-radius: 30px;
-  padding: 10px 20px;
-  font-size: 16px;
+  border-radius: 1.5rem;
+  padding: .5rem 1rem;
+  font-size: 1rem;
   outline: none;
 }
 
 input {
+  /* width: 600px; */
   border: 2px solid var(--background-color);
-  border-radius: 30px;
-  padding: 10px 20px;
-  font-size: 16px;
+  border-radius: 1.5rem;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+}
+
+textarea {
+  /* width: 600px; */
+  border: 2px solid var(--background-color);
+  border-radius: 1rem;
+  padding: .5rem 1rem;
+  font-size: 1rem;
 }
 
 table {
@@ -73,7 +82,12 @@ table {
   padding: 1rem;
 }
 
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 td {
+  padding: 1rem;
   text-align: center;
 }
 
@@ -124,6 +138,12 @@ td {
   color: var(--foreground-color);
 }
 
+.delete-btn-outlined {
+  border: 2px solid var(--warning-color);
+  color: var(--warning-color);
+  background-color: transparent;
+}
+
 .container {
   max-width: 1200px;
   margin: 5vh auto;
@@ -143,6 +163,13 @@ td {
   align-items: center;
 }
 
+.flex-column-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -155,7 +182,7 @@ td {
 
 .card-container {
   outline: 1px solid var(--background-color);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 1rem;
 }
 
@@ -190,6 +217,12 @@ td {
   width: 800px;
 }
 
+.inventory.container {
+  max-width: 1400px;
+  margin: 5vh auto;
+  padding: 1rem;
+}
+
 /*
 --------------------------------
 LOGO
@@ -212,8 +245,10 @@ LOGO
 }
 
 #logo img {
-  width: 5rem;
-  height: 5rem;
+  max-height: 100px;
+  width: auto;
+  /* width: 5rem; */
+  /* height: 5rem; */
 }
 
 /*
