@@ -56,8 +56,23 @@ const Inventory = () => {
   const actualProducts = [...products];
 
   return (
-    <div id="inventoryContainer">
-      <div id="allProducts">
+    <main className="container inventory flex-row">
+      <section>
+        <form className="flex-column gap-1" onSubmit={addNewProduct}>
+          <label>Name</label>
+          <input name="name"></input>
+          <label>Type</label>
+          <input name="type"></input>
+          <label>Size</label>
+          <input name="size"></input>
+          <label>Description</label>
+          <textarea name="description"></textarea>
+          <label>Price</label>
+          <input name="price"></input>
+          <button className="btn tertiary-btn" type="submit">Add Product</button>
+        </form>
+      </section>
+      <section>
         <table>
           <thead>
             <tr>
@@ -112,7 +127,7 @@ const Inventory = () => {
                       </td>
                       <td>
                         {editMode && formValue.id === product.id ? (
-                          <input
+                          <textarea
                             onChange={changeHandler}
                             name="description"
                             value={formValue.description}
@@ -133,7 +148,7 @@ const Inventory = () => {
                         )}
                       </td>
                       <td>
-                        <button
+                        <button className="btn primary-btn"
                           onClick={(event) => {
                             onClickHandler({
                               method: event.target.value,
@@ -151,7 +166,7 @@ const Inventory = () => {
                         </button>
                       </td>
                       <td>
-                        <button
+                        <button className="btn delete-btn"
                           onClick={() => {
                             handleDelete(product.id);
                           }}
@@ -163,23 +178,8 @@ const Inventory = () => {
                   ))}
           </tbody>
         </table>
-      </div>
-      <div id="addProduct">
-        <form onSubmit={addNewProduct}>
-          <label>Name</label>
-          <input name="name"></input>
-          <label>Type</label>
-          <input name="type"></input>
-          <label>Size</label>
-          <input name="size"></input>
-          <label>Description</label>
-          <input name="description"></input>
-          <label>Price</label>
-          <input name="price"></input>
-          <button>Add Product</button>
-        </form>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

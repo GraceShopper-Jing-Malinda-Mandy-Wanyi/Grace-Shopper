@@ -13,38 +13,44 @@ const Checkout = () => {
   };
 
   return (
-    <div>
+    <main className="container">
       {!isSubmitted ? (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-          </label>
-          <label>
-            Email:
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </label>
-          <label>  
-            Address:
-            <input value={address} onChange={(e) => setAddress(e.target.value)} />
-          </label>
-          <label>  
-            Credit Card Info:
-            <input value={creditcard} onChange={(e) => setCreditcard(e.target.value)} />
-          </label>
-          <button type="submit">Checkout</button>
+        <section className="container">
+        <form className="flex-column-start gap-1" onSubmit={handleSubmit}>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label>Address:</label>
+          <input value={address} onChange={(e) => setAddress(e.target.value)} />
+          <label>Credit Card Info:</label>
+          <input
+            value={creditcard}
+            onChange={(e) => setCreditcard(e.target.value)}
+          />
+          <button className="btn secondary-btn" type="submit">
+            Checkout
+          </button>
         </form>
+        </section>
       ) : (
-        <div>
+        <section className="container">
           <p>Thank you for your purchase, {name}!</p>
           <p>We have sent a confirmation email to {email}.</p>
           <p>Your order will be shipped to:</p>
           <p>{address}</p>
-        </div>
+        </section>
       )}
-    </div>
+    </main>
   );
 };
 
 export default Checkout;
-
